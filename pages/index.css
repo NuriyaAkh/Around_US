@@ -17,13 +17,15 @@
 @import url(../blocks/footer/footer.css);
 
 @import url(../blocks/forms/forms.css);
-@import url(../blocks/forms/__title/form__title.css);
-@import url(../blocks/forms/__input/form__input.css);
-@import url(../blocks/forms/__form/forms__form.css);
 @import url(../blocks/forms/__container/forms__container.css);
-@import url(../blocks/forms/__button/form__button.css);
-@import url(../blocks/forms/__button-close/form__button-close.css);
-@import url(../blocks/forms/__button-close-img/form__button-close-img.css);
+@import url(../blocks/forms/__is-open/forms__is-open.css);
+
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__button/form__button.css);
+@import url(../blocks/form/__button-close/form__button-close.css);
+@import url(../blocks/form/__button-close-img/form__button-close-img.css);
 
 @import url(../blocks/page/page.css);
 
