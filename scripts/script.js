@@ -7,7 +7,7 @@ const editForm = document.querySelector('.form');
 const form = document.querySelector('.forms');
 const formInputName = document.querySelector('#username');
 const formInputJob = document.querySelector('#about');
-const formSaveButton =document.querySelector('.form__button');
+
 
 function closeForm(){
   form.classList.remove("forms__is-open");
