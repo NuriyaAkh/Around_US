@@ -16,6 +16,6 @@ A project called "Around The U.S." — an interactive page where users can add, 
 
 ### Demo
 
-* https://nuriyaakh.github.io/web_project_4/
+* [Around US](https://nuriyaakh.github.io/web_project_4/)
 
 
