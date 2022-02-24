@@ -1,0 +1,10 @@
+.card__love {
+  color: #000000;
+  max-height: 19px;
+  max-width: 21px;
+  align-self: center;
+  transition: all 0.4s;
+}
+.card__love:hover {
+  opacity: 0.6;
+}

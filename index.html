@@ -1,102 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"
-    />
-    <link rel="stylesheet" href="style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>
       Around US
     </title>
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.png" alt="logo Around US">
+      <img class="header__logo" src="./images/logo.png" alt="logo Around US" />
     </header>
     <main class="content">
-      <section class="profile" >
-
-        <img class="profile__img" src="./images/image_jc.jpg" alt="profile image">
+      <section class="profile">
+        <img class="profile__img" src="./images/image_jc.jpg" alt="profile image" />
         <div class="profile__info">
           <div class="profile__text">
-            <p class="profile__name">Jacques Cousteau</p>
+            <h1 class="profile__name">Jacques Cousteau</h1>
             <button type="button" class="profile__button-name-edit">
-              <img class="profile__edit-icon" src="./images/edit-logo.png" alt="link-edit icon">
+              <img class="profile__edit-icon" src="./images/edit-logo.png" alt="link-edit icon" />
             </button>
-            <p class="profile__type">Explorer</p>
-
+            <p class="profile__about">Explorer</p>
           </div>
 
-          <button type="button" class="profile__button-add" href="#">
-          <img class="profile__add-img"src="./images/+.svg" alt="add sidn">
+          <button type="button" class="profile__button-add">
+            <img class="profile__add-img" src="./images/+.svg" alt="add sidn" />
           </button>
-      </div>
-
+        </div>
       </section>
       <section class="cards">
         <article class="card">
-          <img class="card__img" src="./images/yasomite-valley.png" alt="yasomite valley foto">
+          <img class="card__img" src="./images/yasomite-valley.png" alt="yasomite valley foto" />
           <div class="card__info">
-          <p class="card__title">Yasomite valley</p>
-          <img class="card__love" src="./images/heart.svg" alt="love it icon">
+            <p class="card__title">Yasomite valley</p>
+            <img class="card__love" src="./images/heart.svg" alt="love it icon" />
           </div>
         </article>
         <article class="card">
-          <img class="card__img" src="./images/lake-louise.png" alt="Lake Louise foto">
+          <img class="card__img" src="./images/lake-louise.png" alt="Lake Louise foto" />
           <div class="card__info">
-          <p class="card__title">Lake Louise</p>
-          <img class="card__love" src="./images/heart.svg" alt="love it icon">
+            <p class="card__title">Lake Louise</p>
+            <img class="card__love" src="./images/heart.svg" alt="love it icon" />
           </div>
         </article>
         <article class="card">
-          <img class="card__img" src="./images/bald-mountains.png" alt="Bald Mountains foto">
+          <img class="card__img" src="./images/bald-mountains.png" alt="Bald Mountains foto" />
           <div class="card__info">
-          <p class="card__title">Bald Mountains</p>
-          <img class="card__love" src="./images/heart.svg" alt="love it icon">
+            <p class="card__title">Bald Mountains</p>
+            <img class="card__love" src="./images/heart.svg" alt="love it icon" />
           </div>
         </article>
         <article class="card">
-          <img class="card__img" src="./images/latemar.png" alt="Latemar foto">
+          <img class="card__img" src="./images/latemar.png" alt="Latemar foto" />
           <div class="card__info">
-          <p class="card__title">Latemar</p>
-          <img class="card__love" src="./images/heart.svg" alt="love it icon">
+            <p class="card__title">Latemar</p>
+            <img class="card__love" src="./images/heart.svg" alt="love it icon" />
           </div>
         </article>
         <article class="card">
-          <img class="card__img" src="./images/vanoise-nationals.png" alt="Vanoise Nationals foto">
+          <img class="card__img" src="./images/vanoise-nationals.png" alt="Vanoise Nationals foto" />
           <div class="card__info">
-          <p class="card__title">Vanoise Nationals</p>
-          <img class="card__love" src="./images/heart.svg" alt="love it icon">
+            <p class="card__title">Vanoise Nationals</p>
+            <img class="card__love" src="./images/heart.svg" alt="love it icon" />
           </div>
         </article>
         <article class="card">
-          <img class="card__img" src="./images/lago-di-braise.png" alt="Lago di Braies foto">
+          <img class="card__img" src="./images/lago-di-braise.png" alt="Lago di Braies foto" />
           <div class="card__info">
-          <p class="card__title">Lago di Braies</p>
-          <img class="card__love" src="./images/heart.svg" alt="love it icon">
+            <p class="card__title">Lago di Braies</p>
+            <img class="card__love" src="./images/heart.svg" alt="love it icon" />
           </div>
         </article>
-
-
       </section>
     </main>
     <footer>
       <p class="footer">© 2022 Around The U.S.</p>
     </footer>
-    <div class="form">
-      <form class="form__edit">
-        <h2 class="form__title">Edit profile</h2>
-        <fieldset class="form__fieldset">
-          <input type="text" class=" form__input">
-          <input type="text" class="form__input">
-        </fieldset>
-        <fieldset class="form__fieldset">
+
+    <div class="forms">
+      <div class="forms__container">
+        <button type="button" class="form__button-close"><img class="form__button-close-img" src="./images/Close Icon.png " alt="close icon" /></button>
+        <form class="forms__form">
+          <h2 class="form__title">Edit profile</h2>
+          <input type="text" class="form__input" id="username" name="username" placeholder="Name" value="Jacques Cousteau" required />
+          <input type="text" class="form__input" id="about" name="about" placeholder="About Me" value="Explorer" />
           <button type="submit" class="form__button">Save</button>
-        </fieldset>
-      </form>
+        </form>
+      </div>
     </div>
+
   </body>
-  <script src=""></script>
+  <script src="script.js"></script>
 </html>

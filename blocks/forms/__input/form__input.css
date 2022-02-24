@@ -1,0 +1,27 @@
+.form__input {
+  border-style: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  min-width: 358px;
+  min-height: 50px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+@media screen and (max-width: 590px) {
+  .form__input {
+    min-width: 238px;
+  }
+}
+.form__input::placeholder {
+  font-size: 14px;
+  color: #000000;
+}
+
+.form__input [type="text"]:focus {
+  outline-color: rgb(31, 8, 235);
+  outline-width: 1px;
+
+}
