@@ -1,0 +1,15 @@
+.profile__button-name-edit {
+  max-width: 24px;
+  min-height: 24px;
+  background-color: #000000;
+  border-style: none;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  transition: all 0.4s;
+}
+.profile__button-name-edit:hover {
+  opacity: 0.6;
+}

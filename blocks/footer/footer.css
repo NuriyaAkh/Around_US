@@ -1,0 +1,30 @@
+.footer {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+  min-height: 100px;
+  width: 100%;
+  max-width: 880px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+@media screen and (max-width: 800px) {
+  .footer {
+    max-width: 581px;
+  }
+}
+@media screen and (max-width: 590px) {
+  .footer {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    max-width: 282px;
+  }
+}
