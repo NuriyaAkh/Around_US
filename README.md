@@ -6,7 +6,8 @@ A project called "Around The U.S." — an interactive page where users can add, 
 * CSS
 * JS
 * Figma
-* Form
+* Forms
+* BEM
 
 **Figma**
 
