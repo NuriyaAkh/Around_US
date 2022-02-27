@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .profile__info {
     grid-template-columns: 1fr;
   }

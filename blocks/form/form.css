@@ -7,7 +7,6 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   width: 430px;
-  height: 330px;
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
   margin: 0 auto;
@@ -16,7 +15,6 @@
 @media screen and (max-width: 590px) {
   .form{
     width: 282px;
-    height: 322px;
     padding: 25px;
   }
 }
