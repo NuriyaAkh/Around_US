@@ -4,7 +4,7 @@
   grid-template-rows: auto;
   min-width: 415px;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .profile__text {
     min-width: 581px;
   }
