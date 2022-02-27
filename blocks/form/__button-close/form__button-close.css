@@ -1,4 +1,7 @@
 .form__button-close {
+  background-image: url(../../../images/Close\ Icon.svg);
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -6,12 +9,15 @@
   padding: 0;
   position: relative;
   left: 430px;
-  top: 10px;
+  top: -40px;
+  width: 40px;
+  height: 40px;
 }
 @media screen and (max-width: 590px) {
   .form__button-close {
     left: 250px;
-    top: -10px;
+    width: 26px;
+    height: 26px;
   }
 }
 .form__button-close:hover {
