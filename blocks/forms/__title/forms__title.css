@@ -1,4 +1,4 @@
-.forms__title {
+.form__title {
   font-family: Inter,sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -10,7 +10,7 @@
 
 }
 @media screen and (max-width: 590px) {
-  .forms__title {
+  .form__title {
     font-size: 18px;
     line-height: 22px;
   }

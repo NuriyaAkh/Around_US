@@ -29,7 +29,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 
-form.addEventListener('submit', handleProfileFormSubmit);
+editForm.addEventListener('submit', handleProfileFormSubmit);
 profileEditButton.addEventListener("click",openForm);
 editFormCloseButton.addEventListener("click", closeForm);
 

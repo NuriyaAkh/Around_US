@@ -78,19 +78,18 @@
     <footer class="footer">
       <p class="footer__text">© 2022 Around The U.S.</p>
     </footer>
-
-    <div class="forms ">
+    <div class="forms">
       <div class="forms__container">
-        <button type="button" class="form__button-close"><img class="form__button-close-img" src="./images/Close Icon.svg " alt="close icon" /></button>
+        <button aria-label="close" type="button" class="form__button-close"></button>
+        <h2 class="forms__title">Edit profile</h2>
         <form class="form" name="edit-form">
-          <h2 class="form__title">Edit profile</h2>
           <input type="text" class="form__input" id="username" name="username" placeholder="Name" required />
           <input type="text" class="form__input" id="about" name="about" placeholder="About Me"  />
           <button type="submit" class="form__button">Save</button>
         </form>
       </div>
     </div>
-    <script defer src="./scripts/script.js"></script>
+   <script defer src="./scripts/script.js"></script>
   </body>
 
 </html>
