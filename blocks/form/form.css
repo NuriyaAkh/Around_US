@@ -1,21 +1,15 @@
 .form {
-  background-color: #ffffff;
   color: #000000;
 
   justify-content: center;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  width: 430px;
-  height: 330px;
+  padding: 36px;
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 36px;
+
 }
 @media screen and (max-width: 590px) {
   .form{
-    width: 282px;
-    height: 322px;
-    padding: 25px;
+    padding: 22px;
   }
 }

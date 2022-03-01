@@ -1,9 +1,9 @@
-.form__button[type="submit"] {
+.form__button{
   background-color: #000000;
   border-radius: 2px;
   color: #ffffff;
   border-style: none;
-  font-family: Inter;
+  font-family: Inter,sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -14,12 +14,13 @@
   margin: 48px auto 0;
   box-sizing: border-box;
   transition: all 0.4s;
+  cursor: pointer;
 }
 @media screen and (max-width: 590px) {
-  .form__button[type="submit"] {
+  .form__button {
     min-width: 238px;
   }
 }
-.form__button[type="submit"]:hover {
-  opacity: 0.6;
+.form__button:hover {
+  opacity: 0.8;
 }

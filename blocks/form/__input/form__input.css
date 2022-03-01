@@ -4,7 +4,7 @@
   box-sizing: border-box;
   min-width: 358px;
   min-height: 50px;
-  font-family: Inter;
+  font-family: Inter,sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -20,7 +20,7 @@
   color: #000000;
 }
 
-.form__input [type="text"]:focus {
+.form__input:focus {
   outline-color: rgb(31, 8, 235);
   outline-width: 1px;
 
