@@ -5,6 +5,13 @@
   font-size: 24px;
   line-height: 29px;
   color: #000000;
+<<<<<<< Updated upstream:blocks/form/__title/form__title.css
+=======
+  margin: 0 auto 18px 36px;
+  border: solid green 1px;
+
+
+>>>>>>> Stashed changes:blocks/forms/__title/forms__title.css
 }
 @media screen and (max-width: 590px) {
   .form__title {
