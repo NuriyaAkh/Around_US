@@ -1,25 +1,26 @@
 .form__button-close {
-  background-image: url(../../../images/Close\ Icon.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: transparent;
+  background: transparent url(../../../images/Close\ Icon.svg) center no-repeat;
   border: none;
   cursor: pointer;
-  transition: all 0.4s;
+  transition: all .4s;
   padding: 0;
-  position: relative;
-  left: 430px;
-  top: -40px;
-  width: 40px;
-  height: 40px;
+  position: absolute;
+  right: 0;
+  top: -60px;
+  width: 26px;
+  height: 26px;
 }
-@media screen and (max-width: 590px) {
+
+@media screen and (min-width: 591px) {
   .form__button-close {
-    left: 250px;
-    width: 26px;
-    height: 26px;
+    /* TODO: double check all margins.padding according to the design */
+    top:-40px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
   }
 }
+
 .form__button-close:hover {
   opacity: 0.6;
 }

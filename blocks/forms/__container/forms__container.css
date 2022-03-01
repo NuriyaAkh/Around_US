@@ -1,38 +1,18 @@
 .forms__container{
   margin: 0;
   box-sizing: border-box;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 317bea68014d3c717433c2b8f433e21e08597e79
-=======
->>>>>>> 317bea68014d3c717433c2b8f433e21e08597e79
   background-color: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   padding: 0;
   width: 430px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  border:solid red 1px;
-
-=======
->>>>>>> 317bea68014d3c717433c2b8f433e21e08597e79
-=======
->>>>>>> 317bea68014d3c717433c2b8f433e21e08597e79
+  position:relative;
+  padding:34px 36px 36px 36px;
 }
 @media screen and (max-width: 590px) {
   .forms__container{
     width: 282px;
+    padding: 25px 22px;
 
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 317bea68014d3c717433c2b8f433e21e08597e79
-=======
->>>>>>> 317bea68014d3c717433c2b8f433e21e08597e79
 }
