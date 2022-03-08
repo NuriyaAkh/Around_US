@@ -1,3 +1,30 @@
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  }
+];
+
 const profileEditButton = document.querySelector(".profile__button-name-edit");
 const editFormCloseButton = document.querySelector('.form__button-close');
 const profileName = document.querySelector('.profile__name');
@@ -8,6 +35,7 @@ const form = document.querySelector('.forms');
 const editForm = form.querySelector('.form');
 const formInputName = document.querySelector('#username');
 const formInputJob = document.querySelector('#about');
+
 
 
 function closeForm(){
