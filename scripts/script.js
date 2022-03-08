@@ -36,7 +36,14 @@ const editForm = form.querySelector('.form');
 const formInputName = document.querySelector('#username');
 const formInputJob = document.querySelector('#about');
 
+const deleteButton = document.querySelector(".card__delete");
 
+const imageAddButton = document.querySelector(".profile__button-add");
+const addForm = document.querySelector(".forms_img-add");
+const formAddImage = addForm.querySelector("#add-form");
+const inputImagePlace = document.querySelector("#title");
+const inputImageUrl = document.querySelector("#image-link");
+const imageTitle = document.querySelector(".card__title");
 
 function closeForm(){
   form.classList.remove("forms_is-open");
@@ -56,8 +63,22 @@ function handleProfileFormSubmit(evt) {
 
 }
 
+function openAddImageForm(){
+addForm.classList.add("forms_is-open");
+InputImagePlace.value = imageTitle.textContent;
+}
+function handleAddImageFormSubmit(evt){
+  evt.preventDefault();
+  imageTitle.textContent =InputImagePlace.value;
+  closeAddImageForm();
+}
+ function closeAddImageForm(){
+   addForm.remove(".forms_is-open");
+ }
 
 editForm.addEventListener('submit', handleProfileFormSubmit);
 profileEditButton.addEventListener("click",openForm);
 editFormCloseButton.addEventListener("click", closeForm);
 
+addForm.addEventListener('submit', handleAddImageFormSubmit);
+imageAddButton.addEventListener("click",openAddImageForm);
