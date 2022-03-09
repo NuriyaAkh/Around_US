@@ -30,49 +30,56 @@
         </div>
       </section>
       <section class="cards">
-        <article class="card">
+        <ul class="cards__container">
+        <li class="card">
           <img class="card__img" src="./images/yasomite-valley.png" alt="yasomite valley foto" />
           <button aria-label="delete button" class="card__delete" type="button"></button>
           <div class="card__info">
             <h2 class="card__title">Yasomite valley</h2>
             <button aria-label="love it" type="button" class="card__button"></button>
           </div>
-        </article>
-        <article class="card">
+        </li>
+        <li class="card">
           <img class="card__img" src="./images/lake-louise.png" alt="Lake Louise foto" />
+          <button aria-label="delete button" class="card__delete" type="button"></button>
           <div class="card__info">
             <h2 class="card__title">Lake Louise</h2>
             <button aria-label="love it" type="button" class="card__button"></button>
           </div>
-        </article>
-        <article class="card">
+        </li>
+        <li class="card">
           <img class="card__img" src="./images/bald-mountains.png" alt="Bald Mountains foto" />
+          <button aria-label="delete button" class="card__delete" type="button"></button>
           <div class="card__info">
             <h2 class="card__title">Bald Mountains</h2>
             <button aria-label="love it" type="button" class="card__button"></button>
           </div>
-        </article>
-        <article class="card">
+        </li>
+        <li class="card">
           <img class="card__img" src="./images/latemar.png" alt="Latemar foto" />
+          <button aria-label="delete button" class="card__delete" type="button"></button>
           <div class="card__info">
             <h2 class="card__title">Latemar</h2>
             <button aria-label="love it" type="button" class="card__button"></button>
           </div>
-        </article>
-        <article class="card">
+        </li>
+        <li class="card">
           <img class="card__img" src="./images/vanoise-nationals.png" alt="Vanoise Nationals foto" />
+          <button aria-label="delete button" class="card__delete" type="button"></button>
           <div class="card__info">
             <h2 class="card__title">Vanoise Nationals</h2>
             <button aria-label="love it" type="button" class="card__button"></button>
           </div>
-        </article>
-        <article class="card">
+        </li>
+        <li class="card">
           <img class="card__img" src="./images/lago-di-braise.png" alt="Lago di Braies foto" />
+          <button aria-label="delete button" class="card__delete" type="button"></button>
           <div class="card__info">
             <h2 class="card__title">Lago di Braies</h2>
             <button aria-label="love it" type="button" class="card__button"></button>
           </div>
-        </article>
+        </li>
+        </ul>
       </section>
     </main>
     <footer class="footer">
@@ -100,6 +107,18 @@
         </form>
       </div>
     </div>
+    <template id ="card">
+
+        <li class="card">
+        <img class="card__img" src=" " alt =" ">
+        <button aria-label="delete button" class="card__delete" type="button"></button>
+        <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button aria-label="love it" type="button" class="card__button"></button>
+        </div>
+      </li>
+
+    </template>
    <script defer src="./scripts/script.js"></script>
   </body>
 

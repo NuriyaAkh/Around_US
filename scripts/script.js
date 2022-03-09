@@ -82,3 +82,28 @@ editFormCloseButton.addEventListener("click", closeForm);
 
 addForm.addEventListener('submit', handleAddImageFormSubmit);
 imageAddButton.addEventListener("click",openAddImageForm);
+
+//card add
+const cardTemplate = document.querySelector("#card").content;
+
+function createCard(data){
+
+ const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+ const cardImage = document.querySelector(".card__img");
+ const cardTitle = document.querySelector(".card__title");
+
+ cardTitle.textContent = data.name;
+ cardImage.src = data.link;
+ cardImage.alt = data.name;
+
+ //likes button
+ cardElement.querySelector(".card__button").addEventListener("click",function(evt){
+   evt.target.classList.toggle(".card__button_active");
+ });
+
+return cardElement;
+
+
+
+
+}
