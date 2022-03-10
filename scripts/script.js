@@ -24,35 +24,63 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg"
   }
 ];
+//templates , may need to add .querySelector(".card"); at the end
+const cardTemplate = document.querySelector("#card").content;
 
-const profileEditButton = document.querySelector(".profile__button-name-edit");
-const editFormCloseButton = document.querySelector('.form__button-close');
+//Whrappes need to check
+const cardsContainer = document.querySelector(".cards__container");
+const editProfileForm = document.querySelector("#edit-profile");//edit form
+const addImageForm = document.querySelector("#img-add");
+const imageShowForm = document.querySelector("#image-show");
+//const form = document.querySelector(".forms");
+//buttons
+const openProfileEditButton = document.querySelector(".profile__button-name-edit");
+const openImageAddButton = document.querySelector(".profile__button-add");
+const closeEditFormButton = editProfileForm.querySelector('.form__button-close');
+const closeShowImageButton =imageShowForm.querySelector('.form__button-close');
+const closeAddImageFormButton = addImageForm.querySelector('.form__button-close');
+
+//profile DOM nodes updates info of the profile
+
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 
+//form data and elements
 
-const form = document.querySelector('.forms');
-const editForm = form.querySelector('.form');
-const formInputName = document.querySelector('#username');
-const formInputJob = document.querySelector('#about');
+const inputName = editProfileForm.querySelector('#username');
+const inputJob = editProfileForm.querySelector('#about');
+const inputImagePlaceName = addImageForm.querySelector("#title");
+const inputImageUrl = addImageForm.querySelector("#image-link");
+const imageTitle = imageShowForm.querySelector(".form__image-title");
+const imageElement = imageShowForm.querySelector(".form__image");
 
-const deleteButton = document.querySelector(".card__delete");
 
-const imageAddButton = document.querySelector(".profile__button-add");
-const addForm = document.querySelector(".forms_img-add");
-const formAddImage = addForm.querySelector("#add-form");
-const inputImagePlace = document.querySelector("#title");
-const inputImageUrl = document.querySelector("#image-link");
-const imageTitle = document.querySelector(".card__title");
 
-function closeForm(){
-  form.classList.remove("forms_is-open");
+
+//close forms need to one function for all 3 forms
+const closeForm = (forms) =>{
+  editProfileForm.classList.remove("forms_is-open");
+
+};
+function closeAddImageForm(){
+  addImageForm.classList.remove("forms_is-open");
 }
+function closeShowImageForm(){
+  imageShowForm.classList.remove("forms_is-open");
+}
+
+
+//function ope forms need to one function for all 3 forms
 function openForm (){
-   form.classList.add("forms_is-open");
-   formInputName.value = profileName.textContent;
-   formInputJob.value = profileJob.textContent;
+   editProfileForm.classList.add("forms_is-open");
+   inputName.value = profileName.textContent;
+   inputJob.value = profileJob.textContent;
 }
+function openAddImageForm(){
+  addImageForm.classList.add("forms_is-open");
+  inputImagePlaceName.value = imageTitle.textContent;
+
+  }
 
 function handleProfileFormSubmit(evt) {
 
@@ -63,47 +91,58 @@ function handleProfileFormSubmit(evt) {
 
 }
 
-function openAddImageForm(){
-addForm.classList.add("forms_is-open");
-InputImagePlace.value = imageTitle.textContent;
-}
+
 function handleAddImageFormSubmit(evt){
   evt.preventDefault();
   imageTitle.textContent =InputImagePlace.value;
   closeAddImageForm();
 }
- function closeAddImageForm(){
-   addForm.remove(".forms_is-open");
- }
 
-editForm.addEventListener('submit', handleProfileFormSubmit);
-profileEditButton.addEventListener("click",openForm);
-editFormCloseButton.addEventListener("click", closeForm);
 
-addForm.addEventListener('submit', handleAddImageFormSubmit);
-imageAddButton.addEventListener("click",openAddImageForm);
+editProfileForm.addEventListener('submit', handleProfileFormSubmit);
+openProfileEditButton.addEventListener("click",openForm);
+closeEditFormButton.addEventListener("click", closeForm);
+
+addImageForm.addEventListener('submit', handleAddImageFormSubmit);
+openImageAddButton.addEventListener("click",openAddImageForm);
+closeAddImageFormButton.addEventListener("click", closeAddImageForm);
 
 //card add
-const cardTemplate = document.querySelector("#card").content;
 
-function createCard(data){
 
- const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
- const cardImage = document.querySelector(".card__img");
- const cardTitle = document.querySelector(".card__title");
+
+function createCard(data) {
+
+ const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+ const cardImage = cardElement.querySelector(".card__img");
+ const cardTitle = cardElement.querySelector(".card__title");
 
  cardTitle.textContent = data.name;
- cardImage.src = data.link;
- cardImage.alt = data.name;
-
+ cardImage.value = data.link;
+ cardImage.value = data.name;
+ cardsContainer.prepend(cardElement);
  //likes button
- cardElement.querySelector(".card__button").addEventListener("click",function(evt){
-   evt.target.classList.toggle(".card__button_active");
- });
-
+ const likeButton = cardElement.querySelector(".card__button");
+ likeButton.addEventListener("click", function(evt){
+  evt.target.classList.toggle("card__button_active");
+});
+// delete card
+const deleteButton = cardElement.querySelector(".card__delete");
+deleteButton.addEventListener("click",deleteCard);
+//show image
+cardImage.addEventListener("click",showImage);
 return cardElement;
+}
+//delete card function
+function deleteCard(evt){
+  evt.target.parentElement.remove();
+}
+//show image function
 
-
+function showImage(){
+  imageShowForm.classList.add("forms_is-open");
+  const formImage = evt.target.src;
+  const formImageTitle = evt.target.alt;
 
 
 }

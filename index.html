@@ -85,7 +85,7 @@
     <footer class="footer">
       <p class="footer__text">© 2022 Around The U.S.</p>
     </footer>
-    <div class="forms">
+    <div class="forms" id="edit-profile">
       <div class="forms__container">
         <button aria-label="close" type="button" class="form__button-close"></button>
         <h3 class="forms__title">Edit profile</h3>
@@ -96,7 +96,7 @@
         </form>
       </div>
     </div>
-    <div class="forms forms_img-add">
+    <div class="forms" id="img-add">
       <div class="forms__container">
         <button aria-label="close" type="button" class="form__button-close"></button>
         <h3 class="forms__title">New place</h3>
@@ -107,16 +107,25 @@
         </form>
       </div>
     </div>
+
+    <div class="forms" id="image-show">
+      <div class="form__image-big">
+        <button aria-label="close" type="button" class="form__button-close"></button>
+        <img class="form__image" alt =" " src = " ">
+        <h3 class="form__image-title"></h3>
+      </div>
+    </div>
+
     <template id ="card">
 
         <li class="card">
-        <img class="card__img" src=" " alt =" ">
-        <button aria-label="delete button" class="card__delete" type="button"></button>
-        <div class="card__info">
-        <h2 class="card__title"></h2>
-        <button aria-label="love it" type="button" class="card__button"></button>
-        </div>
-      </li>
+          <img class="card__img" src="" alt ="">
+          <button aria-label="delete button" class="card__delete" type="button"></button>
+          <div class="card__info">
+          <h2 class="card__title"></h2>
+          <button aria-label="love it" type="button" class="card__button"></button>
+          </div>
+        </li>
 
     </template>
    <script defer src="./scripts/script.js"></script>
