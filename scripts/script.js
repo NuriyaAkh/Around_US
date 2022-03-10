@@ -50,9 +50,9 @@ const imageElement = imageShowForm.querySelector('.form__image');
 
 
 
-// close forms need to one function for all 3 forms
+// close forms
 const closeForm = (forms) => {
-  editProfileForm.classList.remove('forms_is-open');
+  forms.classList.remove('forms_is-open');
 };
 function closeAddImageForm() {
   addImageForm.classList.remove('forms_is-open');
@@ -68,6 +68,7 @@ function openForm() {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
 }
+//need help
 function openAddImageForm() {
   addImageForm.classList.add('forms_is-open');
   inputImagePlaceName.value = imageTitle.textContent;
@@ -86,7 +87,7 @@ function handleProfileFormSubmit(evt) {
   closeForm();
 }
 
-//need help
+//need help with handleAddImageFormSubmit
 function handleAddImageFormSubmit(evt) {
   evt.preventDefault();
   imageTitle.textContent = InputImagePlace.value;
@@ -95,11 +96,10 @@ function handleAddImageFormSubmit(evt) {
 
 editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 openProfileEditButton.addEventListener('click', openForm);
-closeEditFormButton.addEventListener('click', closeForm);
+closeEditFormButton.addEventListener('click', () =>{ closeForm(editProfileForm); });
 addImageForm.addEventListener('submit', handleAddImageFormSubmit);
 openImageAddButton.addEventListener('click', openAddImageForm);
-closeAddImageFormButton.addEventListener('click', closeAddImageForm);
-
+closeAddImageFormButton.addEventListener('click', () => {closeForm(addImageForm);});
 // card add
 function createCard (data) {
   const cardElement = cardTemplate.cloneNode(true);
