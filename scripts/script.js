@@ -18,23 +18,21 @@ const initialCards = [
   {name: 'Lago di Braies', link: 'https://code.s3.yandex.net/web-code/lago.jpg'}
 ];
 // templates , may need to add .querySelector(".card"); at the end
-const cardTemplate = document.querySelector('#card').content;
+const cardTemplate = document.querySelector('#card').content.querySelector(".card");
 
-// Whrappes need to check
+// Wrappes
 const cardsContainer = document.querySelector('.cards__container');
-const editProfileForm = document.querySelector('#edit-profile');  // edit form
+const editProfileForm = document.querySelector('#edit-profile');
 const addImageForm = document.querySelector('#img-add');
 const imageShowForm = document.querySelector('#image-show');
 // const form = document.querySelector(".forms");
+
 // buttons
-const openProfileEditButton =
-    document.querySelector('.profile__button-name-edit');
+const openProfileEditButton = document.querySelector('.profile__button-name-edit');
 const openImageAddButton = document.querySelector('.profile__button-add');
-const closeEditFormButton =
-    editProfileForm.querySelector('.form__button-close');
+const closeEditFormButton = editProfileForm.querySelector('.form__button-close');
 const closeShowImageButton = imageShowForm.querySelector('.form__button-close');
-const closeAddImageFormButton =
-    addImageForm.querySelector('.form__button-close');
+const closeAddImageFormButton = addImageForm.querySelector('.form__button-close');
 
 // profile DOM nodes updates info of the profile
 
@@ -83,18 +81,17 @@ function openImageForm() {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = formInputName.value;
-  profileJob.textContent = formInputJob.value;
+  profileName.textContent = inputName.value;
+  profileJob.textContent = inputJob.value;
   closeForm();
 }
 
-
+//need help
 function handleAddImageFormSubmit(evt) {
   evt.preventDefault();
   imageTitle.textContent = InputImagePlace.value;
   closeAddImageForm();
 }
-
 
 editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 openProfileEditButton.addEventListener('click', openForm);
@@ -104,31 +101,53 @@ openImageAddButton.addEventListener('click', openAddImageForm);
 closeAddImageFormButton.addEventListener('click', closeAddImageForm);
 
 // card add
-
-
-
-function createCard(data) {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+function createCard (data) {
+  const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__img');
   const cardTitle = cardElement.querySelector('.card__title');
 
   cardTitle.textContent = data.name;
-  cardImage.value = data.link;
-  cardImage.value = data.name;
-  cardsContainer.prepend(cardElement);
-  // likes button
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+
+   // likes button
   const likeButton = cardElement.querySelector('.card__button');
-  likeButton.addEventListener('click', function(evt) {
-    evt.target.classList.toggle('card__button_active');
-  });
+  likeButton.addEventListener('click', handleLikeButton);
   // delete card
   const deleteButton = cardElement.querySelector('.card__delete');
-  deleteButton.addEventListener('click', deleteCard);
+  deleteButton.addEventListener('click', handleDeleteCard);
   // show image
-  cardImage.addEventListener('click', showImage);
+  cardImage.addEventListener('click', () => handleShowImage(data));
   return cardElement;
 }
 // delete card function
-function deleteCard(evt) {
-  evt.target.parentElement.remove();
+function handleDeleteCard(evt) {
+  evt.target.closest('.card').remove();
 }
+//like function
+function handleLikeButton(evt){
+  evt.target.classList.toggle('card__button_active');
+}
+function handleShowImage(data){
+  imageElement.src = data.link;
+  imageElement.alt = `${data.name}`;
+  imageName.textContent = data.name;
+  openForm(imageShowForm);
+}
+function handleImageFormSubmit(evt){
+  evt.preventDefault();
+  renderCard(
+    { name:cardNameInput.value,
+      link: cardLinkInput.value,
+  },
+  cardsContainer );
+  closeForm(imageAddForm);
+}
+function renderCard(data, wrap){
+  wrap.preend(createCard(data));
+
+};
+//render
+initialCards.forEach((data) => {
+  rendercard(data,cardsContainer);
+});
