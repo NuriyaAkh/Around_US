@@ -20,7 +20,6 @@
           <div class="profile__text">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button aria-label="edit" type="button" class="profile__button-name-edit">
-
             </button>
             <p class="profile__about">Explorer</p>
           </div>
@@ -31,64 +30,53 @@
         </div>
       </section>
       <section class="cards">
-        <article class="card">
-          <img class="card__img" src="./images/yasomite-valley.png" alt="yasomite valley foto" />
-          <div class="card__info">
-            <h2 class="card__title">Yasomite valley</h2>
-            <button aria-label="love it" type="button" class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__img" src="./images/lake-louise.png" alt="Lake Louise foto" />
-          <div class="card__info">
-            <h2 class="card__title">Lake Louise</h2>
-            <button aria-label="love it" type="button" class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__img" src="./images/bald-mountains.png" alt="Bald Mountains foto" />
-          <div class="card__info">
-            <h2 class="card__title">Bald Mountains</h2>
-            <button aria-label="love it" type="button" class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__img" src="./images/latemar.png" alt="Latemar foto" />
-          <div class="card__info">
-            <h2 class="card__title">Latemar</h2>
-            <button aria-label="love it" type="button" class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__img" src="./images/vanoise-nationals.png" alt="Vanoise Nationals foto" />
-          <div class="card__info">
-            <h2 class="card__title">Vanoise Nationals</h2>
-            <button aria-label="love it" type="button" class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__img" src="./images/lago-di-braise.png" alt="Lago di Braies foto" />
-          <div class="card__info">
-            <h2 class="card__title">Lago di Braies</h2>
-            <button aria-label="love it" type="button" class="card__button"></button>
-          </div>
-        </article>
+        <ul class="cards__container"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">© 2022 Around The U.S.</p>
     </footer>
-    <div class="forms">
+    <div class="forms" id="edit-profile">
       <div class="forms__container">
         <button aria-label="close" type="button" class="form__button-close"></button>
         <h3 class="forms__title">Edit profile</h3>
         <form class="form" name="edit-form">
           <input type="text" class="form__input" id="username" name="username" placeholder="Name" required />
-          <input type="text" class="form__input" id="about" name="about" placeholder="About Me"  />
+          <input type="text" class="form__input" id="about" name="about" placeholder="About Me"  required/>
           <button type="submit" class="form__button">Save</button>
         </form>
       </div>
     </div>
+    <div class="forms" id="img-add">
+      <div class="forms__container">
+        <button aria-label="close" type="button" class="form__button-close"></button>
+        <h3 class="forms__title">New place</h3>
+        <form class="form" name="add-form">
+          <input type="text" class="form__input" id="title" name="title" placeholder="Title" required />
+          <input type="URL" class="form__input" id="image-link" name="image-link" placeholder="Image link" required />
+          <button type="submit" class="form__button">Create</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="forms" id="image-show">
+      <div class="form__image-big">
+        <button aria-label="close" type="button" class="form__button-close"></button>
+        <img class="form__image" alt =" " src = " ">
+        <h3 class="form__image-title"></h3>
+      </div>
+    </div>
+
+    <template id ="card">
+      <li class="card">
+        <img class="card__img" src="" alt ="">
+        <button aria-label="delete button" class="card__delete" type="button"></button>
+        <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button aria-label="love it" type="button" class="card__button"></button>
+        </div>
+      </li>
+    </template>
    <script defer src="./scripts/script.js"></script>
   </body>
 
