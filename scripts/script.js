@@ -11,11 +11,18 @@ const initialCards = [
     name: 'Bald Mountains',
     link: 'https://code.s3.yandex.net/web-code/bald-mountains.jpg'
   },
-  {name: 'Latemar', link: 'https://code.s3.yandex.net/web-code/latemar.jpg'}, {
+  {
+    name: 'Latemar',
+    link: 'https://code.s3.yandex.net/web-code/latemar.jpg'
+  },
+  {
     name: 'Vanoise National Park',
     link: 'https://code.s3.yandex.net/web-code/vanoise.jpg'
   },
-  {name: 'Lago di Braies', link: 'https://code.s3.yandex.net/web-code/lago.jpg'}
+  {
+    name: 'Lago di Braies',
+    link: 'https://code.s3.yandex.net/web-code/lago.jpg'
+  }
 ];
 // templates , may need to add .querySelector(".card"); at the end ?
 const cardTemplate = document.querySelector('#card').content.querySelector(".card");
@@ -25,7 +32,6 @@ const cardsContainer = document.querySelector('.cards__container');
 const editProfileForm = document.querySelector('#edit-profile');
 const addImageForm = document.querySelector('#img-add');
 const imageShowForm = document.querySelector('#image-show');
-
 
 // buttons
 const openProfileEditButton = document.querySelector('.profile__button-name-edit');
@@ -48,7 +54,7 @@ const inputImageUrl = addImageForm.querySelector('#image-link');
 const imageTitle = imageShowForm.querySelector('.form__image-title');
 const imageElement = imageShowForm.querySelector('.form__image');
 
-// card add
+// create card/ add
 function createCard (data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__img');
@@ -82,19 +88,17 @@ function openAddImageForm() {
  inputImagePlaceName.value = imageTitle.textContent;
  openForm(addImageForm);
 }
-
+//function show big image
 function openImageShowForm() {
-
   const formImage = evt.target.src;
   const formImageTitle = evt.target.alt;
   openForm(imageShowForm);
 }
-
 // function open edit forms with preselected old input
 function openEditProfileForm() {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-   openForm(editProfileForm);
+  openForm(editProfileForm);
  }
 //function to submit edit profile info,checks the data is entered
 function handleProfileFormSubmit(evt) {
@@ -103,7 +107,7 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = inputJob.value;
   closeForm(editProfileForm);
 }
-
+//event listnerens
 editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 openProfileEditButton.addEventListener('click', openEditProfileForm);
 addImageForm.addEventListener('submit', handleImageFormSubmit);
@@ -140,7 +144,6 @@ function handleImageFormSubmit(evt){
 //render
 function renderCard(data, cardsContainer){
   cardsContainer.prepend(createCard(data));
-
 };
 // generate 6 cards
 initialCards.forEach((data) => {
