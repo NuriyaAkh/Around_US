@@ -24,14 +24,14 @@
 @import url(../blocks/forms/__container/forms__container.css);
 @import url(../blocks/forms/_is-open/forms_is-open.css);
 @import url(../blocks/forms/__title/forms__title.css);
+@import url(../blocks/forms/__image-big/forms__image-big.css);
+@import url(../blocks/forms/__button-close/forms__button-close.css);
+@import url(../blocks/forms/__image/forms__image.css);
+@import url(../blocks/forms/__image-title/forms__image-title.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__button/form__button.css);
-@import url(../blocks/form/__button-close/form__button-close.css);
-@import url(../blocks/form/__image-big/form__image-big.css);
-@import url(../blocks/form/__image/form__image.css);
-@import url(../blocks/form/__image-title/form__image-title.css);
 
 @import url(../blocks/page/page.css);
 
