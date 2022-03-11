@@ -36,9 +36,9 @@ const imageShowForm = document.querySelector('#image-show');
 // buttons
 const openProfileEditButton = document.querySelector('.profile__button-name-edit');
 const openImageAddButton = document.querySelector('.profile__button-add');
-const closeEditFormButton = editProfileForm.querySelector('.form__button-close');
-const closeShowImageButton = imageShowForm.querySelector('.form__button-close');
-const closeAddImageFormButton = addImageForm.querySelector('.form__button-close');
+const closeEditFormButton = editProfileForm.querySelector('.forms__button-close');
+const closeShowImageButton = imageShowForm.querySelector('.forms__button-close');
+const closeAddImageFormButton = addImageForm.querySelector('.forms__button-close');
 
 // profile DOM nodes updates info of the profile
 
@@ -51,8 +51,8 @@ const inputName = editProfileForm.querySelector('#username');
 const inputJob = editProfileForm.querySelector('#about');
 const inputImagePlaceName = addImageForm.querySelector('#title');
 const inputImageUrl = addImageForm.querySelector('#image-link');
-const imageTitle = imageShowForm.querySelector('.form__image-title');
-const imageElement = imageShowForm.querySelector('.form__image');
+const imageTitle = imageShowForm.querySelector('.forms__image-title');
+const imageElement = imageShowForm.querySelector('.forms__image');
 
 // create card/ add
 function createCard (data) {
