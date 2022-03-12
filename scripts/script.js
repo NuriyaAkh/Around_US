@@ -57,12 +57,12 @@ const profileJob = document.querySelector(".profile__about");
 
 // form data and elements
 
-const inputName = editProfileForm.querySelector("#username");
-const inputJob = editProfileForm.querySelector("#about");
-const inputImagePlaceName = addImageForm.querySelector("#title");
-const inputImageUrl = addImageForm.querySelector("#image-link");
-const imageTitle = imageShowForm.querySelector(".forms__image-title");
-const imageElement = imageShowForm.querySelector(".forms__image");
+const inputName = editProfileForm.querySelector('#username');
+const inputJob = editProfileForm.querySelector('#about');
+const inputImagePlaceName = addImageForm.querySelector('#title');
+const inputImageUrl = addImageForm.querySelector('#image-link');
+const imageTitle = imageShowForm.querySelector('.forms__image-title');
+const imageElement = imageShowForm.querySelector('.forms__image');
 
 // create card/ add
 function createCard(data) {
