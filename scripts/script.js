@@ -97,7 +97,7 @@ function openAddImageForm() {
   openPopup(addImageForm);
 }
 
-// function open edit forms with preselected old input
+// function open edit forms
 function openEditProfileForm() {
   fillProfileForm();
   openPopup(editProfileForm);
