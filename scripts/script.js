@@ -155,6 +155,7 @@ function handleImageFormSubmit(evt) {
     cardsContainer
   );
   closePopup(addImageForm);
+  form.reset();
 }
 //render
 function renderCard(data, cardsContainer) {
