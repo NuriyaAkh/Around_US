@@ -87,12 +87,13 @@ function createCard(data) {
 // close forms
 const closePopup = (popup) => {
   popup.classList.remove("forms_is-open");
+  document.addEventListener("keyup",escKeyHandler);
 };
 //open forms
 function openPopup(popup) {
   popup.classList.add("forms_is-open");
 }
-//need help
+//function show cards ?
 function openAddImageForm() {
   openPopup(addImageForm);
 }
@@ -164,4 +165,40 @@ function renderCard(data, cardsContainer) {
 // generate 6 cards
 initialCards.forEach((data) => {
   renderCard(data, cardsContainer);
+});
+//esc press to close forms need work
+
+
+function escKeyHandler(evt){
+  const form = document.querySelector(".forms");
+  if (key.evt ==="Escape"){
+
+  };
+
+};
+
+//overlay to close Edit Profile popup
+
+editProfileForm.addEventListener("mousedown", (evt) => {
+  if (evt.target.classList.contains("forms") ||
+      evt.target.classList.contains("forms__button-close")
+    ){
+      closePopup(editProfileForm);
+    }
+});
+//overlay to close addImageForm popup__form
+addImageForm.addEventListener("mousedown", (evt) => {
+  if (evt.target.classList.contains("forms") ||
+      evt.target.classList.contains("forms__button-close")
+    ){
+      closePopup(addImageForm);
+    }
+});
+//overlay to close show big image popup__form
+imageShowForm.addEventListener("mousedown", (evt) => {
+  if (evt.target.classList.contains("forms") ||
+      evt.target.classList.contains("forms__button-close")
+    ){
+      closePopup(imageShowForm);
+    }
 });
