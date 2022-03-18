@@ -34,6 +34,7 @@ const cardsContainer = document.querySelector(".cards__container");
 const editProfileForm = document.querySelector("#edit-profile");
 const addImageForm = document.querySelector("#img-add");
 const imageShowForm = document.querySelector("#image-show");
+const form = document.querySelector(".forms");
 
 // buttons
 const openProfileEditButton = document.querySelector(
@@ -89,6 +90,7 @@ function createCard(data) {
 const closePopup = (popup) => {
   popup.classList.remove("forms_is-open");
   document.addEventListener("keydown",escKeyHandler);
+  document.addEventListener("mousedown",overlayClosePopup);
 };
 //open forms
 function openPopup(popup) {
@@ -157,8 +159,9 @@ function handleImageFormSubmit(evt) {
     },
     cardsContainer
   );
+  resetForm();
+      closePopup(addImageForm);
 
-  closePopup(addImageForm);
   }
 //render
 function renderCard(data, cardsContainer) {
@@ -169,24 +172,31 @@ initialCards.forEach((data) => {
   renderCard(data, cardsContainer);
 });
 
-
+function resetForm() {
+  document.querySelector(".form").reset();
+}
 
 
 //esc press to close forms need work check why edit profile would not react to esc button at first
 
 
 function escKeyHandler(evt){
-  const currentPopup= document.querySelector(".forms_is-open");
+  const currentPopup = document.querySelector(".forms_is-open");
       if (evt.key ==="Escape"){
       closePopup(currentPopup);
     };
   };
 
-
-
 //overlay to close Edit Profile popup
-
-editProfileForm.addEventListener("mousedown", (evt) => {
+function overlayClosePopup(evt){
+  const currentPopup = document.querySelector(".forms_is-open");
+  if (evt.target.classList.contains("forms") ||
+      evt.target.classList.contains("forms__button-close")
+    ){
+      closePopup(currentPopup);
+    }
+};
+/* editProfileForm.addEventListener("mousedown", (evt) => {
   if (evt.target.classList.contains("forms") ||
       evt.target.classList.contains("forms__button-close")
     ){
@@ -208,4 +218,4 @@ imageShowForm.addEventListener("mousedown", (evt) => {
     ){
       closePopup(imageShowForm);
     }
-});
+}); */
