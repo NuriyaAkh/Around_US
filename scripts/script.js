@@ -64,6 +64,7 @@ const inputImageUrl = addImageForm.querySelector('#image-link');
 const imageTitle = imageShowForm.querySelector('.forms__image-title');
 const imageElement = imageShowForm.querySelector('.forms__image');
 
+
 // create card/ add
 function createCard(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -87,7 +88,7 @@ function createCard(data) {
 // close forms
 const closePopup = (popup) => {
   popup.classList.remove("forms_is-open");
-  document.addEventListener("keyup",escKeyHandler);
+  document.addEventListener("keydown",escKeyHandler);
 };
 //open forms
 function openPopup(popup) {
@@ -95,6 +96,7 @@ function openPopup(popup) {
 }
 //function show cards ?
 function openAddImageForm() {
+ //addImageForm.reset();
   openPopup(addImageForm);
 }
 
@@ -155,9 +157,9 @@ function handleImageFormSubmit(evt) {
     },
     cardsContainer
   );
+
   closePopup(addImageForm);
-  form.reset();
-}
+  }
 //render
 function renderCard(data, cardsContainer) {
   cardsContainer.prepend(createCard(data));
@@ -166,16 +168,21 @@ function renderCard(data, cardsContainer) {
 initialCards.forEach((data) => {
   renderCard(data, cardsContainer);
 });
-//esc press to close forms need work
+
+
+
+
+//esc press to close forms need work check why edit profile would not react to esc button at first
 
 
 function escKeyHandler(evt){
-  const form = document.querySelector(".forms");
-  if (key.evt ==="Escape"){
-
+  const currentPopup= document.querySelector(".forms_is-open");
+      if (evt.key ==="Escape"){
+      closePopup(currentPopup);
+    };
   };
 
-};
+
 
 //overlay to close Edit Profile popup
 

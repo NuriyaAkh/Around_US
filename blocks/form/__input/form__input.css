@@ -12,6 +12,9 @@
   padding:0;
   /*margin-bottom:30px;*/
 }
+.form__input:last-child{
+  margin-top: 30px;
+}
 @media screen and (max-width: 590px) {
   .form__input {
     min-width: 238px;
