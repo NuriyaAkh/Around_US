@@ -50,10 +50,10 @@
         <button aria-label="close" type="button" class="forms__button-close"></button>
         <h3 class="forms__title">Edit profile</h3>
         <form class="form" name="edit-form" novalidate>
-          <input type="text" class="form__input form__input_type_error" id="username" name="username" placeholder="Name" required minlength="2" maxlength="40"/>
-          <span class="username-input-error form__error-text form__error-text_active "></span>
-          <input type="text" class="form__input form__input_type_error" id="about" name="about" placeholder="About Me"  required minlength="2" maxlength="200"/>
-          <span class="about-input-error form__error-text form__error-text_active "></span>
+          <input type="text" class="form__input" id="username" name="username" placeholder="Name" required minlength="2" maxlength="40"/>
+          <span class="username-input-error form__error-text"></span>
+          <input type="text" class="form__input" id="about" name="about" placeholder="About Me"  required minlength="2" maxlength="200"/>
+          <span class="about-input-error form__error-text "></span>
           <button type="submit" class="form__button">Save</button>
         </form>
       </div>
@@ -63,10 +63,10 @@
         <button aria-label="close" type="button" class="forms__button-close"></button>
         <h3 class="forms__title">New place</h3>
         <form class="form" name="add-form" novalidate>
-          <input type="text" class="form__input form__input_type_error" id="title" name="title" placeholder="Title" minlength="1" maxlength="30" required />
-          <span class="title-input-error form__error-text"></span>
-          <input type="URL" class="form__input form__input_type_error" id="image-link" name="image-link" placeholder="Image link" required />
-          <span class="url-input-error form__error-text form__error-text_active">Please enter a web address.</span>
+          <input type="text" class="form__input " id="title" name="title" placeholder="Title" minlength="1" maxlength="30" required />
+          <span class="title-input-error form__error-text "></span>
+          <input type="URL" class="form__input" id="image-link" name="image-link" placeholder="Image link" required />
+          <span class="url-input-error form__error-text"></span>
           <button type="submit" class="form__button">Create</button>
         </form>
       </div>
