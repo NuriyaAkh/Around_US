@@ -1,32 +1,17 @@
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 
-
-
-
- //const formElement = document.querySelector(".forms");
- //const inputElement = formElement.querySelectorAll(".form__input");
- //const errorElement = formSelector.querySelector(`.${inputElement.id}-error`);
-/* // prefent default
- formSelector.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-});
-// input event handler
-inputSelector.addEventListener("input", function (evt) {
-
-
-}); */
-
 // function show input error
 const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
   inputElement.classList.add("form__input_type_error");
+  //console.log(`.${inputElement.id}-input-error`);
   errorElement.textContent = errorMessage;
   errorElement.classList.add("form__error-text_active");
 };
 //hide input error
 const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
   inputElement.classList.remove("form__input_type_error");
   errorElement.classList.remove("form__error-text_active");
   errorElement.textContent = "";

@@ -35,7 +35,7 @@ const editProfileForm = document.querySelector("#edit-profile");
 const addImageForm = document.querySelector("#img-add");
 const imageShowForm = document.querySelector("#image-show");
 const form = document.querySelector(".forms");
-const imageForm =document.querySelector("#add-form");
+const imageForm = document.querySelector("#add-form");
 
 // buttons
 const openProfileEditButton = document.querySelector(
@@ -89,8 +89,6 @@ function createCard(data) {
 }
 // close forms
 const closePopup = (popup) => {
-
-
   popup.classList.remove("forms_is-open");
 };
 //open forms
@@ -102,6 +100,7 @@ function openPopup(popup) {
 //function show cards ?
 function openAddImageForm() {
    openPopup(addImageForm);
+   imageForm.reset();//reset form
 }
 
 // function open edit forms
@@ -120,8 +119,7 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
   closePopup(editProfileForm);
-  imageForm.reset();
-}
+ }
 //event listnerens
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 openProfileEditButton.addEventListener("click", openEditProfileForm);
@@ -178,7 +176,7 @@ initialCards.forEach((data) => {
 
 
 
-//esc press to close forms need work check why edit profile would not react to esc button at first
+//esc press to close forms
 
 
 function escKeyHandler(evt){
