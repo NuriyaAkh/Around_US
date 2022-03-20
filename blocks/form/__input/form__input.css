@@ -23,7 +23,7 @@
 }
 .form__input::placeholder {
   font-size: 14px;
-  color: #000000;
+  color: #C4C4C4;
 }
 
 .form__input:focus {
