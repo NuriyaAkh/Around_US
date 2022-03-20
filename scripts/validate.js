@@ -38,16 +38,17 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement) => {
  // console.log(hasInvalidInput(inputList));
-
-  // If there is at least one invalid input
+ // If there is at least one invalid input
   if (hasInvalidInput(inputList)) {
     // make the button inactive
-   // buttonElement.classList.add("form__button_disabled");
-   buttonElement.setAttribute("disabled", "");
+   //buttonElement.classList.add("form__button_disabled");
+   //buttonElement.setAttribute("disabled", "");
+   buttonElement.disabled = true;
   } else {
     // otherwise, make it active
     //buttonElement.classList.remove("form__button_disabled");
-    buttonElement.removeAttribute("disabled","");
+    //document.querySelector.removeAttribute("disabled","");
+    buttonElement.disabled = false;
 };
 };
 
@@ -55,7 +56,7 @@ const setEventListeners = (formElement) =>{
   // Find all fields inside the form, and
  // make an array from them using the Array.from() method
  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
- const buttonElement = formElement.querySelector(".form__button");
+ const buttonElement = document.querySelector(".form__button");
   // Call the toggleButtonState()
  toggleButtonState(inputList, buttonElement);
 
