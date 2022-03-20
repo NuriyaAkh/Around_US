@@ -90,14 +90,12 @@ function createCard(data) {
 // close forms
 const closePopup = (popup) => {
   popup.classList.remove("forms_is-open");
-  // naiti vnutri formu, naiti submit, vyzvat' function toggle button(if submit found )
-
-
+  /* // naiti vnutri formu, naiti submit, vyzvat' function toggle button(if submit found )
  if (buttonElement) {
   const form = document.querySelector(".form");
   const buttonElement = form.querySelector(".form__button");
    toggleButtonState(form,buttonElement);
- };
+ }; */
 };
 //open forms
 function openPopup(popup) {
@@ -126,6 +124,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
+  editProfileForm.reset();
   closePopup(editProfileForm);
  }
 //event listnerens

@@ -43,12 +43,10 @@ const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     // make the button inactive
    buttonElement.classList.add("form__button_disabled");
-   //buttonElement.setAttribute("disabled", "");
    buttonElement.disabled = true;
   } else {
     // otherwise, make it active
     buttonElement.classList.remove("form__button_disabled");
-    //document.querySelector.removeAttribute("disabled","");
     buttonElement.disabled = false;
 };
 };
@@ -60,12 +58,11 @@ const setEventListeners = (formElement) =>{
  //console.log(formElement);
  const buttonElement = formElement.querySelector(".form__button");
   // Call the toggleButtonState()
-  if (buttonElement) {
+  /* if (buttonElement) {
     toggleButtonState(inputList, buttonElement);
   }
-
  //console.log(buttonElement);
-
+ */
  inputList.forEach((inputElement) => {
    inputElement.addEventListener("input",() =>{
      // Call the isValid() function inside the callback,
