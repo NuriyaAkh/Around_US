@@ -58,11 +58,7 @@ const setEventListeners = (formElement) =>{
  //console.log(formElement);
  const buttonElement = formElement.querySelector(".form__button");
   // Call the toggleButtonState()
-  /* if (buttonElement) {
-    toggleButtonState(inputList, buttonElement);
-  }
- //console.log(buttonElement);
- */
+
  inputList.forEach((inputElement) => {
    inputElement.addEventListener("input",() =>{
      // Call the isValid() function inside the callback,
@@ -85,7 +81,6 @@ const enableValidation = () =>{
    setEventListeners(formElement);
  });
 };
-
 enableValidation({
   formSelector: ".form",
   inputSelector: ".form__input",
