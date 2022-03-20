@@ -1,3 +1,5 @@
+//import { resetValidation } from "./validate.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -103,7 +105,8 @@ function openPopup(popup) {
 //function show add image form
 function openAddImageForm() {
    openPopup(addImageForm);
-   imageForm.reset();//reset form
+   imageForm.reset();
+   //reset form
 }
 
 // function open edit forms
