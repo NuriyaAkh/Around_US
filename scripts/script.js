@@ -1,4 +1,4 @@
-//import { resetValidation } from "./validate.js";
+import { resetValidation } from "./validate.js";
 
 const initialCards = [
   {
@@ -36,7 +36,6 @@ const cardsContainer = document.querySelector(".cards__container");
 const editProfileForm = document.querySelector("#edit-profile");
 const addImageForm = document.querySelector("#img-add");
 const imageShowForm = document.querySelector("#image-show");
-const form = document.querySelector(".forms");
 const imageForm = document.querySelector("#add-form");
 const profileForm = document.querySelector("#edit-form");
 
@@ -93,19 +92,33 @@ function createCard(data) {
 // close forms
 const closePopup = (popup) => {
   popup.classList.remove("forms_is-open");
-  document.removeEventListener("keydown",escKeyHandler);
-  document.removeEventListener("mousedown",overlayClosePopup);
+  document.removeEventListener("keydown",handleKeyEsc);
+  document.removeEventListener("mousedown",handleMouseDown);
 }
 //open forms
 function openPopup(popup) {
   popup.classList.add("forms_is-open");
-  document.addEventListener("keydown",escKeyHandler);
-  document.addEventListener("mousedown",overlayClosePopup);
+  document.addEventListener("keydown",handleKeyEsc);
+  document.addEventListener("mousedown",handleMouseDown);
 }
 //function show add image form
 function openAddImageForm() {
-   openPopup(addImageForm);
-   imageForm.reset();//reset form
+  resetValidation(addImageForm);
+  openPopup(addImageForm);
+  imageForm.reset();//reset form
+  const addImageFormButton = imageForm.querySelector(".form__button");
+console.log(addImageFormButton);
+
+//toggleButtonState(imageForm,addImageFormButton);
+/* if (addImageFormButton){
+  addImageFormButton.classList.add("form__button_disabled");
+  addImageFormButton.disabled = true;
+}  */
+   /*
+   It's needed to disable submit button after resetting the form,
+   because it should not be possible to add an empty card.
+    Use toggleButtonState function from validation file here.
+   */
 }
 
 // function open edit forms
@@ -177,7 +190,7 @@ initialCards.forEach((data) => {
   renderCard(data, cardsContainer);
 });
 //esc press to close forms
-function escKeyHandler(evt){
+function handleKeyEsc(evt){
   const currentPopup = document.querySelector(".forms_is-open");
       if (evt.key ==="Escape"){
       closePopup(currentPopup);
@@ -185,7 +198,7 @@ function escKeyHandler(evt){
   };
 
 //overlay to close Edit Profile popup
-function overlayClosePopup(evt){
+function handleMouseDown(evt){
   const currentPopup = document.querySelector(".forms_is-open");
   if (evt.target.classList.contains("forms") ||
       evt.target.classList.contains("forms__button-close")
@@ -193,26 +206,3 @@ function overlayClosePopup(evt){
       closePopup(currentPopup);
     }
 };
-/* editProfileForm.addEventListener("mousedown", (evt) => {
-  if (evt.target.classList.contains("forms") ||
-      evt.target.classList.contains("forms__button-close")
-    ){
-      closePopup(editProfileForm);
-    }
-});
-//overlay to close addImageForm popup__form
-addImageForm.addEventListener("mousedown", (evt) => {
-  if (evt.target.classList.contains("forms") ||
-      evt.target.classList.contains("forms__button-close")
-    ){
-      closePopup(addImageForm);
-    }
-});
-//overlay to close show big image popup__form
-imageShowForm.addEventListener("mousedown", (evt) => {
-  if (evt.target.classList.contains("forms") ||
-      evt.target.classList.contains("forms__button-close")
-    ){
-      closePopup(imageShowForm);
-    }
-}); */
