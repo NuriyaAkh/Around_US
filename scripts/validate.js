@@ -55,7 +55,6 @@ const setEventListeners = (formElement,settings) =>{
    //console.log(formElement);
  const buttonElement = formElement.querySelector(settings.submitButtonSelector);
   // Call the toggleButtonState()
-
  inputList.forEach((inputElement) => {
    inputElement.addEventListener("input",() =>{
      // Call the toggleInputError() function inside the callback,
@@ -87,15 +86,15 @@ enableValidation({
   inputErrorClass: "form__input_type_error",
   errorClass: "form__error-text_active"
 });
-///to do
+///to do the function does not work
   export function resetValidation(popup){
    const popupForm = popup.querySelector(".form");
    const popupInputElements = [...popup.querySelectorAll(".form__input")];
    const popupButton = popup.querySelector(".form__button");
    popupInputElements.forEach((popupInputElement) => {
-     hideInputError(popupInputElement,popupForm );
+     hideInputError(popupInputElement,popupForm);
    });
 
-     toggleButtonState(popupInputElements, popupButton );
+     toggleButtonState(popupInputElements, popupButton);
  }
 
