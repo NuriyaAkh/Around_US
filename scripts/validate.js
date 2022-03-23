@@ -1,25 +1,25 @@
 // function show input error
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
-  inputElement.classList.add("form__input_type_error");
+  inputElement.classList.add(settings.inputErrorClass);
   //console.log(`.${inputElement.id}-input-error`); //checking
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__error-text_active");
+  errorElement.classList.add(settings.errorClass);
 };
 //hide input error
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement,settings) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
-  inputElement.classList.remove("form__input_type_error");
-  errorElement.classList.remove("form__error-text_active");
+  inputElement.classList.remove(settings.inputErrorClass);
+  errorElement.classList.remove(settings.errorClass);
   errorElement.textContent = "";
 };
-const toggleInputError = (formElement,inputElement) => {
+const toggleInputError = (formElement,inputElement,settings) => {
   if (!inputElement.validity.valid) {
     // If NOT (!), show the error element
-    showInputError(formElement,inputElement, inputElement.validationMessage);
+    showInputError(formElement,inputElement, inputElement.validationMessage,settings);
   } else {
     // If it's valid, hide the error element
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement,settings);
   }
 };
 
@@ -29,23 +29,21 @@ const hasInvalidInput = (inputList) => {
     // If the field is invalid, the callback will return true.
     // The method will then stop, and hasInvalidInput() function will return true
     // hasInvalidInput returns true
-
-
 };
 // The function takes an array of input fields
 // and the button element, whose state you need to change
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement,settings) => {
  // console.log(hasInvalidInput(inputList));
  // If there is at least one invalid input
 
   if (hasInvalidInput(inputList)) {
     // make the button inactive
-   buttonElement.classList.add("form__button_disabled");
+   buttonElement.classList.add(settings.inactiveButtonClass);
    buttonElement.disabled = true;
   } else {
     // otherwise, make it active
-    buttonElement.classList.remove("form__button_disabled");
+    buttonElement.classList.remove(settings.inactiveButtonClass);
     buttonElement.disabled = false;
 };
 };
@@ -62,8 +60,8 @@ const setEventListeners = (formElement,settings) =>{
    inputElement.addEventListener("input",() =>{
      // Call the toggleInputError() function inside the callback,
      // and pass the form and the element to be checked to it
-     toggleInputError(formElement,inputElement);
-     toggleButtonState(inputList, buttonElement);
+     toggleInputError(formElement,inputElement,settings);
+     toggleButtonState(inputList, buttonElement,settings);
 
    });
  });
@@ -85,16 +83,19 @@ enableValidation({
   formSelector: ".forms",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button",
-  inactiveButtonClass: ".form__button_disabled",
-  inputErrorClass: ".form__input_type_error",
-  errorClass: ".form__error-text_active"
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error-text_active"
 });
+///to do
   export function resetValidation(popup){
-   const popupInputElements= Array.from(document.querySelectorAll(".form__input"));
-   const popupForm = document.querySelector(".form");
-   const popupButton = document.querySelector(".form__button");
-   popupInputElements.forEach((popupElement) =>{
-     hideInputError(popupForm, popupElement)});
-  toggleButtonState(popupInputElements, popupButton );
+   const popupForm = popup.querySelector(".form");
+   const popupInputElements = [...popup.querySelectorAll(".form__input")];
+   const popupButton = popup.querySelector(".form__button");
+   popupInputElements.forEach((popupInputElement) => {
+     hideInputError(popupInputElement,popupForm );
+   });
+
+     toggleButtonState(popupInputElements, popupButton );
  }
 

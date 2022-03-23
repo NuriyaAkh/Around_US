@@ -103,27 +103,15 @@ function openPopup(popup) {
 }
 //function show add image form
 function openAddImageForm() {
-  resetValidation(addImageForm);
-  openPopup(addImageForm);
   imageForm.reset();//reset form
-  const addImageFormButton = imageForm.querySelector(".form__button");
-console.log(addImageFormButton);
-
-//toggleButtonState(imageForm,addImageFormButton);
-/* if (addImageFormButton){
-  addImageFormButton.classList.add("form__button_disabled");
-  addImageFormButton.disabled = true;
-}  */
-   /*
-   It's needed to disable submit button after resetting the form,
-   because it should not be possible to add an empty card.
-    Use toggleButtonState function from validation file here.
-   */
+  resetValidation(imageForm);
+  openPopup(addImageForm);
 }
 
 // function open edit forms
 function openEditProfileForm() {
   fillProfileForm();
+  resetValidation(editProfileForm);
   openPopup(editProfileForm);
 }
 //prefill the profile form
