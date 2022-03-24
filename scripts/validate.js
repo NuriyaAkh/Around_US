@@ -22,15 +22,13 @@ const hideInputError = (form, element, settings) => {
   errorElement.classList.remove(settings.errorClass);
   errorElement.textContent = "";
 };
-const toggleInputError = (formElement,inputElement,settings) => {
-  console.log(formElement);
-  console.log(inputElement);
-  if (!inputElement.validity.valid) {
+const toggleInputError = (form,element,settings) => {
+   if (!element.validity.valid) {
     // If NOT (!), show the error element
-    showInputError(formElement,inputElement, inputElement.validationMessage,settings);
+    showInputError(form,element, element.validationMessage,settings);
   } else {
     // If it's valid, hide the error element
-    hideInputError(formElement, inputElement,settings);
+    hideInputError(form, element,settings);
   }
 };
 
@@ -62,7 +60,6 @@ const setEventListeners = (form,settings) =>{
   // Find all fields inside the form, and
  // make an array from them using the Array.from() method
  const inputList =[...form.querySelectorAll(settings.inputSelector)];
-   //console.log(formElement);
  const buttonElement = form.querySelector(settings.submitButtonSelector);
   // Call the toggleButtonState()
  inputList.forEach((inputElement) => {
