@@ -8,10 +8,9 @@ const settings = {
 };
 
 // function show input error
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
-  inputElement.classList.add(settings.inputErrorClass);
-  //console.log(`.${inputElement.id}-input-error`); //checking
+const showInputError = (form, element, errorMessage) => {
+  const errorElement = form.querySelector(`.${element.id}-input-error`);
+  errorElement.classList.add(settings.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(settings.errorClass);
 };
