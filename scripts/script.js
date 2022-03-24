@@ -104,18 +104,14 @@ function openPopup(popup) {
 //function show add image form
 function openAddImageForm() {
   imageForm.reset();//reset form
- // resetValidation(imageForm);
+  resetValidation(imageForm);
   openPopup(addImageForm);
-  const buttonElement = imageForm.querySelector(".form__button");
-  if (buttonElement) {
-    buttonElement.disabled = true;
-  }
 }
 
 // function open edit forms
 function openEditProfileForm() {
   fillProfileForm();
-  //resetValidation(editProfileForm);
+  resetValidation(editProfileForm);
   openPopup(editProfileForm);
 }
 //prefill the profile form
