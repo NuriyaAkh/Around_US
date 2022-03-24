@@ -23,6 +23,8 @@ const hideInputError = (form, element, settings) => {
   errorElement.textContent = "";
 };
 const toggleInputError = (formElement,inputElement,settings) => {
+  console.log(formElement);
+  console.log(inputElement);
   if (!inputElement.validity.valid) {
     // If NOT (!), show the error element
     showInputError(formElement,inputElement, inputElement.validationMessage,settings);
@@ -56,18 +58,18 @@ const toggleButtonState = ({ form, element, settings }) => {
   };
 };
 
-const setEventListeners = (formElement,settings) =>{
+const setEventListeners = (form,settings) =>{
   // Find all fields inside the form, and
  // make an array from them using the Array.from() method
- const inputList =[...formElement.querySelectorAll(settings.inputSelector)];
+ const inputList =[...form.querySelectorAll(settings.inputSelector)];
    //console.log(formElement);
- const buttonElement = formElement.querySelector(settings.submitButtonSelector);
+ const buttonElement = form.querySelector(settings.submitButtonSelector);
   // Call the toggleButtonState()
  inputList.forEach((inputElement) => {
    inputElement.addEventListener("input",() =>{
      // Call the toggleInputError() function inside the callback,
      // and pass the form and the element to be checked to it
-     toggleInputError(formElement,inputElement,settings);
+     toggleInputError(form,inputElement,settings);
      toggleButtonState({
        form: inputList,
        element: buttonElement,
