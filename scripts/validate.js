@@ -34,11 +34,7 @@ const toggleInputError = (form,element,settings) => {
 
 const hasInvalidInput = (inputList) => {
 // iterate over the array using the some() method
-<<<<<<< HEAD
 return [...inputList].some((element) => !element.validity.valid);
-=======
-return [...inputList].some((inputElement) => !inputElement.validity.valid);
->>>>>>> 2af47f83ccee5fccab743c3e0757ec6f117d5f15
   // If the field is invalid, the callback will return true.
   // The method will then stop, and hasInvalidInput() function will return true
   // hasInvalidInput returns true
@@ -65,16 +61,11 @@ const setEventListeners = (form,settings) =>{
  // make an array from them using the Array.from() method
  const inputList =[...form.querySelectorAll(settings.inputSelector)];
  const buttonElement = form.querySelector(settings.submitButtonSelector);
-  // Call the toggleButtonState()
- inputList.forEach((inputElement) => {
+   inputList.forEach((inputElement) => {
    inputElement.addEventListener("input",() =>{
      // Call the toggleInputError() function inside the callback,
      // and pass the form and the element to be checked to it
-<<<<<<< HEAD
      toggleInputError(form,inputElement,settings);
-=======
-     toggleInputError(formElement,inputElement,settings);
->>>>>>> 2af47f83ccee5fccab743c3e0757ec6f117d5f15
      toggleButtonState({
        form: inputList,
        element: buttonElement,
