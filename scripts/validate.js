@@ -34,7 +34,7 @@ const toggleInputError = (form,element,settings) => {
 
 const hasInvalidInput = (inputList) => {
 // iterate over the array using the some() method
-return [...inputList].some((element) => !element.validity.valid);
+return inputList.some((element) => !element.validity.valid);
   // If the field is invalid, the callback will return true.
   // The method will then stop, and hasInvalidInput() function will return true
   // hasInvalidInput returns true
