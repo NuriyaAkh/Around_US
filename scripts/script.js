@@ -84,6 +84,10 @@ function handleImageFormSubmit(evt) {
       closePopup(addImageForm);
   }
 
+//render
+function renderCard(data, cardsContainer) {
+  cardsContainer.prepend(createCard(data));
+}
 
 /* this is sprint#6 project code
 const initialCards = [
