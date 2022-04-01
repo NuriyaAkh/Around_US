@@ -1,4 +1,48 @@
-const settings = {
+/* const settings = {
+  formSelector: ".forms",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error-text_active"
+};
+class FormValidator {
+  constructor(settings, form){
+  this._settings = settings;
+  this._formSelector = form;
+  }
+
+  _hasInvalidInput = (inputList) => {
+    // iterate over the array using the some() method
+    return [... inputList].some((element) => !element.validity.valid);
+      // If the field is invalid, the callback will return true.
+      // The method will then stop, and hasInvalidInput() function will return true
+      // hasInvalidInput returns true
+    };
+
+    _enableValidation = (settings) =>{
+      // It will find all forms with the specified class in DOM, and
+      // make an array from them using the Array.from() method
+      const formList = Array.from(document.querySelectorAll(settings.formSelector));
+     // Iterate over the resulting array
+     formList.forEach((formElement) => {
+      formElement.addEventListener("submit", (evt) => {
+         evt.preventDefault();
+       });
+       setEventListeners(formElement,settings);
+     });
+    };
+
+    enableValidation(settings);
+
+
+
+
+} */
+
+
+
+ const settings = {
   formSelector: ".forms",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button",
@@ -104,4 +148,5 @@ export function resetValidation(form) {
     settings,
   });
 }
+
 
