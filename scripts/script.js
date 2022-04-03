@@ -1,7 +1,35 @@
-import { resetValidation } from "./validate.js";
-import {openPopup, closePopup} from "./utils.js"
+//import { resetValidation } from "./FormValidator.js";
+import {openPopup, closePopup} from "./utils.js";
+import Cards from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
-
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+];
+const cardsContainer = document.querySelector(".cards__container");
 const editProfileForm = document.querySelector("#edit-profile");
 const addImageForm = document.querySelector("#img-add");
 const imageForm = document.querySelector("#add-form");
@@ -31,6 +59,12 @@ const inputName = editProfileForm.querySelector('#username');
 const inputJob = editProfileForm.querySelector('#about');
 const inputImagePlaceName = addImageForm.querySelector('#title');
 const inputImageUrl = addImageForm.querySelector('#image-link');
+
+/* // for form validator?
+const editProfileFormValidator = new FormValidator(settings, editProfileForm);
+const addImageFormValidator = new FormValidator(settings, addImageForm);
+editProfileFormValidator.enableValidation();
+addImageFormValidator.enableValidation(); */
 
 //function show add image form
 function openAddImageForm() {
@@ -84,10 +118,15 @@ function handleImageFormSubmit(evt) {
       closePopup(addImageForm);
   }
 
-//render
-function renderCard(data, cardsContainer) {
-  cardsContainer.prepend(createCard(data));
-}
+// put initial cards into DOM
+initialCards.forEach((item) => {
+  // Create a card instance
+  const card = new Cards (item, "#card"); // pass an object as an argument
+  // Fill up the card and return it
+  const cardElement = card.generateCard();
+   // Add it to the DOM
+   cardsContainer.prepend(cardElement);
+ });
 
 /* this is sprint#6 project code
 const initialCards = [

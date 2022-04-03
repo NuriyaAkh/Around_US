@@ -1,31 +1,5 @@
 import {openPopup} from "./utils.js"
 
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
 const popupImage = document.querySelector(".forms__image");
 const popupImageTitle = document.querySelector(".forms__image-title");
 const popupShowImageElement = document.querySelector("#image-show");
@@ -44,6 +18,7 @@ export default class Card {
 
   return cardElement;
   }
+  //public method
   generateCard() {
     // Store the markup in the private field _element
   // so that other elements can access it
@@ -51,6 +26,7 @@ export default class Card {
     this._setEventListeners();
     // Add data
     this._element.querySelector(".card__title").textContent = this._name;
+    this._element.querySelector(".card__img").alt = this._name;
     this._element.querySelector(".card__img").src = this._link;
    // Return the element
    return this._element;
@@ -84,14 +60,7 @@ export default class Card {
 
   _handleDeleteCard(evt) {
     evt.target.closest(".card").remove();
+    this._element = null;
   }
 }
-// iterate over the entire original array
-initialCards.forEach((item) => {
- // Create a card instance
- const card = new Card (item, "#card"); // pass an object as an argument
- // Fill up the card and return it
- const cardElement = card.generateCard();
-  // Add it to the DOM
-  document.querySelector(".cards__container").prepend(cardElement);
-});
+
