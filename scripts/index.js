@@ -98,7 +98,7 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
   closePopup(editProfileForm);
-  profileForm.reset();
+  //profileForm.reset();
 }
 // event listnerens
 editProfileForm.addEventListener('submit', handleProfileFormSubmit);
