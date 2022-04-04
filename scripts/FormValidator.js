@@ -1,11 +1,3 @@
-const formValidationSettings = {
-
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__button",
-  inactiveButtonClass: "form__button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__error-text_active"
-};
 export default class FormValidator {
   constructor(settings, formElement){
 
@@ -29,22 +21,22 @@ export default class FormValidator {
     errorElement.textContent = "";
   };
 
-  _hasInvalidInput (inputList) {
+  _hasInvalidInput () {
     // iterate over the array using the some() method
-    return [... inputList].some((element) => !element.validity.valid);
+    return [...this._inputList].some((element) => !element.validity.valid);
       // If the field is invalid, the callback will return true.
       // The method will then stop, and hasInvalidInput() function will return true
       // hasInvalidInput returns true
     };
 
 
-    _toggleInputError (form,element,settings) {
+    _toggleInputError () {
        if (!element.validity.valid) {
         // If NOT (!), show the error element
-        showInputError(form,element, element.validationMessage,settings);
+        this._showInputError(element, element.validationMessage);
       } else {
         // If it's valid, hide the error element
-        hideInputError(form, element,settings);
+        this._hideInputError(element);
       }
     };
 
@@ -56,31 +48,27 @@ export default class FormValidator {
       // If there is at least one invalid input
 
       if (this._hasInvalidInput()) {
-        // make the button inactive ?this._element
-        element.classList.add(this._inactiveButtonClass);
-        element.disabled = true;
+        // make the button inactive
+        this._buttonElement.classList.add(this._inactiveButtonClass);
+        this._buttonElement.disabled = true;
       } else {
         // otherwise, make it active
-        element.classList.remove(this._inactiveButtonClass);
-        element.disabled = false;
+       this._buttonElement.classList.remove(this._inactiveButtonClass);
+        this._buttonElement.disabled = false;
       };
     };
 
-    _setEventListeners (settings) {
+    _setEventListeners () {
       // Find all fields inside the form, and
      // make an array from them using the Array.from() method
-     const inputList =[...this._formElement.querySelectorAll(this._inputSelector)];
-     const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-       inputList.forEach((inputElement) => {
+     this._inputList =[...this._formElement.querySelectorAll(this._inputSelector)];
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+       this._inputList.forEach((inputElement) => {
        inputElement.addEventListener("input",() =>{
          // Call the toggleInputError() function inside the callback,
          // and pass the form and the element to be checked to it
-         toggleInputError(form,inputElement,settings);
-         toggleButtonState({
-           form: inputList,
-           element: buttonElement,
-           settings,
-         });
+         this._toggleInputError();
+         this._toggleButtonState();
        });
      });
     };
@@ -93,19 +81,15 @@ export default class FormValidator {
        this._setEventListeners();
 
     };
-    resetValidation() {
-      const formInputElements = this._formElement.querySelectorAll(this._inputSelector);
-      const formButton = this._formElement.querySelector(this._submitButtonSelector);
+     resetValidation() {
+      this._formInputElements = this._formElement.querySelectorAll(this._inputSelector);
+      this._formButton = this._formElement.querySelector(this._submitButtonSelector);
 
-      formInputElements.forEach((element) => {
-        this._hideInputError(element,settings);
+      this._formInputElements.forEach((element) => {
+        this._hideInputError(element);
       });
 
-      toggleButtonState({
-        form: formInputElements,
-        element: formButton,
-        settings,
-      });
+      this._toggleButtonState();
     }
 
 }

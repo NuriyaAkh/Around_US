@@ -84,7 +84,7 @@ function openAddImageForm() {
 // function open edit forms
 function openEditProfileForm() {
   fillProfileForm();
-  resetValidation(editProfileForm);
+  editProfileFormValidator.resetValidation();
   openPopup(editProfileForm);
 }
 // prefill the profile form
