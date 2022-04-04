@@ -8,7 +8,7 @@ export default class Card {
   constructor(data, cardSelector){
     this._name = data.name;
     this._link = data.link;
-    this._cardSelector = cardSelector; // assign the selector to the private field ("#card")
+    this._cardSelector = cardSelector; // assigns the selector to the private field ("#card")
 
   }
   _getTemplate() {
