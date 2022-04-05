@@ -1,4 +1,5 @@
-const settings = {
+
+ const settings = {
   formSelector: ".forms",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button",
@@ -104,4 +105,5 @@ export function resetValidation(form) {
     settings,
   });
 }
+
 

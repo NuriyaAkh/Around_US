@@ -1,4 +1,5 @@
-import { resetValidation } from "./validate.js";
+//this is sprint#6 project code
+import { resetValidation } from "../FormValidator.js";
 
 const initialCards = [
   {
@@ -185,7 +186,7 @@ function handleKeyEsc(evt){
     };
   };
 
-//overlay to close Edit Profile popup
+//overlay to close  popup
 function handleMouseDown(evt){
   const currentPopup = document.querySelector(".forms_is-open");
   if (evt.target.classList.contains("forms") ||
