@@ -1,6 +1,6 @@
 export default class FormValidator {
   constructor(settings, formElement) {
-    this._inputSelector = settings._inputSelector;
+    this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._inputErrorClass = settings.inputErrorClass;
@@ -38,14 +38,11 @@ export default class FormValidator {
   };
 
   _toggleButtonState() {
-    // If there is at least one invalid input
 
     if (this._hasInvalidInput()) {
-      // make the button inactive
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
     } else {
-      // otherwise, make it active
       this._buttonElement.classList.remove(this._inactiveButtonClass);
       this._buttonElement.disabled = false;
     };

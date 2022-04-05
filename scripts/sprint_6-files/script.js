@@ -1,5 +1,5 @@
 //this is sprint#6 project code
-import { resetValidation } from "./FormValidator.js";
+import { resetValidation } from "../FormValidator.js";
 
 const initialCards = [
   {
