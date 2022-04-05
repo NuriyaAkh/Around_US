@@ -29,7 +29,7 @@ export default class Card {
     const imageElement = this._element.querySelector(".card__img");
     imageElement.alt = this._name;
     imageElement.src = this._link;
-   // Return the element
+
    return this._element;
 
   }
