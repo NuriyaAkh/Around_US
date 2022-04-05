@@ -23,6 +23,7 @@ export default class FormValidator {
   };
 
   _hasInvalidInput() {
+    //this._inputList.some((element) => !element.validity.valid);
     return [...this._inputList].some((element) => !element.validity.valid);
   };
 
@@ -68,12 +69,7 @@ export default class FormValidator {
     this._setEventListeners();
   };
   resetValidation() {
-    this._formInputElements =
-        this._formElement.querySelectorAll(this._inputSelector);
-    this._formButton =
-        this._formElement.querySelector(this._submitButtonSelector);
-
-    this._formInputElements.forEach((element) => {
+      this._inputList.forEach((element) => {
       this._hideInputError(element);
     });
 

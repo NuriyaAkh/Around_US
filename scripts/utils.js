@@ -1,5 +1,3 @@
-export {openPopup, closePopup}
-import Card from "./Card.js";
 
   //open forms
  function openPopup(popup) {
@@ -28,3 +26,4 @@ function handleMouseDown(evt){
       closePopup(currentPopup);
     }
 };
+export {openPopup, closePopup}

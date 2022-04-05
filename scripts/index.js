@@ -1,6 +1,7 @@
 import Cards from './Card.js';
 import FormValidator from './FormValidator.js';
 import {closePopup, openPopup} from './utils.js';
+import {formValidationSettings } from './constants.js';
 
 const initialCards = [
   {
@@ -57,14 +58,6 @@ const inputName = editProfileForm.querySelector('#username');
 const inputJob = editProfileForm.querySelector('#about');
 const inputImagePlaceName = addImageForm.querySelector('#title');
 const inputImageUrl = addImageForm.querySelector('#image-link');
-const formValidationSettings = {
-  formSelector: '.forms',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__button',
-  inactiveButtonClass: 'form__button_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__error-text_active'
-};
 
 // form validation
 const editProfileFormValidator =
@@ -124,8 +117,7 @@ function handleImageFormSubmit(evt) {
       cardsContainer);
 
   closePopup(addImageForm);
-  imageForm.reset();
-}
+ }
 
 // render
 function renderCard(data, cardsContainer) {

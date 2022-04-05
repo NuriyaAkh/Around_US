@@ -26,13 +26,14 @@ export default class Card {
     this._setEventListeners();
     // Add data
     this._element.querySelector(".card__title").textContent = this._name;
-    this._element.querySelector(".card__img").alt = this._name;
-    this._element.querySelector(".card__img").src = this._link;
+    const imageElement = this._element.querySelector(".card__img");
+    imageElement.alt = this._name;
+    imageElement.src = this._link;
    // Return the element
    return this._element;
 
   }
-  _setEventListeners(){
+  _setEventListeners() {
     //like button
     this._element.querySelector(".card__button").addEventListener("click",(evt) => {
       this._handleLikeButton(evt);
@@ -49,7 +50,7 @@ export default class Card {
 
   _handleShowImage (){
     popupImage.src = this._link;
-    popupImage.alt = `${this._name}`;
+    popupImage.alt = this._name;
     popupImageTitle.textContent = this._name;
     openPopup(popupShowImageElement);
   }
@@ -58,8 +59,8 @@ export default class Card {
     evt.target.classList.toggle("card__button_active");
   }
 
-  _handleDeleteCard(evt) {
-    evt.target.closest(".card").remove();
+  _handleDeleteCard() {
+    this._element.remove();
     this._element = null;
   }
 }
