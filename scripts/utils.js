@@ -1,4 +1,3 @@
-
   //open forms
  function openPopup(popup) {
   popup.classList.add("forms_is-open");
