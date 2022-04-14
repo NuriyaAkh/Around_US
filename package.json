@@ -1,0 +1,19 @@
+{
+  "name": "web_project_4",
+  "version": "1.0.0",
+  "description": "project around us",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NuriyaAkh/web_project_4.git"
+  },
+  "author": "Nuriya A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NuriyaAkh/web_project_4/issues"
+  },
+  "homepage": "https://github.com/NuriyaAkh/web_project_4#readme"
+}
