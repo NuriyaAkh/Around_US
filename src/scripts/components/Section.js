@@ -1,15 +1,13 @@
-import Card from "./Card";
 export default class Section {
-  constructor({ data }, cardSelector) {
-    this._renderedCards = data;
-    this._container = document.querySelector(cardSelector);
+  constructor({ items, renderer }, containerSelector) {
+    this._items = items;
+    this._renderer = renderer;
+    this._container = document.querySelector(containerSelector);
   }
-  renderer() {
-    this._renderedCards.forEach((item) => {
-      const card = new Cards(item, "#card").generateCard(); // pass an object as an argument
-      // Fill up the card and return it
-      // Add it to the DOM
-      this.addItem(cardElement);
+  renderItems() {
+    this._items.forEach(item => {
+      this._renderer(item);
+      
     });
   }
 

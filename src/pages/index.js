@@ -96,6 +96,10 @@ function renderCard(data, cardsContainer) {
   cardsContainer.prepend(card);
 }
 
-const cardList = new Section({ data: items }, cardsContainer);
+const cardList = new Section({ items:initialCards,
+renderer:(item)=>{
+  const element = new Cards(item, "#card").generateCard();
+}
+}, ".cards__container");
 // put initial cards into DOM
-cardsContainer.renderer();
+cardsList.renderItems();
