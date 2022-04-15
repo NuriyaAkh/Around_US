@@ -1,6 +1,8 @@
 import Cards from "../scripts/components/Card.js";
 import FormValidator from "../scripts/components/FormValidator.js";
+import Section from "../scripts/components/Section.js";
 import { closePopup, openPopup } from "../scripts/utils.js";
+import "./index.css";
 
 //8
 import {
@@ -93,7 +95,7 @@ function renderCard(data, cardsContainer) {
   // Add it to the DOM
   cardsContainer.prepend(card);
 }
+
+const cardList = new Section({ data: items }, cardsContainer);
 // put initial cards into DOM
-initialCards.forEach((data) => {
-  renderCard(data, cardsContainer);
-});
+cardsContainer.renderer();

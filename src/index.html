@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./pages/index.css" />
+  <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
   <title>
     Around US
   </title>
@@ -13,11 +13,11 @@
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="logo Around US" />
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="logo Around US" />
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__img" src="./images/image_jc.jpg" alt="profile image" />
+      <img class="profile__img" src="<%=require('./images/image_jc.jpg')%>" alt="profile image" />
       <div class="profile__info">
         <div class="profile__text">
           <h1 class="profile__name">Jacques Cousteau</h1>
@@ -27,7 +27,7 @@
         </div>
 
         <button aria-label="add" type="button" class="profile__button-add">
-          <img class="profile__add-img" src="./images/+.svg" alt="add sidn" />
+          <img class="profile__add-img" src="<%=require('./images/+.svg')%>" alt="add sidn" />
         </button>
       </div>
     </section>
@@ -87,10 +87,11 @@
       </div>
     </li>
   </template>
-  <script defer type="module" src="./scripts/components/Card.js"></script>
+ <!--  <script defer type="module" src="./scripts/components/Card.js"></script>
   <script defer type="module" src="./scripts/utils.js"></script>
   <script defer type="module" src="./scripts/components/FormValidator.js"></script>
-  <script defer type="module" src="./pages/index.js"></script>
+  <script defer type="module" src="./scripts/pages/index.js"> </script>
+ -->
 
 </body>
 
