@@ -88,18 +88,17 @@ function handleImageFormSubmit(evt) {
   closePopup(addImageForm);
 }
 
-// render
-function renderCard(data, cardsContainer) {
-  const card = new Cards(data, "#card").generateCard(); // pass an object as an argument
-  // Fill up the card and return it
-  // Add it to the DOM
-  cardsContainer.prepend(card);
-}
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Cards(item, "#card");
+      const cardElement = card.generateCard();
 
-const cardList = new Section({ items:initialCards,
-renderer:(item)=>{
-  const element = new Cards(item, "#card").generateCard();
-}
-}, ".cards__container");
+      cardList.addItem(cardElement);
+    },
+  },
+  ".cards__container"
+);
 // put initial cards into DOM
-cardsList.renderItems();
+cardList.renderItems();
