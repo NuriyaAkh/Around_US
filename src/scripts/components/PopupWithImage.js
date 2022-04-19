@@ -8,9 +8,9 @@ export default class PopupWithImage extends Popup {
   }
   // In the open() method add an image to the popup and the corresponding image src attribute along with a caption for the image.
   open(data) {
-    this._popupImage.src = data._link;
-    this._popupImage.alt = `Image ${data._name}`;
-    this._popupImageTitle.textContent = data._name;
+    this._popupImage.src = data.link;
+    this._popupImage.alt = `Image ${data.text}`;
+    this._popupImageTitle.textContent = data.text;
     super.open();
   }
 }
