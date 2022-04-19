@@ -5,10 +5,11 @@ const popupImageTitle = document.querySelector(".forms__image-title");
 const popupShowImageElement = document.querySelector("#image-show");
 
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor({data, handleImageClick}, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector; // assigns the selector to the private field ("#card")
+    this._handleImageClick = handleImageClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -41,7 +42,7 @@ export default class Card {
       });
     //open Show Image popup
     this._element.querySelector(".card__img").addEventListener("click", () => {
-      this._handleShowImage();
+      this._handleImageClick({ link: this._link, text: this._name });
     });
     //delete card
     this._element

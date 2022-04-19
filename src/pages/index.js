@@ -3,6 +3,7 @@ import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
 import { closePopup, openPopup } from "../scripts/utils.js";
 import "./index.css";
+import PopupWithImage from "../scripts/components/PopupWithImage.js";
 
 //8
 import {
@@ -91,8 +92,13 @@ function handleImageFormSubmit(evt) {
 const cardList = new Section(
   {
     items: initialCards,
-    renderer: (item) => {
-      const card = new Cards(item, "#card");
+    renderer: (data) => {
+      const card = new Cards({data,
+        handleImageClick: (imgData) => {
+          cardShowImage.open(imgData);
+        },
+      },
+        "#card");
       const cardElement = card.generateCard();
 
       cardList.addItem(cardElement);
@@ -100,5 +106,8 @@ const cardList = new Section(
   },
   ".cards__container"
 );
-// put initial cards into DOM
 cardList.renderItems();
+
+//init preview image
+const cardShowImage = new PopupWithImage("#image-show");
+cardShowImage.setEventListeners();
