@@ -28,8 +28,6 @@ import {
   inputImageUrl,
 } from "../scripts/utils/constants.js";
 
-
-
 // form validation
 const editProfileFormValidator = new FormValidator(
   formValidationSettings,
@@ -46,14 +44,14 @@ addImageFormValidator.enableValidation();
 function openAddImageForm() {
   imageForm.reset(); // reset form
   addImageFormValidator.resetValidation();
-  openPopup(addImageForm);
+  addNewImageForm.open();
 }
 
 // function open edit form
 function openEditProfileForm() {
   fillProfileForm();
   editProfileFormValidator.resetValidation();
-  open(editProfileForm);
+  editUserInfoForm.open();
 }
 // prefill the profile form
 function fillProfileForm() {
@@ -69,11 +67,7 @@ function handleProfileFormSubmit(evt) {
 }
 // event listnerens
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-openProfileEditButton.addEventListener("click", () => {
-  profilePopupForm.open();
-  profileInfo.setUserInfo(data);
-});
-
+openProfileEditButton.addEventListener("click", openEditProfileForm);
 addImageForm.addEventListener("submit", handleImageFormSubmit);
 openImageAddButton.addEventListener("click", openAddImageForm);
 closeEditFormButton.addEventListener("click", () => {
@@ -130,10 +124,13 @@ const profileInfo = new UserInfo({
   userOccupation: ".profile__about",
 });
 
-
 //init popup profile
-const profilePopupForm = new PopupWithForm(
+const editUserInfoForm = new PopupWithForm(
   "#edit-profile",
   handleProfileFormSubmit
 );
-profilePopupForm.setEventListeners();
+editUserInfoForm.setEventListeners();
+
+//init popup add image
+const addNewImageForm = new PopupWithForm("#img-add", handleImageFormSubmit);
+addNewImageForm.setEventListeners();
