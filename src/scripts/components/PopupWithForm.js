@@ -6,12 +6,10 @@ constructor({popupSelector, handleFormSubmit}){
   super(popupSelector);
 
   this._handleFormSubmit = handleFormSubmit;
-
+  this._inputList = this._popupElement.querySelectorAll(".form__input"); // Get all field elements
 }
 // which collects data from all the input fields and returns that data as an object.
 _getInputValues(){
-// Get all field elements
-this._inputList = this._popupElement.querySelectorAll(".form__input");
 
 // Create an empty object
 this._formValues = {};

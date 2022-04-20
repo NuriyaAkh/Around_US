@@ -2,8 +2,10 @@ import Cards from "../scripts/components/Card.js";
 import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
 //import { closePopup, openPopup } from "../scripts/utils.js";
-import "./index.css";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
+import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import UserInfo from "../scripts/components/UserInfo.js";
+import "./index.css";
 
 //8
 import {
@@ -25,8 +27,8 @@ import {
   inputImagePlaceName,
   inputImageUrl,
 } from "../scripts/utils/constants.js";
-import PopupWithForm from "../scripts/components/PopupWithForm.js";
-import UserInfo from "../scripts/components/UserInfo.js";
+
+
 
 // form validation
 const editProfileFormValidator = new FormValidator(
@@ -47,7 +49,7 @@ function openAddImageForm() {
   openPopup(addImageForm);
 }
 
-// function open edit forms
+// function open edit form
 function openEditProfileForm() {
   fillProfileForm();
   editProfileFormValidator.resetValidation();
@@ -55,7 +57,6 @@ function openEditProfileForm() {
 }
 // prefill the profile form
 function fillProfileForm() {
-
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
 }
@@ -70,8 +71,9 @@ function handleProfileFormSubmit(evt) {
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 openProfileEditButton.addEventListener("click", () => {
   profilePopupForm.open();
-  profilePopupForm.getUserInfo();
+  profileInfo.setUserInfo(data);
 });
+
 addImageForm.addEventListener("submit", handleImageFormSubmit);
 openImageAddButton.addEventListener("click", openAddImageForm);
 closeEditFormButton.addEventListener("click", () => {
@@ -123,8 +125,15 @@ cardList.renderItems();
 const cardShowImage = new PopupWithImage("#image-show");
 cardShowImage.setEventListeners();
 // init user info
-const profileInfo = new UserInfo({userName:".prodile__name", userOccupation:".profile__job"});
-profileInfo.setUserInfo();
+const profileInfo = new UserInfo({
+  userName: ".profile__name",
+  userOccupation: ".profile__about",
+});
+
+
 //init popup profile
-const profilePopupForm = new PopupWithForm ("#edit-profile", handleProfileFormSubmit);
+const profilePopupForm = new PopupWithForm(
+  "#edit-profile",
+  handleProfileFormSubmit
+);
 profilePopupForm.setEventListeners();
