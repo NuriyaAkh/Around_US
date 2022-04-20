@@ -55,6 +55,7 @@ function openEditProfileForm() {
 }
 // prefill the profile form
 function fillProfileForm() {
+
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
 }
@@ -67,7 +68,10 @@ function handleProfileFormSubmit(evt) {
 }
 // event listnerens
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-openProfileEditButton.addEventListener("click", openEditProfileForm);
+openProfileEditButton.addEventListener("click", () => {
+  profilePopupForm.open();
+  profilePopupForm.getUserInfo();
+});
 addImageForm.addEventListener("submit", handleImageFormSubmit);
 openImageAddButton.addEventListener("click", openAddImageForm);
 closeEditFormButton.addEventListener("click", () => {
@@ -119,5 +123,8 @@ cardList.renderItems();
 const cardShowImage = new PopupWithImage("#image-show");
 cardShowImage.setEventListeners();
 // init user info
-const profileInfo = new UserInfo("#username", "#about");
+const profileInfo = new UserInfo({userName:".prodile__name", userOccupation:".profile__job"});
 profileInfo.setUserInfo();
+//init popup profile
+const profilePopupForm = new PopupWithForm ("#edit-profile", handleProfileFormSubmit);
+profilePopupForm.setEventListeners();
