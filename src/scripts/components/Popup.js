@@ -7,9 +7,13 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("forms_is-open");
+    document.addEventListener("keydown",this._handleKeyEsc);
+    document.addEventListener("mousedown",this._handleMouseDown);
   }
   close() {
     this._popupElement.classList.remove("forms_is-open");
+    document.removeEventListener("keydown",this._handleKeyEsc);
+    document.removeEventListener("mousedown",this._handleMouseDown);
   }
 
   _handleMouseDown(evt) {

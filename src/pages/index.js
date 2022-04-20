@@ -1,7 +1,7 @@
 import Cards from "../scripts/components/Card.js";
 import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
-import { closePopup, openPopup } from "../scripts/utils.js";
+//import { closePopup, openPopup } from "../scripts/utils.js";
 import "./index.css";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 
@@ -25,6 +25,8 @@ import {
   inputImagePlaceName,
   inputImageUrl,
 } from "../scripts/utils/constants.js";
+import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import UserInfo from "../scripts/components/UserInfo.js";
 
 // form validation
 const editProfileFormValidator = new FormValidator(
@@ -49,7 +51,7 @@ function openAddImageForm() {
 function openEditProfileForm() {
   fillProfileForm();
   editProfileFormValidator.resetValidation();
-  openPopup(editProfileForm);
+  open(editProfileForm);
 }
 // prefill the profile form
 function fillProfileForm() {
@@ -89,16 +91,21 @@ function handleImageFormSubmit(evt) {
   closePopup(addImageForm);
 }
 
+//8
+//init cards to show
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      const card = new Cards({data,
-        handleImageClick: (imgData) => {
-          cardShowImage.open(imgData);
+      const card = new Cards(
+        {
+          data,
+          handleImageClick: (imgData) => {
+            cardShowImage.open(imgData);
+          },
         },
-      },
-        "#card");
+        "#card"
+      );
       const cardElement = card.generateCard();
 
       cardList.addItem(cardElement);
@@ -111,3 +118,6 @@ cardList.renderItems();
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
 cardShowImage.setEventListeners();
+// init user info
+const profileInfo = new UserInfo("#username", "#about");
+profileInfo.setUserInfo();
