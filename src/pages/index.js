@@ -1,4 +1,4 @@
-import Cards from "../scripts/components/Card.js";
+import Card from "../scripts/components/Card.js";
 import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
 //import { closePopup, openPopup } from "../scripts/utils.js";
@@ -59,48 +59,59 @@ function fillProfileForm() {
   inputJob.value = profileJob.textContent;
 }
 // function to submit edit profile info,checks the data is entered
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
+function handleProfileFormSubmit() {
+
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
-  closePopup(editProfileForm);
+  editUserInfoForm.reset();
 }
+//init popup profile
+const editUserInfoForm = new PopupWithForm(
+  {
+    popupSelector: "#edit-profile",
+    handleFormSubmit: handleProfileFormSubmit
+  }
+);
+editUserInfoForm.setEventListeners();
+const profileInfo = new UserInfo({
+  userName: ".profile__name",
+  userOccupation: ".profile__about",
+});
+
+
+
 // event listnerens
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 addImageForm.addEventListener("submit", handleImageFormSubmit);
 openImageAddButton.addEventListener("click", openAddImageForm);
-closeEditFormButton.addEventListener("click", () => {
-  closePopup(editProfileForm);
-});
-closeAddImageFormButton.addEventListener("click", () => {
-  closePopup(addImageForm);
-});
 
-// function to submit and check for required fields add image form
-function handleImageFormSubmit(evt) {
-  evt.preventDefault();
-  renderCard(
-    {
-      name: inputImagePlaceName.value,
-      link: inputImageUrl.value,
-    },
-    cardsContainer
-  );
 
-  closePopup(addImageForm);
+// function to submit and check for required fields add image form //ToDo
+function handleImageFormSubmit(data) {
+  const cardName = data.name;
+  const cardLink = data.link;
+  const element = new Card ({cardName,
+    cardLink}, "#card");
+  const newAddedCard = element.generateCard();
+  cardList.addItem(newAddedCard);
 }
+//init popup add image
+const addNewImageForm = new PopupWithForm(
+  {popupSelector: "#img-add",
+  handleFormSubmit: handleImageFormSubmit});
+addNewImageForm.setEventListeners();
 
-//8
+
 //init cards to show
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      const card = new Cards(
+      const card = new Card(
         {
           data,
-          handleImageClick: (imgData) => {
+          handleShowImage : (imgData) => {
             cardShowImage.open(imgData);
           },
         },
@@ -119,24 +130,9 @@ cardList.renderItems();
 const cardShowImage = new PopupWithImage("#image-show");
 cardShowImage.setEventListeners();
 // init user info
-const profileInfo = new UserInfo({
-  userName: ".profile__name",
-  userOccupation: ".profile__about",
-});
-
-//init popup profile
-const editUserInfoForm = new PopupWithForm(
-  {
-    popupSelector: "#edit-profile",
-    handleFormSubmit: handleProfileFormSubmit
-  }
 
 
-);
-editUserInfoForm.setEventListeners();
 
-//init popup add image
-const addNewImageForm = new PopupWithForm(
-  {popupSelector: "#img-add",
-  handleFormSubmit: handleImageFormSubmit});
-addNewImageForm.setEventListeners();
+
+
+

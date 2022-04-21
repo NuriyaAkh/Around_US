@@ -1,15 +1,10 @@
-import { openPopup } from "../utils.js";
-
-const popupImage = document.querySelector(".forms__image");
-const popupImageTitle = document.querySelector(".forms__image-title");
-const popupShowImageElement = document.querySelector("#image-show");
-
+import PopupWithImage from "./PopupWithImage";
 export default class Card {
-  constructor({data, handleImageClick}, cardSelector) {
+  constructor({data, handleShowImage}, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector; // assigns the selector to the private field ("#card")
-    this._handleImageClick = handleImageClick;
+    this._handleImageClick = handleShowImage;
   }
   _getTemplate() {
     const cardElement = document
@@ -27,9 +22,8 @@ export default class Card {
     this._setEventListeners();
     // Add data
     this._element.querySelector(".card__title").textContent = this._name;
-    const imageElement = this._element.querySelector(".card__img");
-    imageElement.alt = this._name;
-    imageElement.src = this._link;
+    this._element.querySelector(".card__img").src= this._link;
+    this._element.querySelector(".card__img").alt =this._name;
 
     return this._element;
   }
@@ -42,7 +36,7 @@ export default class Card {
       });
     //open Show Image popup
     this._element.querySelector(".card__img").addEventListener("click", () => {
-      this._handleImageClick({ link: this._link, text: this._name });
+      this._handleShowImage({ link: this._link, text: this._name });
     });
     //delete card
     this._element
@@ -52,12 +46,10 @@ export default class Card {
       });
   }
 
-  _handleShowImage() {
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
-    popupImageTitle.textContent = this._name;
-    openPopup(popupShowImageElement);
-  }
+ _handleShowImage(imgData) {
+  const cardShowImage = new PopupWithImage("#image-show");
+  cardShowImage.setEventListeners();
+  cardShowImage.open(imgData)}
 
   _handleLikeButton(evt) {
     evt.target.classList.toggle("card__button_active");

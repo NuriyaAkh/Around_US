@@ -29,13 +29,13 @@ export default class PopupWithForm extends Popup {
       // Pass an object which is the result of the _getInputValues work to it
       this._handleFormSubmit(this._getInputValues());
 
-      this._popupElement.reset();
+      this._form.reset();
     });
     super.setEventListeners();
   }
   //It modifies the close() parent method in order to reset the form once the popup is closed.
   close() {
-    this._popupElement.reset();
+    this._form.reset();
     super.close();
   }
 }
