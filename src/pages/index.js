@@ -126,11 +126,17 @@ const profileInfo = new UserInfo({
 
 //init popup profile
 const editUserInfoForm = new PopupWithForm(
-  "#edit-profile",
-  handleProfileFormSubmit
+  {
+    popupSelector: "#edit-profile",
+    handleFormSubmit: handleProfileFormSubmit
+  }
+
+
 );
 editUserInfoForm.setEventListeners();
 
 //init popup add image
-const addNewImageForm = new PopupWithForm("#img-add", handleImageFormSubmit);
+const addNewImageForm = new PopupWithForm(
+  {popupSelector: "#img-add",
+  handleFormSubmit: handleImageFormSubmit});
 addNewImageForm.setEventListeners();
