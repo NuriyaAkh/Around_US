@@ -63,7 +63,8 @@ function handleProfileFormSubmit() {
 
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
-  editUserInfoForm.reset();
+
+  //editUserInfoForm.reset();
 }
 //init popup profile
 const editUserInfoForm = new PopupWithForm(
@@ -89,10 +90,11 @@ openImageAddButton.addEventListener("click", openAddImageForm);
 
 // function to submit and check for required fields add image form //ToDo
 function handleImageFormSubmit(data) {
-  const cardName = data.name;
-  const cardLink = data.link;
-  const element = new Card ({cardName,
-    cardLink}, "#card");
+  inputImagePlaceName = data.name;
+   inputImageUrl = data.link;
+  const element = new Card ({inputImagePlaceName,
+    inputImageUrl, handleShowImage : (imgData) => {
+      cardShowImage.open(imgData); }}, "#card");
   const newAddedCard = element.generateCard();
   cardList.addItem(newAddedCard);
 }

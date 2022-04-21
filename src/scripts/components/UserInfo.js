@@ -7,15 +7,15 @@ export default class UserInfo {
   }
   //to display the user data in the open form
   getUserInfo() {
-    this._inputName = this._profileName.textContent;
-    this._inputOccupation = this._profileJob.textContent;
+    const inputName = this._profileName.textContent;
+    const inputOccupation = this._profileJob.textContent;
 
-    return this._inputName, this._inputOccupation;
+    return inputName, inputOccupation;
   }
 
   //takes new user data and adds it on the page
   setUserInfo(data) {
-    
+
     this._profileName.textContent = data.userName;
     this._profileJob.textContent = data.userOccupation;
   }
