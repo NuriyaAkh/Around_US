@@ -16,8 +16,8 @@ import {
   openImageAddButton,
   profileName,
   profileJob,
-  inputName,
-  inputJob,
+  userInputName,
+  userInputJob,
   } from "../scripts/utils/constants.js";
 
 // form validation
@@ -47,13 +47,14 @@ function openEditProfileForm() {
 }
 // prefill the profile form
 function fillProfileForm() {
-  inputName.value = profileName.textContent;
-  inputJob.value = profileJob.textContent;
+  userInputName.value = profileName.textContent;
+  userInputJob.value = profileJob.textContent;
 }
 // function to submit edit profile info
 function handleProfileFormSubmit() {
-  profileName.textContent = inputName.value;
-  profileJob.textContent = inputJob.value;
+  profileName.textContent = userInputName.value;
+  profileJob.textContent = userInputJob.value;
+ // this.close();
 }
 //init popup profile
 const editUserInfoForm = new PopupWithForm(
@@ -62,7 +63,7 @@ const editUserInfoForm = new PopupWithForm(
     handleFormSubmit: handleProfileFormSubmit
   }
 );
-editUserInfoForm.setEventListeners();
+//editUserInfoForm.setEventListeners();
 //init user info
 const profileInfo = new UserInfo({
   userName: ".profile__name",
@@ -80,17 +81,17 @@ function handleImageFormSubmit(data) {
       cardShowImage.open(imgData); }}, "#card");
   const newAddedCard = element.generateCard();
   cardList.addItem(newAddedCard);
-
+  addNewImageForm.close();
 }
 //init popup add image
 const addNewImageForm = new PopupWithForm(
   {popupSelector: "#img-add",
   handleFormSubmit: handleImageFormSubmit});
-addNewImageForm.setEventListeners();
+//addNewImageForm.setEventListeners();
 
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
-cardShowImage.setEventListeners();
+//cardShowImage.setEventListeners();
 
 //init cards to show
 const cardList = new Section(
@@ -98,14 +99,8 @@ const cardList = new Section(
     items: initialCards,
     renderer: (data) => {
       const card = new Card(
-        {
-          data,
-          handleShowImage : (imgData) => {
-            cardShowImage.open(imgData);
-          },
-        },
-        "#card"
-      );
+        {data, handleShowImage : (imgData) => {
+            cardShowImage.open(imgData); }, }, "#card" );
       const cardElement = card.generateCard();
 
       cardList.addItem(cardElement);

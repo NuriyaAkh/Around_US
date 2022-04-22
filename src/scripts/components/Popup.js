@@ -32,7 +32,7 @@ export default class Popup {
     }
   }
 
-  setEventListeners() {
+  /* setEventListeners() {
     this._popupElement
       .querySelector(".forms__button-close")
       .addEventListener("click", () => {
@@ -44,5 +44,5 @@ export default class Popup {
     document.addEventListener("mousedown", (evt) => {
       this._handleMouseDown(evt);
     });
-  }
+  } */
 }
