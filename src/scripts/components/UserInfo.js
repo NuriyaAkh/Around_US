@@ -1,9 +1,8 @@
 export default class UserInfo {
   constructor({ userName, userOccupation }) {
     this._profileName = document.querySelector(userName);
-    //console.log(this._profileName);
     this._profileJob = document.querySelector(userOccupation);
-   // console.log(this._profileJob);
+
   }
   //to display the user data in the open form
   getUserInfo() {

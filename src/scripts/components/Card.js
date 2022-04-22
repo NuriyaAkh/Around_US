@@ -14,13 +14,10 @@ export default class Card {
 
     return cardElement;
   }
-  //public method
+
   generateCard() {
-    // Store the markup in the private field _element
-    // so that other elements can access it
     this._element = this._getTemplate();
     this._setEventListeners();
-    // Add data
     this._element.querySelector(".card__title").textContent = this._name;
     this._element.querySelector(".card__img").src= this._link;
     this._element.querySelector(".card__img").alt =this._name;
