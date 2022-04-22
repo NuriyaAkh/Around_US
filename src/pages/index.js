@@ -74,6 +74,7 @@ const editUserInfoForm = new PopupWithForm(
   }
 );
 editUserInfoForm.setEventListeners();
+//init user info
 const profileInfo = new UserInfo({
   userName: ".profile__name",
   userOccupation: ".profile__about",
@@ -82,21 +83,21 @@ const profileInfo = new UserInfo({
 
 
 // event listnerens
-editProfileForm.addEventListener("submit", handleProfileFormSubmit);
+//editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 openProfileEditButton.addEventListener("click", openEditProfileForm);
-addImageForm.addEventListener("submit", handleImageFormSubmit);
+//addImageForm.addEventListener("submit", handleImageFormSubmit);
 openImageAddButton.addEventListener("click", openAddImageForm);
 
 
 // function to submit and check for required fields add image form //ToDo
 function handleImageFormSubmit(data) {
-  inputImagePlaceName = data.name;
-   inputImageUrl = data.link;
-  const element = new Card ({inputImagePlaceName,
-    inputImageUrl, handleShowImage : (imgData) => {
+
+ console.log(data);
+  const element = new Card ({data, handleShowImage : (imgData) => {
       cardShowImage.open(imgData); }}, "#card");
   const newAddedCard = element.generateCard();
   cardList.addItem(newAddedCard);
+
 }
 //init popup add image
 const addNewImageForm = new PopupWithForm(
@@ -131,7 +132,7 @@ cardList.renderItems();
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
 cardShowImage.setEventListeners();
-// init user info
+
 
 
 
