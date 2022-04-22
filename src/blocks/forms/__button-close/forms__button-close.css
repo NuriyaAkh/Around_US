@@ -1,5 +1,5 @@
 .forms__button-close {
-  background: transparent url(../../../images/Close\ Icon.svg) center no-repeat;
+  background: transparent url(../../../images/closeIcon.svg) center no-repeat;
   border: none;
   cursor: pointer;
   transition: all .4s;
