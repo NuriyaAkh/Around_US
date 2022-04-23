@@ -5,7 +5,6 @@ export default class Card {
     this._link = data.link;
     this._cardSelector = cardSelector; // assigns the selector to the private field ("#card")
     this._handleImageClick = handleShowImage;
-
   }
   _getTemplate() {
     const cardElement = document
@@ -25,7 +24,7 @@ export default class Card {
     this._imageElement = this._element.querySelector(".card__img");
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
-    this._imageElement.addEventListener("click", this._handleImageClick)
+    this._imageElement.addEventListener("click", this._handleImageClick);
     return this._element;
   }
   _setEventListeners() {
@@ -35,10 +34,6 @@ export default class Card {
       .addEventListener("click", (evt) => {
         this._handleLikeButton(evt);
       });
-    //open Show Image popup
-    /* this._element.querySelector(".card__img").addEventListener("click", () => {
-      this._handleShowImage({ link: this._link, text: this._name });
-    }); */
     //delete card
     this._element
       .querySelector(".card__delete")
@@ -46,13 +41,6 @@ export default class Card {
         this._handleDeleteCard(evt);
       });
   }
-
- /*  _handleImageClick(imgData) {
-    const cardShowImage = new PopupWithImage("#image-show");
-    //cardShowImage.setEventListeners();
-    cardShowImage.open(imgData);
-  } */
-
   _handleLikeButton(evt) {
     evt.target.classList.toggle("card__button_active");
   }
