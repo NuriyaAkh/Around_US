@@ -60,11 +60,8 @@ function fillProfileForm() {
 }
 // function to submit edit profile info,checks the data is entered
 function handleProfileFormSubmit() {
-
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
-
-  //editUserInfoForm.reset();
 }
 //init popup profile
 const editUserInfoForm = new PopupWithForm(
@@ -87,7 +84,7 @@ const profileInfo = new UserInfo({
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 //addImageForm.addEventListener("submit", handleImageFormSubmit);
 openImageAddButton.addEventListener("click", openAddImageForm);
-addImageForm.addEventListener("submit", handleImageFormSubmit);
+//addImageForm.addEventListener("submit", handleImageFormSubmit);
 
 
 // function to submit and check for required fields add image form //ToDo
