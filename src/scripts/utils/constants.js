@@ -54,10 +54,10 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 
 // form data and elements
-const inputName = editProfileForm.querySelector('#username');
-const inputJob = editProfileForm.querySelector('#about');
+const userInputName = editProfileForm.querySelector('#username');
+const userInputJob = editProfileForm.querySelector('#about');
 const inputImagePlaceName = addImageForm.querySelector('#title');
 const inputImageUrl = addImageForm.querySelector('#image-link');
 
-export { formValidationSettings, initialCards, cardsContainer, editProfileForm, addImageForm, imageForm, profileForm, openProfileEditButton, openImageAddButton, closeEditFormButton, closeAddImageFormButton, profileName, profileJob, inputName, inputJob, inputImagePlaceName, inputImageUrl };
+export { formValidationSettings, initialCards, cardsContainer, editProfileForm, addImageForm, imageForm, profileForm, openProfileEditButton, openImageAddButton, closeEditFormButton, closeAddImageFormButton, profileName, profileJob, userInputName, userInputJob, inputImagePlaceName, inputImageUrl };
 

@@ -3,14 +3,15 @@ export default class UserInfo {
     this._profileName = document.querySelector(userName);
     //console.log(this._profileName);
     this._profileJob = document.querySelector(userOccupation);
-   // console.log(this._profileJob);
+   //console.log(this._profileJob);
   }
   //to display the user data in the open form
   getUserInfo() {
-    const inputName = this._profileName.textContent;
-    const inputOccupation = this._profileJob.textContent;
+    const userInputName = this._profileName.textContent;
+    const userInputJob = this._profileJob.textContent;
 
-    return inputName, inputOccupation;
+    return {userInputName, userInputJob};
+
   }
 
   //takes new user data and adds it on the page

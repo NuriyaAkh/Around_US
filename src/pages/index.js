@@ -20,8 +20,8 @@ import {
   closeAddImageFormButton,
   profileName,
   profileJob,
-  inputName,
-  inputJob,
+  userInputName,
+  userInputJob,
   inputImagePlaceName,
   inputImageUrl,
 } from "../scripts/utils/constants.js";
@@ -53,13 +53,13 @@ function openEditProfileForm() {
 }
 // prefill the profile form
 function fillProfileForm() {
-  inputName.value = profileName.textContent;
-  inputJob.value = profileJob.textContent;
+  userInputName.value = profileName.textContent;
+  userInputJob.value = profileJob.textContent;
 }
 // function to submit edit profile info
 function handleProfileFormSubmit() {
-  profileName.textContent = inputName.value;
-  profileJob.textContent = inputJob.value;
+  profileName.textContent = userInputName.value;
+  profileJob.textContent = userInputJob.value;
 }
 //init popup profile
 const editUserInfoForm = new PopupWithForm(
