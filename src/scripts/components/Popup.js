@@ -9,8 +9,9 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("forms_is-open");
-    document.addEventListener("keydown", this._handleEscClose);
-    document.addEventListener("mousedown", this._handleMouseDown);
+    this.setEventListeners;
+    /* document.addEventListener("keydown", this._handleEscClose);
+    document.addEventListener("mousedown", this._handleMouseDown); */
   }
   close() {
     this._popupElement.classList.remove("forms_is-open");
@@ -34,7 +35,7 @@ export default class Popup {
   }
 
   //that adds a click event listener to the close icon of the popup. The modal window should also close when users click on the shaded area around the form
-  setEventListeners() {
+   setEventListeners() {
     this._popupElement
       .querySelector(".forms__button-close")
       .addEventListener("click", () => {

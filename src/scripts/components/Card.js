@@ -47,7 +47,7 @@ export default class Card {
 
   _handleShowImage(imgData) {
     const cardShowImage = new PopupWithImage("#image-show");
-    cardShowImage.setEventListeners();
+    //cardShowImage.setEventListeners();
     cardShowImage.open(imgData);
   }
 

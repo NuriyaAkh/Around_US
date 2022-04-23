@@ -56,7 +56,7 @@ function fillProfileForm() {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
 }
-// function to submit edit profile info,checks the data is entered
+// function to submit edit profile info
 function handleProfileFormSubmit() {
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
@@ -114,9 +114,7 @@ cardShowImage.setEventListeners();
 
  function renderCard (data) {
       const card = new Card({data, handleShowImage : (imgData) => { cardShowImage.open(imgData); }, },"#card");
-
       const cardElement = card.generateCard();
-
       cardList.addItem(cardElement);
     }
 
