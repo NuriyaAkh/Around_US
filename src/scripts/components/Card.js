@@ -1,6 +1,6 @@
 import PopupWithImage from "./PopupWithImage";
 export default class Card {
-  constructor({data, handleShowImage}, cardSelector) {
+  constructor({ data, handleShowImage }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector; // assigns the selector to the private field ("#card")
@@ -21,9 +21,9 @@ export default class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector(".card__title").textContent = this._name;
-    this._element.querySelector(".card__img").src= this._link;
-    this._element.querySelector(".card__img").alt =this._name;
-
+    const imageElement = this._element.querySelector(".card__img");
+    imageElement.src = this._link;
+    imageElement.alt = this._name;
     return this._element;
   }
   _setEventListeners() {
@@ -45,10 +45,11 @@ export default class Card {
       });
   }
 
- _handleShowImage(imgData) {
-  const cardShowImage = new PopupWithImage("#image-show");
-  cardShowImage.setEventListeners();
-  cardShowImage.open(imgData)}
+  _handleShowImage(imgData) {
+    const cardShowImage = new PopupWithImage("#image-show");
+    cardShowImage.setEventListeners();
+    cardShowImage.open(imgData);
+  }
 
   _handleLikeButton(evt) {
     evt.target.classList.toggle("card__button_active");
