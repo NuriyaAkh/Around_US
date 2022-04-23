@@ -11,14 +11,13 @@ import {
   editProfileForm,
   addImageForm,
   imageForm,
-  profileForm,
   openProfileEditButton,
   openImageAddButton,
   profileName,
   profileJob,
   userInputName,
   userInputJob,
-  } from "../scripts/utils/constants.js";
+} from "../scripts/utils/constants.js";
 
 // form validation
 const editProfileFormValidator = new FormValidator(
@@ -54,67 +53,57 @@ function fillProfileForm() {
 function handleProfileFormSubmit() {
   profileName.textContent = userInputName.value;
   profileJob.textContent = userInputJob.value;
- // this.close();
 }
 //init popup profile
-const editUserInfoForm = new PopupWithForm(
-  {
-    popupSelector: "#edit-profile",
-    handleFormSubmit: handleProfileFormSubmit
-  }
-);
-//editUserInfoForm.setEventListeners();
+const editUserInfoForm = new PopupWithForm({
+  popupSelector: "#edit-profile",
+  handleFormSubmit: handleProfileFormSubmit,
+});
+editUserInfoForm.setEventListeners();
+
 //init user info
 const profileInfo = new UserInfo({
   userName: ".profile__name",
   userOccupation: ".profile__about",
 });
 
-// event listnerens
-openProfileEditButton.addEventListener("click", openEditProfileForm);
-openImageAddButton.addEventListener("click", openAddImageForm);
-
-// function to submit add image form
-function handleImageFormSubmit(data) {
-
-  const element = new Card ({data, handleShowImage : (imgData) => {
-      cardShowImage.open(imgData); }}, "#card");
-  const newAddedCard = element.generateCard();
-  cardList.addItem(newAddedCard);
-  addNewImageForm.close();
-}
 //init popup add image
-const addNewImageForm = new PopupWithForm(
-  {popupSelector: "#img-add",
-  handleFormSubmit: handleImageFormSubmit});
-//addNewImageForm.setEventListeners();
-
-//init preview image
-const cardShowImage = new PopupWithImage("#image-show");
-//cardShowImage.setEventListeners();
+const addNewImageForm = new PopupWithForm({
+  popupSelector: "#img-add",
+  handleFormSubmit: (data) => {
+    renderCard(data);
+  },
+});
+addNewImageForm.setEventListeners();
 
 //init cards to show
 const cardList = new Section(
   {
     items: initialCards,
-    renderer: (data) => {
-      const card = new Card(
-        {data, handleShowImage : (imgData) => {
-            cardShowImage.open(imgData); }, }, "#card" );
-      const cardElement = card.generateCard();
-
-      cardList.addItem(cardElement);
-    },
+    renderer: renderCard,
   },
   ".cards__container"
 );
 cardList.renderItems();
 
+//init preview image
+const cardShowImage = new PopupWithImage("#image-show");
+cardShowImage.setEventListeners();
 
+function renderCard(data) {
+  const card = new Card(
+    {
+      data,
+      handleShowImage: () => {
+        cardShowImage.open(data);
+      },
+    },
+    "#card"
+  );
+  const cardElement = card.generateCard();
+  cardList.addItem(cardElement);
+}
 
-
-
-
-
-
-
+// event listnerens
+openProfileEditButton.addEventListener("click", openEditProfileForm);
+openImageAddButton.addEventListener("click", openAddImageForm);
