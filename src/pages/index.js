@@ -112,8 +112,15 @@ cardList.renderItems();
 const cardShowImage = new PopupWithImage("#image-show");
 cardShowImage.setEventListeners();
 
+// function handleImageClick (imgData){
+//   cardShowImage.open(imgData);
+// }
+
  function renderCard (data) {
-      const card = new Card({data, handleShowImage : (imgData) => { cardShowImage.open(imgData); }, },"#card");
+
+      const card = new Card({data,  handleShowImage : () => {
+
+        cardShowImage.open(data); } , },"#card");
       const cardElement = card.generateCard();
       cardList.addItem(cardElement);
     }
