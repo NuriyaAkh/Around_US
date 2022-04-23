@@ -87,6 +87,7 @@ const profileInfo = new UserInfo({
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 //addImageForm.addEventListener("submit", handleImageFormSubmit);
 openImageAddButton.addEventListener("click", openAddImageForm);
+addImageForm.addEventListener("submit", handleImageFormSubmit);
 
 
 // function to submit and check for required fields add image form //ToDo
@@ -132,7 +133,6 @@ cardList.renderItems();
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
 cardShowImage.setEventListeners();
-
 
 
 
