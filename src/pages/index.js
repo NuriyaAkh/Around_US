@@ -1,13 +1,11 @@
 import Card from "../scripts/components/Card.js";
 import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
-//import { closePopup, openPopup } from "../scripts/utils.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import "./index.css";
 
-//8
 import {
   formValidationSettings,
   initialCards,
@@ -77,8 +75,6 @@ const profileInfo = new UserInfo({
   userOccupation: ".profile__about",
 });
 
-
-
 // event listnerens
 //editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 openProfileEditButton.addEventListener("click", openEditProfileForm);
@@ -87,42 +83,27 @@ openImageAddButton.addEventListener("click", openAddImageForm);
 //addImageForm.addEventListener("submit", handleImageFormSubmit);
 
 
-// function to submit and check for required fields add image form //ToDo
-function handleImageFormSubmit(data) {
+// function to submit add image form
+/* function handleImageFormSubmit(data) {
 
  console.log(data);
-  const element = new Card ({data, handleShowImage : (imgData) => {
-      cardShowImage.open(imgData); }}, "#card");
+  const element = new Card ({data, handleShowImage : (imgData) => { cardShowImage.open(imgData); }}, "#card");
   const newAddedCard = element.generateCard();
   cardList.addItem(newAddedCard);
 
-}
+} */
 //init popup add image
 const addNewImageForm = new PopupWithForm(
   {popupSelector: "#img-add",
-  handleFormSubmit: handleImageFormSubmit});
+  handleFormSubmit: (data) => {
+    renderCard(data);}});
 addNewImageForm.setEventListeners();
-
 
 //init cards to show
 const cardList = new Section(
   {
     items: initialCards,
-    renderer: (data) => {
-      const card = new Card(
-        {
-          data,
-          handleShowImage : (imgData) => {
-            cardShowImage.open(imgData);
-          },
-        },
-        "#card"
-      );
-      const cardElement = card.generateCard();
-
-      cardList.addItem(cardElement);
-    },
-  },
+    renderer: renderCard},
   ".cards__container"
 );
 cardList.renderItems();
@@ -130,6 +111,14 @@ cardList.renderItems();
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
 cardShowImage.setEventListeners();
+
+ function renderCard (data) {
+      const card = new Card({data, handleShowImage : (imgData) => { cardShowImage.open(imgData); }, },"#card");
+
+      const cardElement = card.generateCard();
+
+      cardList.addItem(cardElement);
+    }
 
 
 
