@@ -88,7 +88,7 @@ cardList.renderItems();
 
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
-cardShowImage.setEventListeners();
+//cardShowImage.setEventListeners();
 
 function renderCard(data) {
   const card = new Card(
