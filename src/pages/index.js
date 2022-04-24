@@ -88,7 +88,6 @@ cardList.renderItems();
 
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
-//cardShowImage.setEventListeners();
 
 function renderCard(data) {
   const card = new Card(
@@ -103,7 +102,6 @@ function renderCard(data) {
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 }
-
 // event listnerens
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 openImageAddButton.addEventListener("click", openAddImageForm);

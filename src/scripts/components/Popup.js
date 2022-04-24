@@ -29,17 +29,4 @@ export default class Popup {
       this.close();
     }
   }
-  /* setEventListeners() {
-    this._popupElement
-      .querySelector(".forms__button-close")
-      .addEventListener("click", () => {
-        this.close();
-      });
-     document.addEventListener("keydown", (evt) => {
-      this._handleEscClose(evt);
-    });
-    document.addEventListener("mousedown", (evt) => {
-      this._handleMouseDown(evt);
-    });
-  } */
 }
