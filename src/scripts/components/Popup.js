@@ -7,6 +7,8 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("forms_is-open");
+     document.addEventListener("keydown", this._handleEscClose);
+     document.addEventListener("mousedown", this._handleMouseDown);
   }
   close() {
     this._popupElement.classList.remove("forms_is-open");
@@ -27,7 +29,7 @@ export default class Popup {
       this.close();
     }
   }
-  setEventListeners() {
+  /* setEventListeners() {
     this._popupElement
       .querySelector(".forms__button-close")
       .addEventListener("click", () => {
@@ -39,5 +41,5 @@ export default class Popup {
     document.addEventListener("mousedown", (evt) => {
       this._handleMouseDown(evt);
     });
-  }
+  } */
 }

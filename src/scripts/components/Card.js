@@ -21,10 +21,10 @@ export default class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector(".card__title").textContent = this._name;
-    this._imageElement = this._element.querySelector(".card__img");
-    this._imageElement.src = this._link;
-    this._imageElement.alt = this._name;
-    this._imageElement.addEventListener("click", this._handleImageClick);
+    const imageElement = this._element.querySelector(".card__img");
+    imageElement.src = this._link;
+    imageElement.alt = this._name;
+    imageElement.addEventListener("click", this._handleImageClick);
     return this._element;
   }
   _setEventListeners() {
