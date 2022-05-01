@@ -1,4 +1,4 @@
-# Project 4: Around The U.S.
+# Project : Around The U.S.
 A project called "Around The U.S." — an interactive page where users can add, remove, or like photos.
 
 ### Overview
