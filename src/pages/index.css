@@ -48,3 +48,6 @@
 @import url(../blocks/profile/__button-add/profile__button-add.css);
 @import url(../blocks/profile/__add-img/profile__add-img.css);
 @import url(../blocks/profile/__about/profile__about.css);
+@import url(../blocks/profile/__img-container/profile__img-container.css);
+@import url(../blocks/profile/__img-edit-logo/profile__img-edit-logo.css);
+@import url(../blocks/profile/__img-icon/profile__img-icon.css);

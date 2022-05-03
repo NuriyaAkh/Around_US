@@ -105,3 +105,44 @@ function renderCard(data) {
 // event listnerens
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 openImageAddButton.addEventListener("click", openAddImageForm);
+
+fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+  headers: {
+    authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+//   fetch ("https://around.nomoreparties.co/v1/group-12/users/me", {
+//   headers: {
+//     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
+fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+  method: "PATCH",
+  headers: {
+    authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: "Nuriya Akhmedova",
+    about: "Software Developer, explorer, mom"
+  })
+});
+fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+  method: "GET",
+  headers: {
+    authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
+    "Content-Type": "application/json"
+  },
+})
+ .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+ });
