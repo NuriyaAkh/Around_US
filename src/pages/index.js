@@ -84,19 +84,21 @@ const addNewImageForm = new PopupWithForm({
   },
 });
 addNewImageForm.setEventListeners();
-
+let cardList;
 //show cards
 api.getInitialCards()
 .then((cardData) => {
-
+  console.log(cardData)
  cardList = new Section(
   {
     items: cardData,
     renderer: renderCard,
   },
   ".cards__container"
-);
+)
+
 cardList.renderItems();
+
 });
 
 
@@ -122,15 +124,15 @@ openImageAddButton.addEventListener("click", openAddImageForm);
 
 
 
-/* fetch("https://around.nomoreparties.co/v1/group-12/cards", {
-  headers: {
-    authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
+//  fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+//   headers: {
+//     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
 //   fetch ("https://around.nomoreparties.co/v1/group-12/users/me", {
 //   headers: {
 //     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
@@ -140,7 +142,7 @@ openImageAddButton.addEventListener("click", openAddImageForm);
 //   .then((result) => {
 //     console.log(result);
 //   });
-fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+/*fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   method: "PATCH",
   headers: {
     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
