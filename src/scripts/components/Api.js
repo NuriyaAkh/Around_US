@@ -40,7 +40,7 @@ export default class Api {
       });
 
   }
-  editProfile(){
+  editProfileInfo(){
     //PATCH https://around.nomoreparties.co/v1/groupId/users/me
     return fetch(`${this._baseUrl}/users/me`, {
       method:"PATCH",

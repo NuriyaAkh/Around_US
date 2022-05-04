@@ -1,10 +1,12 @@
 import PopupWithImage from "./PopupWithImage";
 export default class Card {
-  constructor({ data, handleShowImage }, cardSelector) {
+  constructor({ data, handleShowImage, handleLikes}, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector; // assigns the selector to the private field ("#card")
     this._handleImageClick = handleShowImage;
+    this._likes = data.likes;
+    this._handleLikes = handleLikes;
   }
   _getTemplate() {
     const cardElement = document
@@ -25,6 +27,8 @@ export default class Card {
     imageElement.src = this._link;
     imageElement.alt = this._name;
     imageElement.addEventListener("click", this._handleImageClick);
+    const cardLikesCounter = this._element.querySelector(".card__likes-counter");
+    cardLikesCounter.textContent = this._likes.length;
     return this._element;
   }
   _setEventListeners() {
