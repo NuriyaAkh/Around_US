@@ -20,7 +20,7 @@ import {
   userInputJob,
   baseUrl
 } from "../scripts/utils/constants.js";
-
+let cardList;
 const api = new Api({
   baseUrl:"https://around.nomoreparties.co/v1/group-12",
   headers: {
@@ -84,7 +84,7 @@ const addNewImageForm = new PopupWithForm({
   },
 });
 addNewImageForm.setEventListeners();
-let cardList;
+
 //show cards
 api.getInitialCards()
 .then((cardData) => {
@@ -100,7 +100,8 @@ api.getInitialCards()
 cardList.renderItems();
 
 });
-
+api.getUserData()
+.then(res => console.log(res));
 
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");

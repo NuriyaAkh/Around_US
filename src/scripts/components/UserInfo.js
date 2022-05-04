@@ -5,10 +5,11 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    const userInputName = this._profileName.textContent;
-    const userInputJob = this._profileJob.textContent;
+    return {
+              userInputName: this._profileName.textContent,
+              userInputJob: this._profileJob.textContent
+    }
 
-    return { userInputName, userInputJob };
   }
 
   setUserInfo(data) {

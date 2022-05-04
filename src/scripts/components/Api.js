@@ -6,7 +6,7 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: {
         authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
       }
@@ -23,7 +23,7 @@ export default class Api {
       });
   }
   getUserData(){
-    return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
       }
@@ -42,7 +42,7 @@ export default class Api {
   }
   editProfile(){
     //PATCH https://around.nomoreparties.co/v1/groupId/users/me
-    return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method:"PATCH",
       headers: {
         authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
