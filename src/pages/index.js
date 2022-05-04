@@ -4,10 +4,11 @@ import Section from "../scripts/components/Section.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import UserInfo from "../scripts/components/UserInfo.js";
+import Api from "../scripts/components/Api.js";
 import "./index.css";
 import {
   formValidationSettings,
-  initialCards,
+
   editProfileForm,
   addImageForm,
   imageForm,
@@ -17,8 +18,16 @@ import {
   profileJob,
   userInputName,
   userInputJob,
+  baseUrl
 } from "../scripts/utils/constants.js";
 
+const api = new Api({
+  baseUrl:"https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
+    "Content-Type": "application/json"
+  }
+});
 // form validation
 const editProfileFormValidator = new FormValidator(
   formValidationSettings,
@@ -77,14 +86,19 @@ const addNewImageForm = new PopupWithForm({
 addNewImageForm.setEventListeners();
 
 //init cards to show
-const cardList = new Section(
+api.getInitialCards()
+.then((cardData) => {
+
+ cardList = new Section(
   {
-    items: initialCards,
+    items: cardData,
     renderer: renderCard,
   },
   ".cards__container"
 );
 cardList.renderItems();
+});
+
 
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
@@ -106,7 +120,9 @@ function renderCard(data) {
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 openImageAddButton.addEventListener("click", openAddImageForm);
 
-fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+
+
+/* fetch("https://around.nomoreparties.co/v1/group-12/cards", {
   headers: {
     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
   }
@@ -146,3 +162,4 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   .then((result) => {
     console.log(result);
  });
+ */

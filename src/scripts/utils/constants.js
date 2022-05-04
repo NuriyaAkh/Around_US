@@ -58,6 +58,9 @@ const userInputName = editProfileForm.querySelector('#username');
 const userInputJob = editProfileForm.querySelector('#about');
 const inputImagePlaceName = addImageForm.querySelector('#title');
 const inputImageUrl = addImageForm.querySelector('#image-link');
+const baseUrl = "https://around.nomoreparties.co/v1/group-12";
 
-export { formValidationSettings, initialCards, cardsContainer, editProfileForm, addImageForm, imageForm, profileForm, openProfileEditButton, openImageAddButton, closeEditFormButton, closeAddImageFormButton, profileName, profileJob, userInputName, userInputJob, inputImagePlaceName, inputImageUrl };
+
+export { formValidationSettings, initialCards, cardsContainer, editProfileForm, addImageForm, imageForm, profileForm, openProfileEditButton, openImageAddButton, closeEditFormButton, closeAddImageFormButton, profileName, profileJob, userInputName, userInputJob, inputImagePlaceName, inputImageUrl, baseUrl};
+
 
