@@ -85,7 +85,7 @@ const addNewImageForm = new PopupWithForm({
 });
 addNewImageForm.setEventListeners();
 
-//init cards to show
+//show cards
 api.getInitialCards()
 .then((cardData) => {
 
@@ -151,15 +151,4 @@ fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
     about: "Software Developer, explorer, mom"
   })
 });
-fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
-  method: "GET",
-  headers: {
-    authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
-    "Content-Type": "application/json"
-  },
-})
- .then(res => res.json())
-  .then((result) => {
-    console.log(result);
- });
- */
+*/

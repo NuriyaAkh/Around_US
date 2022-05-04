@@ -1,4 +1,3 @@
-import { baseUrl } from "../utils/constants";
 export default class Api {
   constructor({baseUrl,headers}) {
     this._baseUrl = baseUrl;
@@ -22,8 +21,27 @@ export default class Api {
         console.log(err); // log the error to the console
       });
   }
+  editProfile(){
+    //PATCH https://around.nomoreparties.co/v1/groupId/users/me
+  }
+  addNewCard(){
+    //POST https://around.nomoreparties.co/v1/groupId/cards
+  }
+  countLikesData(){
 
-  // other methods for working with the API
+  }
+  deleteCard(){
+    //DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
+  }
+addLike(){
+  //PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+}
+removeLike(){
+  //DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+}
+editPrifilePicture(){
+  //PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
+}
 }
 
 
