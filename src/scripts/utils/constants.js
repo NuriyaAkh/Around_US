@@ -6,32 +6,7 @@ const formValidationSettings = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__error-text_active'
 };
-const initialCards = [
-  {
-    name: 'Yosemite Valley',
-    link: 'https://code.s3.yandex.net/web-code/yosemite.jpg',
-  },
-  {
-    name: 'Lake Louise',
-    link: 'https://code.s3.yandex.net/web-code/lake-louise.jpg',
-  },
-  {
-    name: 'Bald Mountains',
-    link: 'https://code.s3.yandex.net/web-code/bald-mountains.jpg',
-  },
-  {
-    name: 'Latemar',
-    link: 'https://code.s3.yandex.net/web-code/latemar.jpg',
-  },
-  {
-    name: 'Vanoise National Park',
-    link: 'https://code.s3.yandex.net/web-code/vanoise.jpg',
-  },
-  {
-    name: 'Lago di Braies',
-    link: 'https://code.s3.yandex.net/web-code/lago.jpg',
-  },
-];
+
 // Wrappers
 const cardsContainer = document.querySelector('.cards__container');
 const editProfileForm = document.querySelector('#edit-profile');
@@ -61,6 +36,6 @@ const inputImageUrl = addImageForm.querySelector('#image-link');
 const baseUrl = "https://around.nomoreparties.co/v1/group-12";
 
 
-export { formValidationSettings, initialCards, cardsContainer, editProfileForm, addImageForm, imageForm, profileForm, openProfileEditButton, openImageAddButton, closeEditFormButton, closeAddImageFormButton, profileName, profileJob, userInputName, userInputJob, inputImagePlaceName, inputImageUrl, baseUrl};
+export { formValidationSettings, cardsContainer, editProfileForm, addImageForm, imageForm, profileForm, openProfileEditButton, openImageAddButton, closeEditFormButton, closeAddImageFormButton, profileName, profileJob, userInputName, userInputJob, inputImagePlaceName, inputImageUrl, baseUrl};
 
 

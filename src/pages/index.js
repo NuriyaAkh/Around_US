@@ -16,9 +16,9 @@ import {
   openImageAddButton,
   profileName,
   profileJob,
-  userInputName,
   userInputJob,
-  baseUrl
+  userInputName,
+
 } from "../scripts/utils/constants.js";
 let cardList;
 const api = new Api({
@@ -39,6 +39,14 @@ const addImageFormValidator = new FormValidator(
 );
 editProfileFormValidator.enableValidation();
 addImageFormValidator.enableValidation();
+//init popup add image
+const addNewImageForm = new PopupWithForm({
+  popupSelector: "#img-add",
+  handleFormSubmit: (data) => {
+    renderCard(data);
+  },
+});
+addNewImageForm.setEventListeners();
 
 // function show add image form
 function openAddImageForm() {
@@ -72,26 +80,21 @@ editUserInfoForm.setEventListeners();
 
 //init user info
 const profileInfo = new UserInfo({
-  userName: ".profile__name",
-  userOccupation: ".profile__about",
+  userNameSelector: ".profile__name",
+  userOccupationSelector: ".profile__about",
+  userPictureSelector: ".profile__img",
 });
+
 api.getUserData()
 .then(userData =>{
-  console.log(userData);
-  UserInfo.setUserInfo({
-   userName: userData.name,
-   userOccupation: userData.about
+  profileInfo.setUserInfo({
+    userInputName: userData.name,
+    userInputJob: userData.about,
+    userAvatar: userData.avatar
   });
 
 })
-//init popup add image
-const addNewImageForm = new PopupWithForm({
-  popupSelector: "#img-add",
-  handleFormSubmit: (data) => {
-    renderCard(data);
-  },
-});
-addNewImageForm.setEventListeners();
+
 
 //show cards
 api.getInitialCards()
@@ -163,3 +166,6 @@ openImageAddButton.addEventListener("click", openAddImageForm);
   })
 });
 */
+//toDo
+ //PopupConfirmation to delete card
+ //likes function
