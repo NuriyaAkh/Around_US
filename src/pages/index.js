@@ -75,7 +75,15 @@ const profileInfo = new UserInfo({
   userName: ".profile__name",
   userOccupation: ".profile__about",
 });
+api.getUserData()
+.then(userData =>{
+  console.log(userData);
+  UserInfo.setUserInfo({
+   userName: userData.name,
+   userOccupation: userData.about
+  });
 
+})
 //init popup add image
 const addNewImageForm = new PopupWithForm({
   popupSelector: "#img-add",
@@ -100,8 +108,8 @@ api.getInitialCards()
 cardList.renderItems();
 
 });
-api.getUserData()
-.then(res => console.log(res));
+// api.getUserData()
+// .then(res => console.log(res));
 
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
