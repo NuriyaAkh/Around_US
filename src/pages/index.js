@@ -63,7 +63,7 @@ function openEditProfileForm() {
 }
 // prefill the profile form
 function fillProfileForm() {
-const {userInputName, userInputJob }= UserInfo.getUserInfo();//todo
+const {userInputName, userInputJob }= profileInfo.getUserInfo();
   userNameInput.value = userInputName;
   userJobInput.value = userInputJob;
 }
