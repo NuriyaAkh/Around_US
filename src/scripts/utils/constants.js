@@ -29,13 +29,13 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 
 // form data and elements
-const userInputName = editProfileForm.querySelector('#username');
-const userInputJob = editProfileForm.querySelector('#about');
+const userNameInput = editProfileForm.querySelector('#username');
+const userJobInput = editProfileForm.querySelector('#about');
 const inputImagePlaceName = addImageForm.querySelector('#title');
 const inputImageUrl = addImageForm.querySelector('#image-link');
-const baseUrl = "https://around.nomoreparties.co/v1/group-12";
 
 
-export { formValidationSettings, cardsContainer, editProfileForm, addImageForm, imageForm, profileForm, openProfileEditButton, openImageAddButton, closeEditFormButton, closeAddImageFormButton, profileName, profileJob, userInputName, userInputJob, inputImagePlaceName, inputImageUrl, baseUrl};
+
+export { formValidationSettings, cardsContainer, editProfileForm, addImageForm, imageForm, profileForm, openProfileEditButton, openImageAddButton, closeEditFormButton, closeAddImageFormButton, profileName, profileJob, userNameInput, userJobInput, inputImagePlaceName, inputImageUrl};
 
 

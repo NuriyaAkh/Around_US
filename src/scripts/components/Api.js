@@ -1,4 +1,4 @@
-import { userInputJob, userInputName } from "../utils/constants";
+import { userNameInput, userJobInput } from "../utils/constants";
 
 export default class Api {
   constructor({ baseUrl, headers }) {
@@ -51,8 +51,8 @@ export default class Api {
       },
     });
     body: JSON.stringify({
-      name: userInputName,
-      about: userInputJob,
+      name: userNameInput,
+      about: userJobInput,
     });
   }
   addNewCard() {

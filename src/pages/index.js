@@ -16,8 +16,8 @@ import {
   openImageAddButton,
   profileName,
   profileJob,
-  userInputJob,
-  userInputName,
+  userNameInput,
+  userJobInput,
 
 } from "../scripts/utils/constants.js";
 let cardList;
@@ -63,13 +63,14 @@ function openEditProfileForm() {
 }
 // prefill the profile form
 function fillProfileForm() {
-  userInputName.value = profileName.textContent;
-  userInputJob.value = profileJob.textContent;
+const {userInputName, userInputJob }= UserInfo.getUserInfo();//todo
+  userNameInput.value = userInputName;
+  userJobInput.value = userInputJob;
 }
 // function to submit edit profile info
 function handleProfileFormSubmit() {
-  profileName.textContent = userInputName.value;
-  profileJob.textContent = userInputJob.value;
+  profileName.textContent = userNameInput.value;
+  profileJob.textContent = userJobInput.value;
 }
 //init popup profile
 const editUserInfoForm = new PopupWithForm({
