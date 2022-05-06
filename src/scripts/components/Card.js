@@ -1,13 +1,14 @@
 import PopupWithImage from "./PopupWithImage";
 export default class Card {
-  constructor({ data, handleShowImage, handleLikes}, cardSelector) {
+  constructor({ data, handleShowImage, handleLikes, deleteConfirmationForm}, cardSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._cardSelector = cardSelector; // assigns the selector to the private field ("#card")
+    this._cardSelector = cardSelector;
     this._handleImageClick = handleShowImage;
     this._likes = data.likes;
     this._handleLikes = handleLikes;
-    this._id = data.id;
+    this._id = data._id;
+    this._deleteConfirmationForm = deleteConfirmationForm;
   }
   getId(){
     return this._id;
@@ -43,10 +44,8 @@ export default class Card {
         this._handleLikeButton(evt);
       });
     //delete card
-    this._element
-      .querySelector(".card__delete")
-      .addEventListener("click", (evt) => {
-        this._handleDeleteCard(evt);
+    this._element.querySelector(".card__delete").addEventListener("click", () => {
+        this._deleteConfirmationForm.open();
       });
   }
   _handleLikeButton(evt) {
@@ -59,4 +58,4 @@ export default class Card {
     this._element = null;
   }
 }
-//toDo
+

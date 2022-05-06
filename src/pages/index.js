@@ -19,6 +19,8 @@ import {
   userNameInput,
   userJobInput,
 } from "../scripts/utils/constants.js";
+
+
 let cardList;
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -79,6 +81,7 @@ function handleProfileFormSubmit(userData) {
         userInputJob: userData.about,
         userAvatar: userData.avatar
       });
+
     })
     .catch((err) => {
       console.log(err); // log the error to the console
@@ -140,16 +143,21 @@ function renderCard(data) {
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 }
-//popup confirmation
-const deleteConfirmationForm = new PopupWithCofirmation("#confirm-popup",
-{handleYesSubmit: (card) => {
-  //api.deleteCard
+//popup confirmation to delete card
+const deleteConfirmationForm = new PopupWithCofirmation({
+  popupSelector:"#confirm-popup",
+  handleYesSubmit: handleYesSubmit,});
+deleteConfirmationForm.setEventListeners();
+
+function handleYesSubmit(card) {
+  api.deleteCard(card.id)
+  .then(res => {
   deleteConfirmationForm.close();
   card.handleDeleteCard();
+})
+.catch((err) => {console.log(err);});
+};
 
-}
-});
-deleteConfirmationForm.open();
 // //test delete card
 // api.deleteCard("627488229d42cd0012c27739")
 // then(res => console.log(res));
