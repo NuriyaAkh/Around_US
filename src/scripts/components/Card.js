@@ -7,6 +7,10 @@ export default class Card {
     this._handleImageClick = handleShowImage;
     this._likes = data.likes;
     this._handleLikes = handleLikes;
+    this._id = data.id;
+  }
+  getId(){
+    return this._id;
   }
   _getTemplate() {
     const cardElement = document
@@ -47,6 +51,7 @@ export default class Card {
   }
   _handleLikeButton(evt) {
     evt.target.classList.toggle("card__button_active");
+   // cardLikesCounter.textContent = evt.likes.length;
   }
 
   _handleDeleteCard() {
@@ -54,3 +59,4 @@ export default class Card {
     this._element = null;
   }
 }
+//toDo

@@ -60,10 +60,7 @@ export default class Api {
     //POST https://around.nomoreparties.co/v1/groupId/cards
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
-        "Content-Type": "application/json"
-      },
+      headers: this._headers,
       body: JSON.stringify({
       name,
       link,
@@ -80,9 +77,24 @@ export default class Api {
     console.log(err); // log the error to the console
   });
   }
-  countLikesData() {}
-  deleteCard() {
+
+  
+  deleteCard(cardId) {
     //DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
+    return fetch(`${this._baseUrl}/cards/${cardId}`,
+    {  method:"DELETE",
+       headers: this._headers})
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        // if the server returns an error, reject the promise
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
+
   }
   addLike() {
     //PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId

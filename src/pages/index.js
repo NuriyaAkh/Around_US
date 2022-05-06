@@ -3,6 +3,7 @@ import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import PopupWithCofirmation from "../scripts/components/PopupWithConfirmation.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import Api from "../scripts/components/Api.js";
 import "./index.css";
@@ -139,6 +140,19 @@ function renderCard(data) {
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 }
+//popup confirmation
+const deleteConfirmationForm = new PopupWithCofirmation("#confirm-popup",
+{handleYesSubmit: (card) => {
+  //api.deleteCard
+  deleteConfirmationForm.close();
+  card.handleDeleteCard();
+
+}
+});
+deleteConfirmationForm.open();
+// //test delete card
+// api.deleteCard("627488229d42cd0012c27739")
+// then(res => console.log(res));
 // event listnerens
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 openImageAddButton.addEventListener("click", openAddImageForm);
