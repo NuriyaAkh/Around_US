@@ -35,14 +35,14 @@ export default class Api {
         console.log(err); // log the error to the console
       });
   }
-  editProfileInfo({userInputName, userInputJob}) {
+  editProfileInfo({username, about}) {
     //PATCH https://around.nomoreparties.co/v1/groupId/users/me
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-      name: userInputName,
-      about: userInputJob,
+      name: username,
+      about: about,
     })
   })
   .then((res) => {
@@ -78,7 +78,7 @@ export default class Api {
   });
   }
 
-  
+
   deleteCard(cardId) {
     //DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
     return fetch(`${this._baseUrl}/cards/${cardId}`,

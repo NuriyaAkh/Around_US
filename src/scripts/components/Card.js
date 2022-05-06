@@ -1,6 +1,6 @@
 import PopupWithImage from "./PopupWithImage";
 export default class Card {
-  constructor({ data, handleShowImage, handleLikes, deleteConfirmationForm}, cardSelector) {
+  constructor({ data, handleShowImage, handleLikes,  openConfirmationPopup}, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
@@ -8,7 +8,7 @@ export default class Card {
     this._likes = data.likes;
     this._handleLikes = handleLikes;
     this._id = data._id;
-    this._deleteConfirmationForm = deleteConfirmationForm;
+    this._deleteConfirmationForm =  openConfirmationPopup;
   }
   getId(){
     return this._id;
@@ -45,7 +45,7 @@ export default class Card {
       });
     //delete card
     this._element.querySelector(".card__delete").addEventListener("click", () => {
-        this._deleteConfirmationForm.open();
+        this._deleteConfirmationForm.open(this);
       });
   }
   _handleLikeButton(evt) {

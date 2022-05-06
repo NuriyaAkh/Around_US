@@ -72,6 +72,7 @@ function fillProfileForm() {
 }
 // function to submit edit profile info
 function handleProfileFormSubmit(userData) {
+  debugger;
   api
     .editProfileInfo(userData)
     .then((userData) => {
@@ -131,13 +132,14 @@ api.getInitialCards().then((cardData) => {
 const cardShowImage = new PopupWithImage("#image-show");
 
 function renderCard(data) {
+  debugger;
   const card = new Card(
     {
       data,
       handleShowImage: () => {
         cardShowImage.open(data);
       },
-      deleteConfirmationForm: () =>{
+      openConfirmationPopup: () =>{
         deleteConfirmationForm.open();
       },
       handleLikes: () =>{
