@@ -10,6 +10,7 @@ export default class Card {
     this._cardId = data._id;
     this._deleteConfirmationForm =  openConfirmationPopup;
     this._currentUserId=data.currentUserId;
+    this._ownerId = data.owner;
   }
   getCardId(){
     return this._cardId;
@@ -35,6 +36,17 @@ export default class Card {
     imageElement.addEventListener("click", this._handleImageClick);
     const cardLikesCounter = this._element.querySelector(".card__likes-counter");
     cardLikesCounter.textContent = this._likes.length;
+    this._likeButton = this._element.querySelector(".card__button");
+    this._trashIcon = this._element.querySelector(".card__delete");
+    if(this._ownerId !==this._currentUserId ){
+      this._trashIcon.remove();
+      this._trashIcon = null;
+    }
+    this._likes.forEach((item) =>{
+      if(item._id === this._currentUserId){
+        this._handleLikeButton(this._likeButton);
+      }
+    });
     return this._element;
   }
   _setEventListeners() {
@@ -49,7 +61,8 @@ export default class Card {
         this._deleteConfirmationForm(this);
       });
   }
-  _handleLikeButton(evt) {
+  //todo handle like
+  _handleLikeButton() {
     evt.target.classList.toggle("card__button_active");
    cardLikesCounter.textContent = evt.likes.length;
   }

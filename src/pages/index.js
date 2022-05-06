@@ -72,9 +72,8 @@ function fillProfileForm() {
 }
 // function to submit edit profile info
 function handleProfileFormSubmit(userData) {
-  debugger;
-  api
-    .editProfileInfo(userData)
+
+  api.editProfileInfo(userData)
     .then((userData) => {
       console.log(userData);
       profileInfo.setUserInfo({
@@ -132,7 +131,7 @@ api.getInitialCards().then((cardData) => {
 const cardShowImage = new PopupWithImage("#image-show");
 
 function renderCard(data) {
-  debugger;
+
   const card = new Card(
     {
       data,
@@ -158,7 +157,7 @@ const deleteConfirmationForm = new PopupWithCofirmation({
 deleteConfirmationForm.setEventListeners();
 
 function handleYesSubmit(card) {
-  api.deleteCard(card.id)
+  api.deleteCard(card.cardId)
   .then(res => {
   deleteConfirmationForm.close();
   card.handleDeleteCard();
