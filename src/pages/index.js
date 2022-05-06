@@ -8,7 +8,6 @@ import Api from "../scripts/components/Api.js";
 import "./index.css";
 import {
   formValidationSettings,
-
   editProfileForm,
   addImageForm,
   imageForm,
@@ -18,15 +17,14 @@ import {
   profileJob,
   userNameInput,
   userJobInput,
-
 } from "../scripts/utils/constants.js";
 let cardList;
 const api = new Api({
-  baseUrl:"https://around.nomoreparties.co/v1/group-12",
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
-    "Content-Type": "application/json"
-  }
+    "Content-Type": "application/json",
+  },
 });
 // form validation
 const editProfileFormValidator = new FormValidator(
@@ -39,11 +37,13 @@ const addImageFormValidator = new FormValidator(
 );
 editProfileFormValidator.enableValidation();
 addImageFormValidator.enableValidation();
-//init popup add image
+//init popup add new image
 const addNewImageForm = new PopupWithForm({
   popupSelector: "#img-add",
   handleFormSubmit: (data) => {
-    renderCard(data);
+    api.addNewCard(data)
+    .then(data =>
+    renderCard(data));
   },
 });
 addNewImageForm.setEventListeners();
@@ -63,14 +63,28 @@ function openEditProfileForm() {
 }
 // prefill the profile form
 function fillProfileForm() {
-const {userInputName, userInputJob }= profileInfo.getUserInfo();
+  const { userInputName, userInputJob } = profileInfo.getUserInfo();
   userNameInput.value = userInputName;
   userJobInput.value = userInputJob;
 }
 // function to submit edit profile info
-function handleProfileFormSubmit() {
-  profileName.textContent = userNameInput.value;
-  profileJob.textContent = userJobInput.value;
+function handleProfileFormSubmit(userData) {
+  api
+    .editProfileInfo(userData)
+    .then((userData) => {
+      console.log(userData);
+      profileInfo.setUserInfo({
+        userInputName: userData.name,
+        userInputJob: userData.about,
+        userAvatar: userData.avatar
+      });
+    })
+    .catch((err) => {
+      console.log(err); // log the error to the console
+    });
+
+  // profileName.textContent = userNameInput.value;
+  // profileJob.textContent = userJobInput.value;
 }
 //init popup profile
 const editUserInfoForm = new PopupWithForm({
@@ -86,34 +100,28 @@ const profileInfo = new UserInfo({
   userPictureSelector: ".profile__img",
 });
 
-api.getUserData()
-.then(userData =>{
+api.getUserData().then((userData) => {
   profileInfo.setUserInfo({
     userInputName: userData.name,
     userInputJob: userData.about,
-    userAvatar: userData.avatar
+    userAvatar: userData.avatar,
   });
-
-})
-
+});
 
 //show cards
-api.getInitialCards()
-.then((cardData) => {
-  console.log(cardData)
- cardList = new Section(
-  {
-    items: cardData,
-    renderer: renderCard,
-  },
-  ".cards__container"
-)
+api.getInitialCards().then((cardData) => {
+  console.log(cardData);
+  cardList = new Section(
+    {
+      items: cardData,
+      renderer: renderCard,
+    },
+    ".cards__container"
+  );
 
-cardList.renderItems();
-
+  cardList.renderItems();
 });
-// api.getUserData()
-// .then(res => console.log(res));
+
 
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
@@ -135,8 +143,6 @@ function renderCard(data) {
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 openImageAddButton.addEventListener("click", openAddImageForm);
 
-
-
 //  fetch("https://around.nomoreparties.co/v1/group-12/cards", {
 //   headers: {
 //     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
@@ -155,7 +161,7 @@ openImageAddButton.addEventListener("click", openAddImageForm);
 //   .then((result) => {
 //     console.log(result);
 //   });
-/*fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+/* fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   method: "PATCH",
   headers: {
     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
@@ -165,8 +171,8 @@ openImageAddButton.addEventListener("click", openAddImageForm);
     name: "Nuriya Akhmedova",
     about: "Software Developer, explorer, mom"
   })
-});
-*/
+}); */
+
 //toDo
- //PopupConfirmation to delete card
- //likes function
+//PopupConfirmation to delete card
+//likes function
