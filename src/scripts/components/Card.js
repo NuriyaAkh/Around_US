@@ -7,11 +7,12 @@ export default class Card {
     this._handleImageClick = handleShowImage;
     this._likes = data.likes;
     this._handleLikes = handleLikes;
-    this._id = data._id;
+    this._cardId = data._id;
     this._deleteConfirmationForm =  openConfirmationPopup;
+    this._currentUserId=data.currentUserId;
   }
-  getId(){
-    return this._id;
+  getCardId(){
+    return this._cardId;
   }
   _getTemplate() {
     const cardElement = document
@@ -45,12 +46,12 @@ export default class Card {
       });
     //delete card
     this._element.querySelector(".card__delete").addEventListener("click", () => {
-        this._deleteConfirmationForm.open(this);
+        this._deleteConfirmationForm(this);
       });
   }
   _handleLikeButton(evt) {
     evt.target.classList.toggle("card__button_active");
-   // cardLikesCounter.textContent = evt.likes.length;
+   cardLikesCounter.textContent = evt.likes.length;
   }
 
   handleDeleteCard() {
