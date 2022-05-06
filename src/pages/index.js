@@ -137,6 +137,12 @@ function renderCard(data) {
       handleShowImage: () => {
         cardShowImage.open(data);
       },
+      deleteConfirmationForm: () =>{
+        deleteConfirmationForm.open();
+      },
+      handleLikes: () =>{
+
+      },
     },
     "#card"
   );

@@ -53,7 +53,7 @@ export default class Card {
    // cardLikesCounter.textContent = evt.likes.length;
   }
 
-  _handleDeleteCard() {
+  handleDeleteCard() {
     this._element.remove();
     this._element = null;
   }
