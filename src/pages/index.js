@@ -53,7 +53,7 @@ editProfilePictureFormValidator.enableValidation();
 const addNewImageForm = new PopupWithForm({
   popupSelector: "#img-add",
   handleFormSubmit: (data) => {
-    api.addNewCard(data)
+     api.addNewCard(data)
     .then(data =>
     renderCard(data));
   },
@@ -71,6 +71,7 @@ function openAddImageForm() {
 function openEditProfileForm() {
   fillProfileForm();
   editProfileFormValidator.resetValidation();
+
   editUserInfoForm.open();
 }
 // prefill the profile form
@@ -86,7 +87,7 @@ function openEditProfilePictureForm(){
 }
 // function to submit edit profile info
 function handleProfileFormSubmit(userData) {
-
+editUserInfoForm.renderLoading(true);
   api.editProfileInfo(userData)
     .then((userData) => {
       console.log(userData);
@@ -99,12 +100,16 @@ function handleProfileFormSubmit(userData) {
     })
     .catch((err) => {
       console.log(err); // log the error to the console
+    })
+    .finally(()=>{
+      editUserInfoForm.renderLoading(false);
     });
 
   // profileName.textContent = userNameInput.value;
   // profileJob.textContent = userJobInput.value;
 }
 function handleProfileImageSubmit(data){
+  editUserImageForm.renderLoading(true);
   api.editProfilePicture(data)
   .then((result)=> {
     profileInfo.setUserInfo({
@@ -116,7 +121,10 @@ function handleProfileImageSubmit(data){
   })
   .catch((err) => {
     console.log(err); // log the error to the console
-  });
+  })
+  .finally(()=>{
+    editUserImageForm.renderLoading(false)
+  })
 }
 //init popup profile
 const editUserInfoForm = new PopupWithForm({

@@ -1,3 +1,4 @@
+
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
@@ -6,6 +7,8 @@ export default class PopupWithForm extends Popup {
     this._form = this._popupElement.querySelector(".form");
     this._handleFormSubmit = handleFormSubmit;
     this._inputList = this._form.querySelectorAll(".form__input");
+    this._submitButton = this._form.querySelector(".form__button");
+    this._buttonText = this._submitButton.textContent;
   }
   _getInputValues() {
     // Create an empty object
@@ -30,5 +33,15 @@ export default class PopupWithForm extends Popup {
   close() {
     this._form.reset();
     super.close();
+  }
+  renderLoading(isLoading){
+    if(isLoading)
+    {
+this._submitButton.textContent = "Saving ...";
+    }
+    else{
+       this._submitButton.textContent = this._buttonText;
+    }
+
   }
 }
