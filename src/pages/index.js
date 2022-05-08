@@ -150,7 +150,25 @@ function renderCard(data) {
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 }
-//popup confirmation to delete card
+api.promiseAll()
+.then(([user,cardData]) => {
+  currentUserId = user.id;
+  cardList = new Section(
+    {
+      items: cardData,
+      renderer: renderCard,
+    },
+    ".cards__container"
+  );
+
+  cardList.renderItems();
+  profileInfo.setUserInfo({
+    userInputName: userData.name,
+    userInputJob: userData.about,
+    userAvatar: userData.avatar,});
+})
+.catch(err => console.error(`Error while executing: ${err}`));
+//confirmation poup to delete card
 const deleteConfirmationForm = new PopupWithCofirmation({
   popupSelector:"#confirm-popup",
   handleYesSubmit: handleYesSubmit,});

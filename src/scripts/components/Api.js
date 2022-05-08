@@ -5,7 +5,11 @@ export default class Api {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
-
+promiseAll(){
+  return Promise.all([this.getUserData(), this.getInitialCards()])
+  // .then(res => console.log(res))
+  //   .catch(err => console.error(`Error while executing: ${err}`));
+}
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, { headers: this._headers})
       .then((res) => {

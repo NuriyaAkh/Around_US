@@ -30,12 +30,12 @@ export default class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector(".card__title").textContent = this._name;
-    const imageElement = this._element.querySelector(".card__img");
-    imageElement.src = this._link;
-    imageElement.alt = this._name;
-    imageElement.addEventListener("click", this._handleImageClick);
-    const cardLikesCounter = this._element.querySelector(".card__likes-counter");
-    cardLikesCounter.textContent = this._likes.length;
+    this._imageElement = this._element.querySelector(".card__img");
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._name;
+    this._imageElement.addEventListener("click", this._handleImageClick);
+    this._cardLikesCounter = this._element.querySelector(".card__likes-counter");
+    this._cardLikesCounter.textContent = this._likes.length;
     this._likeButton = this._element.querySelector(".card__button");
     this._trashIcon = this._element.querySelector(".card__delete");
     if(this._ownerId !==this._currentUserId ){
@@ -62,9 +62,9 @@ export default class Card {
       });
   }
   //todo handle like
-  _handleLikeButton() {
-    evt.target.classList.toggle("card__button_active");
-   cardLikesCounter.textContent = evt.likes.length;
+  _handleLikeButton(result) {
+    this._likeButton.classList.toggle("card__button_active");
+   this._cardLikesCounter.textContent = result.likes.length;
   }
 
   handleDeleteCard() {
