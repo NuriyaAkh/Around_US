@@ -12,8 +12,11 @@ import {
   editProfileForm,
   addImageForm,
   imageForm,
+  avatarForm,
+  profileAvatarForm,
   openProfileEditButton,
   openImageAddButton,
+  editProfilePictureButton,
   profileName,
   profileJob,
   userNameInput,
@@ -22,6 +25,7 @@ import {
 
 
 let cardList;
+let currentUserId;
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
@@ -38,8 +42,13 @@ const addImageFormValidator = new FormValidator(
   formValidationSettings,
   addImageForm
 );
+const editProfilePictureFormValidator = new FormValidator(
+  formValidationSettings,
+  profileAvatarForm
+);
 editProfileFormValidator.enableValidation();
 addImageFormValidator.enableValidation();
+editProfilePictureFormValidator.enableValidation();
 //init popup add new image
 const addNewImageForm = new PopupWithForm({
   popupSelector: "#img-add",
@@ -70,6 +79,11 @@ function fillProfileForm() {
   userNameInput.value = userInputName;
   userJobInput.value = userInputJob;
 }
+function openEditProfilePictureForm(){
+  avatarForm.reset();
+  editProfilePictureFormValidator.resetValidation();
+  editUserImageForm.open();
+}
 // function to submit edit profile info
 function handleProfileFormSubmit(userData) {
 
@@ -90,12 +104,31 @@ function handleProfileFormSubmit(userData) {
   // profileName.textContent = userNameInput.value;
   // profileJob.textContent = userJobInput.value;
 }
+function handleProfileImageSubmit(data){
+  api.editProfilePicture(data)
+  .then((result)=> {
+    profileInfo.setUserInfo({
+      userInputName: result.name,
+      userInputJob: result.about,
+      userAvatar: result.avatar
+    });
+
+  })
+  .catch((err) => {
+    console.log(err); // log the error to the console
+  });
+}
 //init popup profile
 const editUserInfoForm = new PopupWithForm({
   popupSelector: "#edit-profile",
   handleFormSubmit: handleProfileFormSubmit,
 });
 editUserInfoForm.setEventListeners();
+const editUserImageForm = new PopupWithForm({
+  popupSelector: "#update-avatar-popup",
+  handleFormSubmit: handleProfileImageSubmit,
+});
+editUserImageForm.setEventListeners();
 
 //init user info
 const profileInfo = new UserInfo({
@@ -163,9 +196,9 @@ api.promiseAll()
 
   cardList.renderItems();
   profileInfo.setUserInfo({
-    userInputName: userData.name,
-    userInputJob: userData.about,
-    userAvatar: userData.avatar,});
+    userInputName: user.name,
+    userInputJob: user.about,
+    userAvatar: user.avatar,});
 })
 .catch(err => console.error(`Error while executing: ${err}`));
 //confirmation poup to delete card
@@ -186,9 +219,12 @@ function handleYesSubmit(card) {
 // //test delete card
 // api.deleteCard("627488229d42cd0012c27739")
 // then(res => console.log(res));
+
 // event listnerens
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 openImageAddButton.addEventListener("click", openAddImageForm);
+editProfilePictureButton.addEventListener("click", openEditProfilePictureForm);
+
 
 //  fetch("https://around.nomoreparties.co/v1/group-12/cards", {
 //   headers: {
