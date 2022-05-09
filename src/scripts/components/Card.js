@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({ data, handleImageClick, handleLikeClick,  handleTrashClick,}, cardSelector) {
+  constructor({ data, handleImageClick, handleLikeClick,  handleTrashClick, currentUserId}, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
@@ -8,11 +8,13 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
     this._cardId = data._id;
     this._deleteConfirmationForm =  handleTrashClick;
-    this._currentUserId = data.currentUserId;
-    this._ownerId = data.owner;
+    this._currentUserId = currentUserId;
+    this._ownerId = data.owner._id;
   }
   getCardId(){
+    console.log(this._cardId);
     return this._cardId;
+
   }
   _getTemplate() {
     const cardElement = document
@@ -27,7 +29,7 @@ export default class Card {
     // Store the markup in the private field _element
     // so that other elements can access it
     this._element = this._getTemplate();
-    this._setEventListeners();
+
     this._element.querySelector(".card__title").textContent = this._name;
     this._imageElement = this._element.querySelector(".card__img");
     this._imageElement.src = this._link;
@@ -47,6 +49,7 @@ export default class Card {
         this._handleLikeButton(this._loveIcon);
       }
     });
+    this._setEventListeners();
     return this._element;
   }
   _setEventListeners() {

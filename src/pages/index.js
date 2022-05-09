@@ -50,7 +50,12 @@ editProfilePictureFormValidator.enableValidation();
 
 api.promiseAll()
 .then(([user,cardData]) => {
-  currentUserId = user.id;
+  profileInfo.setUserInfo({
+    userInputName: user.name,
+    userInputJob: user.about,
+    userAvatar: user.avatar,});
+
+  currentUserId = user._id;
   cardList = new Section(
     {
       items: cardData,
@@ -60,12 +65,12 @@ api.promiseAll()
   );
 
   cardList.renderItems();
-  profileInfo.setUserInfo({
-    userInputName: user.name,
-    userInputJob: user.about,
-    userAvatar: user.avatar,});
+
 })
 .catch(err => console.error(`Error while executing: ${err}`));
+
+
+
 
 //init popup add new image
 const addNewImageForm = new PopupWithForm({
@@ -117,12 +122,13 @@ function renderCard(data) {
       },
       handleTrashClick: () =>{
         deleteConfirmationForm.open();
-        
+
       },
       handleLikeClick: () =>{
 
 
       },
+      currentUserId,
     },
     "#card"
   );
@@ -195,7 +201,7 @@ function handleProfileImageSubmit(data){
   })
 }
 
-function handleYesSubmit(card) {
+function handleYesSubmit(cardData) {
   api.deleteCard(card.cardId)
   .then(res => {
   deleteConfirmationForm.close();
@@ -205,27 +211,7 @@ function handleYesSubmit(card) {
 };
 
 
-api.getUserData().then((userData) => {
-  profileInfo.setUserInfo({
-    userInputName: userData.name,
-    userInputJob: userData.about,
-    userAvatar: userData.avatar,
-  });
-});
 
-//show cards
-api.getInitialCards().then((cardData) => {
-  console.log(cardData);
-  cardList = new Section(
-    {
-      items: cardData,
-      renderer: renderCard,
-    },
-    ".cards__container"
-  );
-
-  cardList.renderItems();
-});
 
 // event listnerens
 openProfileEditButton.addEventListener("click", openEditProfileForm);
