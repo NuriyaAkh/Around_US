@@ -12,6 +12,10 @@ export default class PopupWithCofirmation extends Popup {
   }
   close(){
     super.close();
+    this._yesButton.removeEventListener("click", ()=>{
+      this._handleYesSubmit(this._card);
+    })
+
   }
   setEventListeners(){
     this._yesButton.addEventListener("click", ()=>{

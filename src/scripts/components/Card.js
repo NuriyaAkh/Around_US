@@ -1,15 +1,14 @@
-import PopupWithImage from "./PopupWithImage";
 export default class Card {
-  constructor({ data, handleShowImage, handleLikes,  openConfirmationPopup}, cardSelector) {
+  constructor({ data, handleImageClick, handleLikeClick,  handleTrashClick,}, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this._handleImageClick = handleShowImage;
+    this._handleImageClick = handleImageClick;
     this._likes = data.likes;
-    this._handleLikes = handleLikes;
+    this._handleLikeClick = handleLikeClick;
     this._cardId = data._id;
-    this._deleteConfirmationForm =  openConfirmationPopup;
-    this._currentUserId=data.currentUserId;
+    this._deleteConfirmationForm =  handleTrashClick;
+    this._currentUserId = data.currentUserId;
     this._ownerId = data.owner;
   }
   getCardId(){
@@ -36,37 +35,40 @@ export default class Card {
     this._imageElement.addEventListener("click", this._handleImageClick);
     this._cardLikesCounter = this._element.querySelector(".card__likes-counter");
     this._cardLikesCounter.textContent = this._likes.length;
-    this._likeButton = this._element.querySelector(".card__button");
+    this._loveIcon = this._element.querySelector(".card__button");
     this._trashIcon = this._element.querySelector(".card__delete");
-    if(this._ownerId !==this._currentUserId ){
+    if(this._ownerId !== this._currentUserId ){
       this._trashIcon.remove();
       this._trashIcon = null;
     }
+    //todo check
     this._likes.forEach((item) =>{
       if(item._id === this._currentUserId){
-        this._handleLikeButton(this._likeButton);
+        this._handleLikeButton(this._loveIcon);
       }
     });
     return this._element;
   }
   _setEventListeners() {
     //like button
-    this._element
-      .querySelector(".card__button")
-      .addEventListener("click", (evt) => {
-        this._handleLikeButton(evt);
+    this._loveIcon.addEventListener("click", () => {
+        this._handleLikeClick();
       });
     //delete card
-    this._element.querySelector(".card__delete").addEventListener("click", () => {
+    if (this._trashIcon){
+      this._trashIcon.addEventListener("click", () => {
         this._deleteConfirmationForm(this);
-      });
-  }
-  //todo handle like
-  _handleLikeButton(result) {
-    this._likeButton.classList.toggle("card__button_active");
-   this._cardLikesCounter.textContent = result.likes.length;
+      });}
   }
 
+  //todo handle like
+  handleLikeButton(result) {
+    this._loveIcon.classList.toggle("card__button_active");
+   this._cardLikesCounter.textContent = result.likes.length;
+  }
+ isLiked(){
+   return this._loveIcon.classList.contains("card__button_active");
+ }
   handleDeleteCard() {
     this._element.remove();
     this._element = null;

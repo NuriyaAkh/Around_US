@@ -1,5 +1,3 @@
-import { userNameInput, userJobInput } from "../utils/constants";
-
 export default class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -118,11 +116,37 @@ export default class Api {
       });
 
   }
-  addLike() {
+  addLike(cardId) {
     //PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+    return fetch(`${this._baseUrl}/cards/${cardId}`,
+    {  method:"PUT",
+       headers: this._headers})
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        // if the server returns an error, reject the promise
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
   }
-  removeLike() {
+  removeLike(cardId) {
     //DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+    return fetch(`${this._baseUrl}/cards/${cardId}`,
+    {  method:"DELETE",
+       headers: this._headers})
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        // if the server returns an error, reject the promise
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
   }
 
 }
