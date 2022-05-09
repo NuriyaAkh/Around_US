@@ -132,14 +132,14 @@ function renderCard(data) {
 
       },
       handleLikeClick: (card) => {
-        
+
         console.log(card.isLiked());
           if (card.isLiked()) {
             api
               .removeLike(card.getCardId())
 
                 .then((res) =>
-        card.handleLikeData(result))
+        card.handleLikeData(res))
         .catch((err) => {
           console.log(err);
         });

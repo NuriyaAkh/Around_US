@@ -5,8 +5,7 @@ export default class Api {
   }
   promiseAll(){
   return Promise.all([this.getUserData(), this.getInitialCards()])
-  // .then(res => console.log(res))
-  //   .catch(err => console.error(`Error while executing: ${err}`));
+
   }
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, { headers: this._headers})
@@ -135,7 +134,7 @@ export default class Api {
   }
   removeLike(cardId) {
     //DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-    return fetch(`${this._baseUrl}/cards/${cardId}`,
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`,
     {  method:"DELETE",
        headers: this._headers})
       .then((res) => {
