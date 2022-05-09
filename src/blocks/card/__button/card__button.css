@@ -8,6 +8,7 @@
   cursor: pointer;
   height: 19px;
   width: 21px;
+  padding-bottom: 3px;
 }
 .card__button:hover {
   opacity: 0.5;

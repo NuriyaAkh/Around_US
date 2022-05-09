@@ -3,22 +3,34 @@ import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import PopupWithConfirmation from "../scripts/components/PopupWithConfirmation.js";
 import UserInfo from "../scripts/components/UserInfo.js";
+import Api from "../scripts/components/Api.js";
 import "./index.css";
 import {
   formValidationSettings,
-  initialCards,
   editProfileForm,
   addImageForm,
   imageForm,
+  avatarForm,
+  profileAvatarForm,
   openProfileEditButton,
   openImageAddButton,
-  profileName,
-  profileJob,
-  userInputName,
-  userInputJob,
+  editProfilePictureButton,
+  userNameInput,
+  userJobInput,
 } from "../scripts/utils/constants.js";
 
+
+let cardList;
+let currentUserId;
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
+    "Content-Type": "application/json",
+  },
+});
 // form validation
 const editProfileFormValidator = new FormValidator(
   formValidationSettings,
@@ -28,8 +40,134 @@ const addImageFormValidator = new FormValidator(
   formValidationSettings,
   addImageForm
 );
+const editProfilePictureFormValidator = new FormValidator(
+  formValidationSettings,
+  profileAvatarForm
+);
 editProfileFormValidator.enableValidation();
 addImageFormValidator.enableValidation();
+editProfilePictureFormValidator.enableValidation();
+//init cards, user info
+api.promiseAll()
+.then(([user,cardData]) => {
+  profileInfo.setUserInfo({
+    userInputName: user.name,
+    userInputJob: user.about,
+    userAvatar: user.avatar,});
+
+  currentUserId = user._id;
+  cardList = new Section(
+    {
+      items: cardData,
+      renderer: renderCard,
+      containerSelector: ".cards__container",}
+  );
+
+  cardList.renderItems();
+
+})
+.catch(err => console.error(`Error while executing: ${err}`));
+
+//init popup add new image *
+const addNewImageForm = new PopupWithForm({
+  popupSelector: "#img-add",
+  handleFormSubmit: (data) => {
+     api.addNewCard(data)
+    .then(data =>
+    renderCard(data));
+  },
+});
+addNewImageForm.setEventListeners();
+//init popup to update profile info
+const editUserInfoForm = new PopupWithForm({
+  popupSelector: "#edit-profile",
+  handleFormSubmit: handleProfileFormSubmit,
+});
+editUserInfoForm.setEventListeners();
+
+//init popup to change avatar
+const editUserImageForm = new PopupWithForm({
+  popupSelector: "#update-avatar-popup",
+  handleFormSubmit: handleProfileImageSubmit,
+});
+editUserImageForm.setEventListeners();
+
+//init user info
+const profileInfo = new UserInfo({
+  userNameSelector: ".profile__name",
+  userOccupationSelector: ".profile__about",
+  userPictureSelector: ".profile__img",
+});
+
+//init preview image
+const cardShowImage = new PopupWithImage("#image-show");
+
+//init confirmation popup to delete card
+const deleteConfirmationForm = new PopupWithConfirmation({
+  popupSelector:"#confirm-popup"});
+
+// render card
+function renderCard(data) {
+
+  const card = new Card(
+    {
+      data,
+      handleImageClick: () => {
+        cardShowImage.open(data);
+      },
+      handleTrashClick: () => {
+        deleteConfirmationForm.setSubmit(() => {
+          console.log(card.getCardId());
+          api
+            .deleteCard(card.getCardId())
+            .then((res) => {
+              deleteConfirmationForm.close();
+              card.handleDeleteCard();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+        deleteConfirmationForm.open();
+
+      },
+      handleLikeClick: (card) => {
+
+          if (card.isLiked()) {
+            api
+              .removeLike(card.getCardId())
+
+                .then((res) =>
+        card.handleLikeData(res))
+        .catch((err) => {
+          console.log(err);
+        });
+
+
+      }
+      else {
+        api
+              .addLike(card.getCardId())
+
+                .then((res) =>
+        card.handleLikeData(res))
+        .catch((err) => {
+          console.log(err);
+        });
+
+
+      }
+    },
+      currentUserId,
+      cardSelector: "#card",
+    },
+
+  );
+  const cardElement = card.generateCard();
+ // console.log(card);
+  cardList.addItem(cardElement);
+}
+
 
 // function show add image form
 function openAddImageForm() {
@@ -42,66 +180,96 @@ function openAddImageForm() {
 function openEditProfileForm() {
   fillProfileForm();
   editProfileFormValidator.resetValidation();
+
   editUserInfoForm.open();
 }
 // prefill the profile form
 function fillProfileForm() {
-  userInputName.value = profileName.textContent;
-  userInputJob.value = profileJob.textContent;
+  const { userInputName, userInputJob } = profileInfo.getUserInfo();
+  userNameInput.value = userInputName;
+  userJobInput.value = userInputJob;
+}
+function openEditProfilePictureForm(){
+  avatarForm.reset();
+  editProfilePictureFormValidator.resetValidation();
+  editUserImageForm.open();
 }
 // function to submit edit profile info
-function handleProfileFormSubmit() {
-  profileName.textContent = userInputName.value;
-  profileJob.textContent = userInputJob.value;
+function handleProfileFormSubmit(userData) {
+editUserInfoForm.renderLoading(true);
+  api.editProfileInfo(userData)
+    .then((userData) => {
+      console.log(userData);
+      profileInfo.setUserInfo({
+        userInputName: userData.name,
+        userInputJob: userData.about,
+        userAvatar: userData.avatar
+      });
+
+    })
+    .catch((err) => {
+      console.log(err); // log the error to the console
+    })
+    .finally(()=>{
+      editUserInfoForm.renderLoading(false);
+    });
+  }
+  //function to handle editUserImageForm
+function handleProfileImageSubmit(data){
+  editUserImageForm.renderLoading(true);
+  api.editProfilePicture(data)
+  .then((result)=> {
+    profileInfo.setUserInfo({
+      userInputName: result.name,
+      userInputJob: result.about,
+      userAvatar: result.avatar
+    });
+
+  })
+  .catch((err) => {
+    console.log(err); // log the error to the console
+  })
+  .finally(()=>{
+    editUserImageForm.renderLoading(false)
+  })
 }
-//init popup profile
-const editUserInfoForm = new PopupWithForm({
-  popupSelector: "#edit-profile",
-  handleFormSubmit: handleProfileFormSubmit,
-});
-editUserInfoForm.setEventListeners();
 
-//init user info
-const profileInfo = new UserInfo({
-  userName: ".profile__name",
-  userOccupation: ".profile__about",
-});
-
-//init popup add image
-const addNewImageForm = new PopupWithForm({
-  popupSelector: "#img-add",
-  handleFormSubmit: (data) => {
-    renderCard(data);
-  },
-});
-addNewImageForm.setEventListeners();
-
-//init cards to show
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: renderCard,
-  },
-  ".cards__container"
-);
-cardList.renderItems();
-
-//init preview image
-const cardShowImage = new PopupWithImage("#image-show");
-
-function renderCard(data) {
-  const card = new Card(
-    {
-      data,
-      handleShowImage: () => {
-        cardShowImage.open(data);
-      },
-    },
-    "#card"
-  );
-  const cardElement = card.generateCard();
-  cardList.addItem(cardElement);
-}
 // event listnerens
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 openImageAddButton.addEventListener("click", openAddImageForm);
+editProfilePictureButton.addEventListener("click", openEditProfilePictureForm);
+
+
+//  fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+//   headers: {
+//     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
+//   fetch ("https://around.nomoreparties.co/v1/group-12/users/me", {
+//   headers: {
+//     authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9"
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
+/* fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+  method: "PATCH",
+  headers: {
+    authorization: "66d060c3-a92b-49d0-add5-d7e29bf411c9",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: "Nuriya Akhmedova",
+    about: "Software Developer, explorer, mom"
+  })
+}); */
+
+//toDo
+
+//likes function
