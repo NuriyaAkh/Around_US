@@ -131,17 +131,34 @@ function renderCard(data) {
         deleteConfirmationForm.open();
 
       },
-      handleLikeClick: () =>{
+      handleLikeClick: (card) => {
+        console.log("ttt");
+        console.log(card.isLiked());
+          if (card.isLiked()) {
+            api
+              .removeLike(card.getCardId())
 
-        api.addLike(card.getCardId())
-        .then((res) =>
+                .then((res) =>
         card.handleLikeData(result))
         .catch((err) => {
           console.log(err);
         });
 
 
-      },
+      }
+      else {
+        api
+              .addLike(card.getCardId())
+
+                .then((res) =>
+        card.handleLikeData(res))
+        .catch((err) => {
+          console.log(err);
+        });
+
+
+      }
+    },
       currentUserId,
       cardSelector: "#card",
     },

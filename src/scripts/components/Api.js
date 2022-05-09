@@ -118,10 +118,13 @@ export default class Api {
   }
   addLike(cardId) {
     //PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-    return fetch(`${this._baseUrl}/cards/${cardId}`,
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`,
+    //PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+    //https://around.nomoreparties.co/v1/group-12/cards/6277aba59d42cd001249f345
     {  method:"PUT",
        headers: this._headers})
       .then((res) => {
+        console.log(res);
         if (res.ok) {
           return res.json();
         }

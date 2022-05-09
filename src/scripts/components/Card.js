@@ -31,6 +31,7 @@ export default class Card {
     return this._loveIcon.classList.contains("card__button_active");
   }
   handleLikeData(result) {
+    console.log("run");
     this._loveIcon.classList.toggle("card__button_active");
    this._cardLikesCounter.textContent = result.likes.length;
   }
@@ -56,9 +57,6 @@ export default class Card {
     this._setEventListeners();
     return this._element;
   }
-
-
-
 
   _setEventListeners() {
     //like button
