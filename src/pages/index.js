@@ -3,7 +3,7 @@ import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
-import PopupWithCofirmation from "../scripts/components/PopupWithConfirmation.js";
+import PopupWithConfirmation from "../scripts/components/PopupWithConfirmation.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import Api from "../scripts/components/Api.js";
 import "./index.css";
@@ -107,10 +107,9 @@ const profileInfo = new UserInfo({
 const cardShowImage = new PopupWithImage("#image-show");
 
 //confirmation popup to delete card
-const deleteConfirmationForm = new PopupWithCofirmation({
-  popupSelector:"#confirm-popup",
-  handleYesSubmit: handleYesSubmit,});
-deleteConfirmationForm.setEventListeners();
+const deleteConfirmationForm = new PopupWithConfirmation({
+  popupSelector:"#confirm-popup"});
+
 // render card
 function renderCard(data) {
 
@@ -120,19 +119,29 @@ function renderCard(data) {
       handleImageClick: () => {
         cardShowImage.open(data);
       },
-      handleTrashClick: () =>{
+      handleTrashClick: () => {
+        deleteConfirmationForm.setSubmit(() => {
+          console.log(card.getCardId());
+          api
+            .deleteCard(card.getCardId())
+            .then((res) => {
+              deleteConfirmationForm.close();
+              card.handleDeleteCard();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
         deleteConfirmationForm.open();
 
       },
-      handleLikeClick: () =>{
-
-
-      },
+      handleLikeClick: () =>{},
       currentUserId,
     },
     "#card"
   );
   const cardElement = card.generateCard();
+  console.log(card);
   cardList.addItem(cardElement);
 }
 
@@ -201,14 +210,7 @@ function handleProfileImageSubmit(data){
   })
 }
 
-function handleYesSubmit(cardData) {
-  api.deleteCard(card.cardId)
-  .then(res => {
-  deleteConfirmationForm.close();
-  card.handleDeleteCard();
-})
-.catch((err) => {console.log(err);});
-};
+
 
 
 
