@@ -133,14 +133,14 @@ function renderCard(data) {
       },
       handleLikeClick: () =>{
 
-        api.addLike(cardId)
+        api.addLike(card.getCardId())
         .then((res) =>
         card.handleLikeData(result))
         .catch((err) => {
           console.log(err);
         });
 
-        
+
       },
       currentUserId,
       cardSelector: "#card",
