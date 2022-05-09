@@ -132,7 +132,7 @@ function renderCard(data) {
 
       },
       handleLikeClick: (card) => {
-        console.log("ttt");
+        
         console.log(card.isLiked());
           if (card.isLiked()) {
             api
