@@ -60,8 +60,7 @@ api.promiseAll()
     {
       items: cardData,
       renderer: renderCard,
-    },
-    ".cards__container"
+      containerSelector: ".cards__container",}
   );
 
   cardList.renderItems();
@@ -137,8 +136,9 @@ function renderCard(data) {
       },
       handleLikeClick: () =>{},
       currentUserId,
+      cardSelector: "#card",
     },
-    "#card"
+
   );
   const cardElement = card.generateCard();
   console.log(card);
