@@ -142,8 +142,6 @@ function renderCard(data) {
         .catch((err) => {
           console.log(err);
         });
-
-
       }
       else {
         api
