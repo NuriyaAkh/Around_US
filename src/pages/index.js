@@ -132,7 +132,15 @@ function renderCard(data) {
 
       },
       handleLikeClick: () =>{
-        //todo
+
+        api.addLike(cardId)
+        .then((res) =>
+        card.handleLikeData(result))
+        .catch((err) => {
+          console.log(err);
+        });
+
+        
       },
       currentUserId,
       cardSelector: "#card",

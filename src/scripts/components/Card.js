@@ -50,7 +50,6 @@ export default class Card {
       this._trashIcon.remove();
       this._trashIcon = null;
     }
-    //todo check
     if (this._likes.some(item => item._id === this._currentUserId)) {
         this._loveIcon.classList.add("card__button_active");
       }
@@ -63,9 +62,9 @@ export default class Card {
 
   _setEventListeners() {
     //like button
-    // this._loveIcon.addEventListener("click", () => {
-    //     this._handleLikeClick();
-    //   });
+    this._loveIcon.addEventListener("click", () => {
+        this._handleLikeClick();
+      });
     //delete card
     if (this._trashIcon){
       this._trashIcon.addEventListener("click", () => {
