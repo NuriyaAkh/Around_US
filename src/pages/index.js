@@ -133,7 +133,6 @@ function renderCard(data) {
       },
       handleLikeClick: (card) => {
 
-        console.log(card.isLiked());
           if (card.isLiked()) {
             api
               .removeLike(card.getCardId())
