@@ -117,9 +117,10 @@ function renderCard(data) {
       },
       handleTrashClick: () =>{
         deleteConfirmationForm.open();
+        
       },
       handleLikeClick: () =>{
-        
+
 
       },
     },

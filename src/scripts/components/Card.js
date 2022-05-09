@@ -51,9 +51,9 @@ export default class Card {
   }
   _setEventListeners() {
     //like button
-    this._loveIcon.addEventListener("click", () => {
-        this._handleLikeClick();
-      });
+    // this._loveIcon.addEventListener("click", () => {
+    //     this._handleLikeClick();
+    //   });
     //delete card
     if (this._trashIcon){
       this._trashIcon.addEventListener("click", () => {
