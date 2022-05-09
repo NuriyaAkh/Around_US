@@ -12,9 +12,7 @@ export default class Card {
     this._ownerId = data.owner._id;
   }
   getCardId(){
-    console.log(this._cardId);
-    return this._cardId;
-
+        return this._cardId;
   }
   _getTemplate() {
     const cardElement = document
@@ -24,12 +22,21 @@ export default class Card {
 
     return cardElement;
   }
-  //public method
-  generateCard() {
-    // Store the markup in the private field _element
-    // so that other elements can access it
-    this._element = this._getTemplate();
 
+  handleDeleteCard() {
+    this._element.remove();
+    this._element = null;
+  }
+  isLiked(){
+    return this._loveIcon.classList.contains("card__button_active");
+  }
+  handleLikeData(result) {
+    this._loveIcon.classList.toggle("card__button_active");
+   this._cardLikesCounter.textContent = result.likes.length;
+  }
+  generateCard() {
+
+    this._element = this._getTemplate();
     this._element.querySelector(".card__title").textContent = this._name;
     this._imageElement = this._element.querySelector(".card__img");
     this._imageElement.src = this._link;
@@ -44,14 +51,16 @@ export default class Card {
       this._trashIcon = null;
     }
     //todo check
-    this._likes.forEach((item) =>{
-      if(item._id === this._currentUserId){
-        this._handleLikeButton(this._loveIcon);
+    if (this._likes.some(item => item._id === this._currentUserId)) {
+        this._loveIcon.classList.add("card__button_active");
       }
-    });
     this._setEventListeners();
     return this._element;
   }
+
+
+
+
   _setEventListeners() {
     //like button
     // this._loveIcon.addEventListener("click", () => {
@@ -64,17 +73,9 @@ export default class Card {
       });}
   }
 
-  //todo handle like
-  handleLikeButton(result) {
-    this._loveIcon.classList.toggle("card__button_active");
-   this._cardLikesCounter.textContent = result.likes.length;
-  }
- isLiked(){
-   return this._loveIcon.classList.contains("card__button_active");
- }
-  handleDeleteCard() {
-    this._element.remove();
-    this._element = null;
-  }
+
+
+
+
 }
 

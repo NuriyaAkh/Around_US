@@ -47,7 +47,7 @@ const editProfilePictureFormValidator = new FormValidator(
 editProfileFormValidator.enableValidation();
 addImageFormValidator.enableValidation();
 editProfilePictureFormValidator.enableValidation();
-
+//init cards, user info
 api.promiseAll()
 .then(([user,cardData]) => {
   profileInfo.setUserInfo({
@@ -68,10 +68,7 @@ api.promiseAll()
 })
 .catch(err => console.error(`Error while executing: ${err}`));
 
-
-
-
-//init popup add new image
+//init popup add new image *
 const addNewImageForm = new PopupWithForm({
   popupSelector: "#img-add",
   handleFormSubmit: (data) => {
@@ -105,7 +102,7 @@ const profileInfo = new UserInfo({
 //init preview image
 const cardShowImage = new PopupWithImage("#image-show");
 
-//confirmation popup to delete card
+//init confirmation popup to delete card
 const deleteConfirmationForm = new PopupWithConfirmation({
   popupSelector:"#confirm-popup"});
 
@@ -134,14 +131,16 @@ function renderCard(data) {
         deleteConfirmationForm.open();
 
       },
-      handleLikeClick: () =>{},
+      handleLikeClick: () =>{
+        //todo
+      },
       currentUserId,
       cardSelector: "#card",
     },
 
   );
   const cardElement = card.generateCard();
-  console.log(card);
+ // console.log(card);
   cardList.addItem(cardElement);
 }
 
@@ -191,6 +190,7 @@ editUserInfoForm.renderLoading(true);
       editUserInfoForm.renderLoading(false);
     });
   }
+  //function to handle editUserImageForm
 function handleProfileImageSubmit(data){
   editUserImageForm.renderLoading(true);
   api.editProfilePicture(data)
@@ -209,11 +209,6 @@ function handleProfileImageSubmit(data){
     editUserImageForm.renderLoading(false)
   })
 }
-
-
-
-
-
 
 // event listnerens
 openProfileEditButton.addEventListener("click", openEditProfileForm);
@@ -252,5 +247,5 @@ editProfilePictureButton.addEventListener("click", openEditProfilePictureForm);
 }); */
 
 //toDo
-//PopupConfirmation to delete card
+
 //likes function
