@@ -11,9 +11,10 @@ import {
   formValidationSettings,
   editProfileForm,
   addImageForm,
+  profileAvatarForm,
   imageForm,
   avatarForm,
-  profileAvatarForm,
+  profileForm,
   openProfileEditButton,
   openImageAddButton,
   editProfilePictureButton,
@@ -30,25 +31,59 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+
+ const formValidators = {}
+
+// enable validation
+const enableValidation = (formValidationSettings) => {
+  const formList = Array.from(document.querySelectorAll(formValidationSettings .formSelector));
+
+  formList.forEach((formElement) => {
+
+    const validator = new FormValidator(formElement, formValidationSettings )
+    // here you get the name of the form
+    const formName = formElement.getAttribute('name')
+    console.log(formElement.getAttribute('name'));
+   // here you store a validator by the `name` of the form
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(formValidationSettings);
+
+console.log(editProfileForm);
+
+// formValidators[ editProfileForm.getAttribute('name') ].resetValidation();
+formValidators[ profileForm.getAttribute('name') ].resetValidation();
+formValidators[ avatarForm.getAttribute('name') ].resetValidation();
+formValidators[ imageForm.getAttribute('name') ].resetValidation();
+
+// or you can use a string – the name of the form (you know it from `index.html`)
+
+//formValidators['profile-form'].resetValidation()
+
+
 // form validation
-const editProfileFormValidator = new FormValidator(
-  formValidationSettings,
-  editProfileForm
-);
-const addImageFormValidator = new FormValidator(
-  formValidationSettings,
-  addImageForm
-);
-const editProfilePictureFormValidator = new FormValidator(
-  formValidationSettings,
-  profileAvatarForm
-);
-editProfileFormValidator.enableValidation();
-addImageFormValidator.enableValidation();
-editProfilePictureFormValidator.enableValidation();
+// const editProfileFormValidator = new FormValidator(
+//   formValidationSettings,
+//   editProfileForm
+// );
+// const addImageFormValidator = new FormValidator(
+//   formValidationSettings,
+//   addImageForm
+// );
+// const editProfilePictureFormValidator = new FormValidator(
+//   formValidationSettings,
+//   profileAvatarForm
+// );
+// editProfileFormValidator.enableValidation();
+// addImageFormValidator.enableValidation();
+// editProfilePictureFormValidator.enableValidation();
+
 //init cards, user info
 api
-  .promiseAll()
+  .getAllData()
   .then(([user, cardData]) => {
     profileInfo.setUserInfo({
       userInputName: user.name,
@@ -69,7 +104,13 @@ api
 const addNewImageForm = new PopupWithForm({
   popupSelector: "#img-add",
   handleFormSubmit: (data) => {
-    api.addNewCard(data).then((data) => renderCard(data));
+    addNewImageForm.renderLoading(true)
+    api
+      .addNewCard(data)
+      .then((data) => renderCard(data))
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
   },
 });
 addNewImageForm.setEventListeners();
@@ -151,14 +192,16 @@ function renderCard(data) {
 
 // function show add image form
 function openAddImageForm() {
-  addImageFormValidator.resetValidation();
+  formValidators[ imageForm.getAttribute('name') ].resetValidation();
+ // addImageFormValidator.resetValidation();
   addNewImageForm.open();
 }
 
 // function open edit form
 function openEditProfileForm() {
   fillProfileForm();
-  editProfileFormValidator.resetValidation();
+  formValidators[ profileForm.getAttribute('name') ].resetValidation();
+  //editProfileFormValidator.resetValidation();
   editUserInfoForm.open();
 }
 // prefill the profile form
@@ -168,7 +211,8 @@ function fillProfileForm() {
   userJobInput.value = userInputJob;
 }
 function openEditProfilePictureForm() {
-  editProfilePictureFormValidator.resetValidation();
+  formValidators[ avatarForm.getAttribute('name') ].resetValidation();
+  //editProfilePictureFormValidator.resetValidation();
   editUserImageForm.open();
 }
 // function to submit edit profile info
@@ -215,5 +259,3 @@ function handleProfileImageSubmit(data) {
 openProfileEditButton.addEventListener("click", openEditProfileForm);
 openImageAddButton.addEventListener("click", openAddImageForm);
 editProfilePictureButton.addEventListener("click", openEditProfilePictureForm);
-
-

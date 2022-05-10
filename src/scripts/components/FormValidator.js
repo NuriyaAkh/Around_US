@@ -1,5 +1,5 @@
 export default class FormValidator {
-  constructor(settings, formElement) {
+  constructor( formElement,settings,) {
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inactiveButtonClass = settings.inactiveButtonClass;
@@ -63,6 +63,7 @@ export default class FormValidator {
   };
 
   enableValidation() {
+    console.log(this._formElement);
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
