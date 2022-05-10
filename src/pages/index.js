@@ -54,7 +54,7 @@ enableValidation(formValidationSettings);
 
 console.log(editProfileForm);
 
-// formValidators[ editProfileForm.getAttribute('name') ].resetValidation();
+
 formValidators[ profileForm.getAttribute('name') ].resetValidation();
 formValidators[ avatarForm.getAttribute('name') ].resetValidation();
 formValidators[ imageForm.getAttribute('name') ].resetValidation();
@@ -107,9 +107,13 @@ const addNewImageForm = new PopupWithForm({
     addNewImageForm.renderLoading(true)
     api
       .addNewCard(data)
-      .then((data) => renderCard(data))
+      .then((data) => {renderCard(data)
+      addNewImageForm.close();})
       .catch((err) => {
         console.log(err); // log the error to the console
+      })
+      .finally(() => {
+        addNewImageForm.renderLoading(false);
       });
   },
 });
@@ -227,6 +231,7 @@ function handleProfileFormSubmit(userData) {
         userInputJob: userData.about,
         userAvatar: userData.avatar,
       });
+      editUserInfoForm.close();
     })
     .catch((err) => {
       console.log(err); // log the error to the console
@@ -246,6 +251,7 @@ function handleProfileImageSubmit(data) {
         userInputJob: result.about,
         userAvatar: result.avatar,
       });
+      editUserImageForm.close();
     })
     .catch((err) => {
       console.log(err); // log the error to the console
