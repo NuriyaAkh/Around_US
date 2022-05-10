@@ -10,8 +10,6 @@ import "./index.css";
 import {
   formValidationSettings,
   editProfileForm,
-  addImageForm,
-  profileAvatarForm,
   imageForm,
   avatarForm,
   profileForm,
@@ -32,54 +30,33 @@ const api = new Api({
   },
 });
 
- const formValidators = {}
+const formValidators = {};
 
 // enable validation
 const enableValidation = (formValidationSettings) => {
-  const formList = Array.from(document.querySelectorAll(formValidationSettings .formSelector));
+  const formList = Array.from(
+    document.querySelectorAll(formValidationSettings.formSelector)
+  );
 
   formList.forEach((formElement) => {
-
-    const validator = new FormValidator(formElement, formValidationSettings )
-    // here you get the name of the form
-    const formName = formElement.getAttribute('name')
-    console.log(formElement.getAttribute('name'));
-   // here you store a validator by the `name` of the form
+    const validator = new FormValidator(formElement, formValidationSettings);
+    //  get the name of the form
+    const formName = formElement.getAttribute("name");
+    // here you store a validator by the `name` of the form
     formValidators[formName] = validator;
-   validator.enableValidation();
+    validator.enableValidation();
   });
 };
 
 enableValidation(formValidationSettings);
 
-console.log(editProfileForm);
-
-
-formValidators[ profileForm.getAttribute('name') ].resetValidation();
-formValidators[ avatarForm.getAttribute('name') ].resetValidation();
-formValidators[ imageForm.getAttribute('name') ].resetValidation();
+formValidators[profileForm.getAttribute("name")].resetValidation();
+formValidators[avatarForm.getAttribute("name")].resetValidation();
+formValidators[imageForm.getAttribute("name")].resetValidation();
 
 // or you can use a string – the name of the form (you know it from `index.html`)
 
 //formValidators['profile-form'].resetValidation()
-
-
-// form validation
-// const editProfileFormValidator = new FormValidator(
-//   formValidationSettings,
-//   editProfileForm
-// );
-// const addImageFormValidator = new FormValidator(
-//   formValidationSettings,
-//   addImageForm
-// );
-// const editProfilePictureFormValidator = new FormValidator(
-//   formValidationSettings,
-//   profileAvatarForm
-// );
-// editProfileFormValidator.enableValidation();
-// addImageFormValidator.enableValidation();
-// editProfilePictureFormValidator.enableValidation();
 
 //init cards, user info
 api
@@ -100,15 +77,17 @@ api
   })
   .catch((err) => console.error(`Error while executing: ${err}`));
 
-//init popup add new image *
+//init popup add new image
 const addNewImageForm = new PopupWithForm({
   popupSelector: "#img-add",
   handleFormSubmit: (data) => {
-    addNewImageForm.renderLoading(true)
+    addNewImageForm.renderLoading(true);
     api
       .addNewCard(data)
-      .then((data) => {renderCard(data)
-      addNewImageForm.close();})
+      .then((data) => {
+        renderCard(data);
+        addNewImageForm.close();
+      })
       .catch((err) => {
         console.log(err); // log the error to the console
       })
@@ -118,6 +97,7 @@ const addNewImageForm = new PopupWithForm({
   },
 });
 addNewImageForm.setEventListeners();
+
 //init popup to update profile info
 const editUserInfoForm = new PopupWithForm({
   popupSelector: "#edit-profile",
@@ -190,21 +170,20 @@ function renderCard(data) {
     cardSelector: "#card",
   });
   const cardElement = card.generateCard();
-  // console.log(card);
   cardList.addItem(cardElement);
 }
 
 // function show add image form
 function openAddImageForm() {
-  formValidators[ imageForm.getAttribute('name') ].resetValidation();
- // addImageFormValidator.resetValidation();
+  formValidators[imageForm.getAttribute("name")].resetValidation();
+  // addImageFormValidator.resetValidation();
   addNewImageForm.open();
 }
 
 // function open edit form
 function openEditProfileForm() {
   fillProfileForm();
-  formValidators[ profileForm.getAttribute('name') ].resetValidation();
+  formValidators[profileForm.getAttribute("name")].resetValidation();
   //editProfileFormValidator.resetValidation();
   editUserInfoForm.open();
 }
@@ -215,7 +194,7 @@ function fillProfileForm() {
   userJobInput.value = userInputJob;
 }
 function openEditProfilePictureForm() {
-  formValidators[ avatarForm.getAttribute('name') ].resetValidation();
+  formValidators[avatarForm.getAttribute("name")].resetValidation();
   //editProfilePictureFormValidator.resetValidation();
   editUserImageForm.open();
 }
