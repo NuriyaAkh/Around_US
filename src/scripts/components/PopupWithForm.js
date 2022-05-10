@@ -26,7 +26,6 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
       //this.close();
-      //You need to close popups only in blocks then after a successful response from the server so that when there is an error it would be opened (the inputs will not be cleared and the user could send the data again to the server) and if you change the button text you could see the change as well
     });
   }
 
