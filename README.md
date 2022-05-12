@@ -10,6 +10,8 @@ A project called "Around The U.S." — an interactive page where users can add, 
 * Form Validation
 * BEM
 * Webpack
+* Promises
+* API (GET, PUT, POST,DELETE and PATCH requests)
 ### Design
 
 **Figma**
